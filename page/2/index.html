@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"z14git.github.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"z14git.gitee.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="十四的杂物">
-<meta property="og:url" content="http://z14git.github.io/sundries/page/2/index.html">
+<meta property="og:url" content="http://z14git.gitee.io/sundries/page/2/index.html">
 <meta property="og:site_name" content="十四的杂物">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="z14git">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://z14git.github.io/sundries/page/2/">
+<link rel="canonical" href="http://z14git.gitee.io/sundries/page/2/">
 
 
 <script id="page-configurations">
@@ -149,7 +149,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/03/13/%E5%9C%A8linux%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%8C%82%E8%BD%BDimg%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/03/15/npm-%E5%AE%89%E8%A3%85%E8%B6%85%E6%97%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/03/15/npm-%E5%AE%89%E8%A3%85%E8%B6%85%E6%97%B6/" class="post-title-link" itemprop="url">npm 安装超时</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-15 15:23:34" itemprop="dateCreated datePublished" datetime="2020-03-15T15:23:34+08:00">2020-03-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-16 13:51:45" itemprop="dateModified" datetime="2020-03-16T13:51:45+08:00">2020-03-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>解决办法：</p>
+<p>使用淘宝镜像</p>
+<p>永久使用：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p>临时使用:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install &lt;package-name&gt; --registry=http://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p>另外还有其他的源：</p>
+<ul>
+<li>npm —- <a href="https://registry.npmjs.org/" target="_blank" rel="noopener">https://registry.npmjs.org/</a></li>
+<li>cnpm — <a href="http://r.cnpmjs.org/" target="_blank" rel="noopener">http://r.cnpmjs.org/</a></li>
+<li>taobao - <a href="http://registry.npm.taobao.org/" target="_blank" rel="noopener">http://registry.npm.taobao.org/</a></li>
+<li>eu —– <a href="http://registry.npmjs.eu/" target="_blank" rel="noopener">http://registry.npmjs.eu/</a></li>
+<li>au —– <a href="http://registry.npmjs.org.au/" target="_blank" rel="noopener">http://registry.npmjs.org.au/</a></li>
+<li>sl —– <a href="http://npm.strongloop.com/" target="_blank" rel="noopener">http://npm.strongloop.com/</a></li>
+<li>nj —– <a href="https://registry.nodejitsu.com/" target="_blank" rel="noopener">https://registry.nodejitsu.com/</a></li>
+</ul>
+<blockquote>
+<p>source: <a href="https://blog.csdn.net/wangxp/article/details/81535786" target="_blank" rel="noopener">npm 使用安装超时的解决办法</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/03/13/%E5%9C%A8linux%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%8C%82%E8%BD%BDimg%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -219,7 +304,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/03/13/How-to-Check-if-a-File-or-Directory-Exists-in-Bash/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/03/13/How-to-Check-if-a-File-or-Directory-Exists-in-Bash/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -348,7 +433,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/03/13/Shell-if-else-%E8%AF%AD%E5%8F%A5/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/03/13/Shell-if-else-%E8%AF%AD%E5%8F%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -455,7 +540,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/03/13/shell-%E7%BC%96%E7%A8%8B-%E9%94%99%E8%AF%AF-bash-missing/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/03/13/shell-%E7%BC%96%E7%A8%8B-%E9%94%99%E8%AF%AF-bash-missing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -518,7 +603,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/03/13/git-%E8%AE%BE%E7%BD%AE%E5%92%8C%E5%8F%96%E6%B6%88%E4%BB%A3%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/03/13/git-%E8%AE%BE%E7%BD%AE%E5%92%8C%E5%8F%96%E6%B6%88%E4%BB%A3%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -647,14 +732,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/sundries/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/sundries/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
