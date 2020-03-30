@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>linux下用Python调用串口</title>
+    <url>/sundries/2020/03/30/linux%E4%B8%8B%E7%94%A8Python%E8%B0%83%E7%94%A8%E4%B8%B2%E5%8F%A3/</url>
+    <content><![CDATA[<h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p>在linux下如何用Python调用串口？</p>
+<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p>安装串口库：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pip3 install pyserial</span><br></pre></td></tr></table></figure>
+
+<p>解决<code>/dev/ttyUSB0</code>权限问题:</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo usermod -aG dialout &lt;username&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>next启用本地搜索</title>
     <url>/sundries/2020/03/27/next%E5%90%AF%E7%94%A8%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2/</url>
     <content><![CDATA[<p>Local search no need any external 3rd-party services and can be extra indexed by search engines. That search method recommended for most users.</p>
