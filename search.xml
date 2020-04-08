@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>用setup.py安装第三方包</title>
+    <url>/sundries/2020/04/08/%E7%94%A8setup-py%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E5%8C%85/</url>
+    <content><![CDATA[<ol>
+<li>先下载你要安装的包，并解压到磁盘下；</li>
+<li>进入到该文件的setup.py 目录下，打开cmd，并切换到该目录下；</li>
+<li>先执行python setup.py build.</li>
+<li>然后执行python setup.py install.</li>
+</ol>
+<blockquote>
+<p>source: <a href="https://blog.csdn.net/xxzhangx/article/details/53558654" target="_blank" rel="noopener">python：用setup.py安装第三方包packages</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>python</tag>
+        <tag>pip</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux下用Python调用串口</title>
     <url>/sundries/2020/03/30/linux%E4%B8%8B%E7%94%A8Python%E8%B0%83%E7%94%A8%E4%B8%B2%E5%8F%A3/</url>
     <content><![CDATA[<h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p>在linux下如何用Python调用串口？</p>
