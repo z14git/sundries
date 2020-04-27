@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>python writing file with Unix end of line characters</title>
+    <url>/sundries/2020/04/27/python-writing-file-with-Unix-end-of-line-characters/</url>
+    <content><![CDATA[<h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p>在windows下，python在写文件时，如何以LF作换行符？</p>
+<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> io</span><br><span class="line"></span><br><span class="line">s = <span class="string">"""abc</span></span><br><span class="line"><span class="string">def</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> io.open(<span class="string">'test.txt'</span>, <span class="string">'w'</span>, newline=<span class="string">'\n'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(s)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python writing utf8 file</title>
+    <url>/sundries/2020/04/27/python-writing-utf8-file/</url>
+    <content><![CDATA[<h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p>python如何以utf-8编码写文件</p>
+<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> io</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> io.open(<span class="string">'test.txt'</span>, <span class="string">'w'</span>, encoding=<span class="string">'utf8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(<span class="string">'▥▨▩▦'</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>用setup.py安装第三方包</title>
     <url>/sundries/2020/04/08/%E7%94%A8setup-py%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E5%8C%85/</url>
     <content><![CDATA[<ol>
