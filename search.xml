@@ -476,7 +476,7 @@
     <title>create jetson nano image</title>
     <url>/sundries/2020/03/15/create-jetson-nano-image/</url>
     <content><![CDATA[<p>在Jetpack安装目录下运行：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">create-jetson-nano-sd-card-image.sh -o flash_me.img -s 16G -r 200</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo bash create-jetson-nano-sd-card-image.sh -o flash_me.img -s 16G -r 200</span><br></pre></td></tr></table></figure>
 
 <p>相关文章：</p>
 <ul>
