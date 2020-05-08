@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>&#39;build/lib&#39; does not exist</title>
+    <url>/sundries/2020/05/08/build-lib-does-not-exist/</url>
+    <content><![CDATA[<h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p>在使用<code>python setup.py install</code>安装包时，出现<code>warning: install_lib: &#39;build/lib&#39; does not exist -- no Python modules to install</code></p>
+<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p>在<code>setup.py</code>-&gt;<code>setuptools.setup</code>中加入<code>packages=setuptools.find_packages()</code></p>
+]]></content>
+      <tags>
+        <tag>python</tag>
+        <tag>pip</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>python writing file with Unix end of line characters</title>
     <url>/sundries/2020/04/27/python-writing-file-with-Unix-end-of-line-characters/</url>
     <content><![CDATA[<h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p>在windows下，python在写文件时，如何以LF作换行符？</p>
@@ -169,8 +180,8 @@
 </blockquote>
 ]]></content>
       <tags>
-        <tag>bat</tag>
         <tag>python</tag>
+        <tag>bat</tag>
       </tags>
   </entry>
   <entry>

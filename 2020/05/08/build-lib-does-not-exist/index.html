@@ -20,21 +20,21 @@
     var CONFIG = {"hostname":"z14git.gitee.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="eg: 1if [ &quot;$HEADER&quot; &#x3D; &quot;true&quot;] ;then  解决方法： [ 和 ] 两边增加空格">
+  <meta name="description" content="Q在使用python setup.py install安装包时，出现warning: install_lib: &#39;build&#x2F;lib&#39; does not exist -- no Python modules to install A在setup.py-&gt;setuptools.setup中加入packages&#x3D;setuptools.find_packages()">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell 编程 错误 bash: [: missing ]">
-<meta property="og:url" content="http://z14git.gitee.io/sundries/2020/03/13/shell-%E7%BC%96%E7%A8%8B-%E9%94%99%E8%AF%AF-bash-missing/index.html">
+<meta property="og:title" content="&#39;build&#x2F;lib&#39; does not exist">
+<meta property="og:url" content="http://z14git.gitee.io/sundries/2020/05/08/build-lib-does-not-exist/index.html">
 <meta property="og:site_name" content="十四的杂物">
-<meta property="og:description" content="eg: 1if [ &quot;$HEADER&quot; &#x3D; &quot;true&quot;] ;then  解决方法： [ 和 ] 两边增加空格">
+<meta property="og:description" content="Q在使用python setup.py install安装包时，出现warning: install_lib: &#39;build&#x2F;lib&#39; does not exist -- no Python modules to install A在setup.py-&gt;setuptools.setup中加入packages&#x3D;setuptools.find_packages()">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-13T08:49:36.000Z">
-<meta property="article:modified_time" content="2020-03-13T09:14:57.107Z">
+<meta property="article:published_time" content="2020-05-08T03:51:16.000Z">
+<meta property="article:modified_time" content="2020-05-08T04:04:49.123Z">
 <meta property="article:author" content="z14git">
-<meta property="article:tag" content="shell">
-<meta property="article:tag" content="linux">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="pip">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://z14git.gitee.io/sundries/2020/03/13/shell-%E7%BC%96%E7%A8%8B-%E9%94%99%E8%AF%AF-bash-missing/">
+<link rel="canonical" href="http://z14git.gitee.io/sundries/2020/05/08/build-lib-does-not-exist/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>shell 编程 错误 bash: [: missing ] | 十四的杂物</title>
+  <title>'build/lib' does not exist | 十四的杂物</title>
   
 
 
@@ -186,7 +186,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/03/13/shell-%E7%BC%96%E7%A8%8B-%E9%94%99%E8%AF%AF-bash-missing/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/05/08/build-lib-does-not-exist/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -199,7 +199,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          shell 编程 错误 bash: [: missing ]
+          'build/lib' does not exist
         </h1>
 
         <div class="post-meta">
@@ -210,7 +210,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-13 16:49:36 / 修改时间：17:14:57" itemprop="dateCreated datePublished" datetime="2020-03-13T16:49:36+08:00">2020-03-13</time>
+              <time title="创建时间：2020-05-08 11:51:16 / 修改时间：12:04:49" itemprop="dateCreated datePublished" datetime="2020-05-08T11:51:16+08:00">2020-05-08</time>
             </span>
 
           
@@ -224,11 +224,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>eg:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$HEADER</span>"</span> = <span class="string">"true"</span>] ;<span class="keyword">then</span></span><br></pre></td></tr></table></figure>
-
-<p>解决方法：</p>
-<p><code>[</code> 和 <code>]</code> 两边增加空格</p>
+        <h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p>在使用<code>python setup.py install</code>安装包时，出现<code>warning: install_lib: &#39;build/lib&#39; does not exist -- no Python modules to install</code></p>
+<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p>在<code>setup.py</code>-&gt;<code>setuptools.setup</code>中加入<code>packages=setuptools.find_packages()</code></p>
 
     </div>
 
@@ -238,8 +235,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/sundries/tags/shell/" rel="tag"># shell</a>
-              <a href="/sundries/tags/linux/" rel="tag"># linux</a>
+              <a href="/sundries/tags/python/" rel="tag"># python</a>
+              <a href="/sundries/tags/pip/" rel="tag"># pip</a>
           </div>
 
         
@@ -248,13 +245,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/sundries/2020/03/13/git-%E8%AE%BE%E7%BD%AE%E5%92%8C%E5%8F%96%E6%B6%88%E4%BB%A3%E7%90%86/" rel="prev" title="git 设置和取消代理">
-      <i class="fa fa-chevron-left"></i> git 设置和取消代理
+    <a href="/sundries/2020/04/27/python-writing-file-with-Unix-end-of-line-characters/" rel="prev" title="python writing file with Unix end of line characters">
+      <i class="fa fa-chevron-left"></i> python writing file with Unix end of line characters
     </a></div>
-      <div class="post-nav-item">
-    <a href="/sundries/2020/03/13/Shell-if-else-%E8%AF%AD%E5%8F%A5/" rel="next" title="Shell if else 语句">
-      Shell if else 语句 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -314,6 +308,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Q"><span class="nav-number">1.</span> <span class="nav-text">Q</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A"><span class="nav-number">2.</span> <span class="nav-text">A</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
