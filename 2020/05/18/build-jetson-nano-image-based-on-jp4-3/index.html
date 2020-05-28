@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/sundries/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/sundries/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/sundries/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/sundries/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/sundries/css/main.css">
+
+
+<link rel="stylesheet" href="/sundries/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"z14git.gitee.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="烧录镜像下载jp4.3的镜像，解压并用balenaEtcher烧录到SD卡 oem-configSD卡插入到Jetson Nano上，上电。 用USB线连接Jetson Nano，电脑用终端工具打开串口访问Jetson Nano。 根据终端工具上显示的信息完成首次启动的配置。 wifi可以稍后用sudo nmtui配置。 定制以下命令均在Jetson Nano上执行 安装 proxychains1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="build log about jetson nano image based on jp4.3">
+<meta property="og:url" content="http://z14git.gitee.io/sundries/2020/05/18/build-jetson-nano-image-based-on-jp4-3/index.html">
+<meta property="og:site_name" content="十四的杂物">
+<meta property="og:description" content="烧录镜像下载jp4.3的镜像，解压并用balenaEtcher烧录到SD卡 oem-configSD卡插入到Jetson Nano上，上电。 用USB线连接Jetson Nano，电脑用终端工具打开串口访问Jetson Nano。 根据终端工具上显示的信息完成首次启动的配置。 wifi可以稍后用sudo nmtui配置。 定制以下命令均在Jetson Nano上执行 安装 proxychains1">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-18T01:22:00.000Z">
+<meta property="article:modified_time" content="2020-05-28T02:44:21.145Z">
+<meta property="article:author" content="z14git">
+<meta property="article:tag" content="jetson">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://z14git.gitee.io/sundries/2020/05/18/build-jetson-nano-image-based-on-jp4-3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>build log about jetson nano image based on jp4.3 | 十四的杂物</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/sundries/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">十四的杂物</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/sundries/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/sundries/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/sundries/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/05/18/build-jetson-nano-image-based-on-jp4-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          build log about jetson nano image based on jp4.3
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-18 09:22:00" itemprop="dateCreated datePublished" datetime="2020-05-18T09:22:00+08:00">2020-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-28 10:44:21" itemprop="dateModified" datetime="2020-05-28T10:44:21+08:00">2020-05-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="烧录镜像"><a href="#烧录镜像" class="headerlink" title="烧录镜像"></a>烧录镜像</h2><p>下载jp4.3的<a href="https://developer.nvidia.com/jetson-nano-sd-card-imager-3231" target="_blank" rel="noopener">镜像</a>，<br>解压并用balenaEtcher烧录到SD卡</p>
+<h2 id="oem-config"><a href="#oem-config" class="headerlink" title="oem-config"></a>oem-config</h2><p>SD卡插入到Jetson Nano上，上电。</p>
+<p>用USB线连接Jetson Nano，电脑用终端工具打开串口访问Jetson Nano。</p>
+<p>根据终端工具上显示的信息完成首次启动的配置。</p>
+<p>wifi可以稍后用<code>sudo nmtui</code>配置。</p>
+<h2 id="定制"><a href="#定制" class="headerlink" title="定制"></a>定制</h2><p>以下命令均在Jetson Nano上执行</p>
+<h3 id="安装-proxychains"><a href="#安装-proxychains" class="headerlink" title="安装 proxychains"></a>安装 proxychains</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install proxychains</span><br><span class="line">sudo vim /etc/proxychains.conf <span class="comment">#修改代理地址</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h3><p>卸载多余应用</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get purge libreoffice*</span><br><span class="line">sudo apt-get purge thunderbird*</span><br></pre></td></tr></table></figure>
+
+<p>最高性能模式</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo nvpmodel -m 0</span><br><span class="line">sudo jetson_clocks</span><br></pre></td></tr></table></figure>
+
+<h3 id="Install-system-level-dependencies"><a href="#Install-system-level-dependencies" class="headerlink" title="Install system-level dependencies"></a>Install system-level dependencies</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains apt-get install git cmake</span><br><span class="line">sudo proxychains apt-get install libatlas-base-dev gfortran</span><br><span class="line">sudo proxychains apt-get install libhdf5-serial-dev hdf5-tools</span><br><span class="line">sudo proxychains apt-get install python3-dev</span><br><span class="line">sudo proxychains apt-get install nano locate</span><br></pre></td></tr></table></figure>
+
+<p>Next, we’ll install SciPy prerequisites (gathered from NVIDIA’s devtalk forums) and a system-level Cython library:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains apt-get install libfreetype6-dev python3-setuptools</span><br><span class="line">sudo proxychains apt-get install protobuf-compiler libprotobuf-dev openssl</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这两个在装npm时会被卸载，所以应该不用装</span></span><br><span class="line">sudo proxychains apt-get install libssl-dev libcurl4-openssl-dev</span><br><span class="line">sudo proxychains apt-get install cython3</span><br></pre></td></tr></table></figure>
+
+<p>We also need a few XML tools for working with TensorFlow Object Detection (TFOD) API projects:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains apt-get install libxml2-dev libxslt1-dev</span><br></pre></td></tr></table></figure>
+
+<h3 id="Update-CMake"><a href="#Update-CMake" class="headerlink" title="Update CMake"></a>Update CMake</h3><p>Now we’ll update the CMake precompiler tool as we need a newer version in order to successfully compile OpenCV.</p>
+<p>First, download and extract the CMake update:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">proxychains wget http://www.cmake.org/files/v3.13/cmake-3.13.0.tar.gz</span><br><span class="line">tar xpvf cmake-3.13.0.tar.gz cmake-3.13.0/</span><br></pre></td></tr></table></figure>
+
+<p>Next, compile CMake:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> cmake-3.13.0/</span><br><span class="line">./bootstrap --system-curl</span><br><span class="line">make -j4</span><br></pre></td></tr></table></figure>
+
+<p>And finally, update your bash profile:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将jetson替换为你的用户名</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export PATH=/home/jetson/cmake-3.13.0/bin/:$PATH'</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line"><span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure>
+
+<h3 id="Install-OpenCV-system-level-dependencies-and-other-development-dependencies"><a href="#Install-OpenCV-system-level-dependencies-and-other-development-dependencies" class="headerlink" title="Install OpenCV system-level dependencies and other development dependencies"></a>Install OpenCV system-level dependencies and other development dependencies</h3><p>Let’s now install OpenCV dependecies on our system beginning with tools needed to build and compile OpenCV with parallelism:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains apt-get install build-essential pkg-config</span><br><span class="line">sudo proxychains apt-get install libtbb2 libtbb-dev</span><br></pre></td></tr></table></figure>
+
+<p>Next, we’ll install a handful of codecs and image libraries:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains apt-get install libavcodec-dev libavformat-dev libswscale-dev</span><br><span class="line">sudo proxychains apt-get install libxvidcore-dev libavresample-dev</span><br><span class="line">sudo proxychains apt-get install libtiff-dev libjpeg-dev libpng-dev</span><br></pre></td></tr></table></figure>
+
+<p>And then we’ll install a selection of GUI libraries:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains apt-get install python-tk libgtk-3-dev</span><br><span class="line">sudo proxychains apt-get install libcanberra-gtk-module libcanberra-gtk3-module</span><br></pre></td></tr></table></figure>
+
+<p>Lastly, we’ll install Video4Linux (V4L) so that we can work with USB webcams and install a library for FireWire cameras:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains apt-get install libv4l-dev libdc1394-22-dev</span><br></pre></td></tr></table></figure>
+
+<h3 id="Set-up-Python-virtual-environments-on-your-Jetson-Nano"><a href="#Set-up-Python-virtual-environments-on-your-Jetson-Nano" class="headerlink" title="Set up Python virtual environments on your Jetson Nano"></a>Set up Python virtual environments on your Jetson Nano</h3><p>First, we’ll install the de facto Python package management tool, pip:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proxychains wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">sudo -H proxychains python3 get-pip.py</span><br><span class="line">rm get-pip.py</span><br></pre></td></tr></table></figure>
+
+<p>And then we’ll install my favorite tools for managing virtual environments, virtualenv and virtualenvwrapper:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -H proxychains pip install virtualenv virtualenvwrapper</span><br></pre></td></tr></table></figure>
+
+<p>The virtualenvwrapper tool is not fully installed until you add information to your bash profile. Go ahead and open up your ~/.bashrc with the nano ediitor:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># virtualenv and virtualenvwrapper</span><br><span class="line">export WORKON_HOME&#x3D;$HOME&#x2F;.virtualenvs</span><br><span class="line">export VIRTUALENVWRAPPER_PYTHON&#x3D;&#x2F;usr&#x2F;bin&#x2F;python3</span><br><span class="line">export VIRTUALENVWRAPPER_VIRTUALENV&#x3D;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;virtualenv</span><br><span class="line">source &#x2F;usr&#x2F;local&#x2F;bin&#x2F;virtualenvwrapper.sh</span><br></pre></td></tr></table></figure>
+
+<p>Save and exit the file using the keyboard shortcuts shown at the bottom of the nano editor, and then load the bash profile to finish the virtualenvwrapper installation:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h3 id="Create-your-‘cv’-virtual-environment"><a href="#Create-your-‘cv’-virtual-environment" class="headerlink" title="Create your ‘cv’ virtual environment"></a>Create your ‘cv’ virtual environment</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv cv -p python3</span><br><span class="line">workon cv</span><br></pre></td></tr></table></figure>
+
+<h3 id="Install-the-Protobuf-Compiler"><a href="#Install-the-Protobuf-Compiler" class="headerlink" title="Install the Protobuf Compiler"></a>Install the Protobuf Compiler</h3><p>TensorFlow’s performance can be significantly impacted (in a negative way) if an efficient implementation of protobuf and libprotobuf are not present.</p>
+<p>When we pip-install TensorFlow, it automatically installs a version of protobuf that might not be the ideal one. The issue with slow TensorFlow performance has been detailed in this NVIDIA Developer forum.</p>
+<p>First, download and install an efficient implementation of the protobuf compiler (source):</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proxychains wget https://raw.githubusercontent.com/z14git/jetson_nano/tf1.15/install_protobuf-3.9.2.sh</span><br><span class="line">sudo chmod +x install_protobuf-3.9.2.sh</span><br><span class="line">./install_protobuf-3.9.2.sh</span><br></pre></td></tr></table></figure>
+
+<p>这大概要装一个多小时</p>
+<p>Once protobuf is installed on your system, you need to install it inside your virtual environment:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">cp -r ~/src/protobuf-3.9.2/python/ .</span><br><span class="line"><span class="built_in">cd</span> python</span><br><span class="line">proxychains python setup.py install --cpp_implementation</span><br><span class="line"><span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure>
+
+<h3 id="Install-TensorFlow-NumPy"><a href="#Install-TensorFlow-NumPy" class="headerlink" title="Install TensorFlow, NumPy"></a>Install TensorFlow, NumPy</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">sudo proxychains apt-get install libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran</span><br><span class="line"></span><br><span class="line">proxychains pip install -U numpy grpcio absl-py py-cpuinfo psutil portpicker six mock requests gast h5py astor termcolor protobuf keras-applications keras-preprocessing wrapt google-pasta</span><br></pre></td></tr></table></figure>
+
+<p>执行上面的指令可能会遇到这个问题:</p>
+<p><code>ERROR: Could not build wheels for numpy which use PEP 517 and cannot be installed directly.</code></p>
+<p>If you come across that message, then follow these additional steps. First, install NumPy with super user privileges:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -H proxychains pip install numpy</span><br></pre></td></tr></table></figure>
+
+<p>Then, create a symbolic link from your system’s NumPy into your virtual environment site-packages. To be able to do that you would need the installation path of <code>numpy</code>, which can be found out by issuing a NumPy uninstall command, and then canceling it as follows:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip uninstall numpy</span><br><span class="line">Uninstalling numpy-1.18.1:</span><br><span class="line">  Would remove:</span><br><span class="line">    /usr/bin/f2py</span><br><span class="line">    /usr/<span class="built_in">local</span>/bin/f2py</span><br><span class="line">    /usr/<span class="built_in">local</span>/bin/f2py3</span><br><span class="line">    /usr/<span class="built_in">local</span>/bin/f2py3.6</span><br><span class="line">    /usr/<span class="built_in">local</span>/lib/python3.6/dist-packages/numpy-1.18.1.dist-info/*</span><br><span class="line">    /usr/<span class="built_in">local</span>/lib/python3.6/dist-packages/numpy/*</span><br><span class="line">Proceed (y/n)? n</span><br></pre></td></tr></table></figure>
+
+<p><strong>Note that you should type <code>n</code> at the prompt because we do not want to proceed with uninstalling NumPy</strong>. Then, note down the installation path (highlighted), and execute the following commands (replacing the paths as needed):</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/cv/lib/python3.6/site-packages/</span><br><span class="line"><span class="comment"># 或者将dist-info也加上更好</span></span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/lib/python3.6/dist-packages/numpy numpy</span><br><span class="line"><span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure>
+
+<p>At this point, NumPy is sym-linked into your virtual environment. We should quickly test it as NumPy is needed for the remainder of this tutorial. Issue the following commands in a terminal:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ workon cv</span><br><span class="line">$ python</span><br><span class="line">&gt;&gt;&gt; import numpy</span><br></pre></td></tr></table></figure>
+
+<p>numpy没问题后重新执行上一次的指令,但省略numpy,最好清清缓存再执行,grpcio和h5py可能要装几十分钟</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rm -r ~/.cache</span><br><span class="line">proxychains pip install grpcio</span><br><span class="line">proxychains pip install absl-py</span><br><span class="line">proxychains pip install py-cpuinfo psutil portpicker six mock requests h5py astor termcolor protobuf keras-applications keras-preprocessing wrapt google-pasta</span><br><span class="line"></span><br><span class="line">proxychains pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow==1.15.2+nv20.3</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装PyTorch"><a href="#安装PyTorch" class="headerlink" title="安装PyTorch"></a>安装PyTorch</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">proxychains wget https://nvidia.box.com/shared/static/ncgzus5o23uck9i5oth2n8n06k340l6k.whl -O torch-1.4.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line">sudo proxychains apt-get install libopenblas-base libopenmpi-dev</span><br><span class="line">proxychains pip install Cython</span><br><span class="line">proxychains pip install torch-1.4.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line"></span><br><span class="line">sudo proxychains apt-get install libjpeg-dev zlib1g-dev</span><br><span class="line">proxychains git <span class="built_in">clone</span> --branch v0.5.0 https://github.com/pytorch/vision torchvision</span><br><span class="line"><span class="built_in">cd</span> torchvision</span><br><span class="line">proxychains pip install pillow</span><br><span class="line">proxychains python setup.py install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br></pre></td></tr></table></figure>
+
+<h3 id="Install-exFAT-Support"><a href="#Install-exFAT-Support" class="headerlink" title="Install exFAT Support"></a>Install exFAT Support</h3><p>方便用U盘复制文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains apt-get install exfat-fuse exfat-utils</span><br></pre></td></tr></table></figure>
+
+<h3 id="Install-the-TensorFlow-Object-Detection-API-on-Jetson-Nano"><a href="#Install-the-TensorFlow-Object-Detection-API-on-Jetson-Nano" class="headerlink" title="Install the TensorFlow Object Detection API on Jetson Nano"></a>Install the TensorFlow Object Detection API on Jetson Nano</h3><p>在电脑上下载<a href="https://codeload.github.com/tensorflow/models/zip/5f4d34fc982f599c105e152819fc3b7c82c92960" target="_blank" rel="noopener">https://codeload.github.com/tensorflow/models/zip/5f4d34fc982f599c105e152819fc3b7c82c92960</a></p>
+<p>PS: 这个提交取自<a href="https://github.com/NVIDIA-AI-IOT/jetcard/blob/4278b7790893517e5a7cbd2e12a72dba968ff8cf/install.sh#L121" target="_blank" rel="noopener">此处</a></p>
+<p>复制models-5f4d34fc982f599c105e152819fc3b7c82c92960.zip到U盘，<br>通过U盘复制文件到Jetson Nano上</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line"><span class="built_in">cd</span> /media/&lt;U盘&gt;</span><br><span class="line">cp models-5f4d34fc982f599c105e152819fc3b7c82c92960.zip ~/model.zip</span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">unzip model.zip</span><br><span class="line">mv models-5f4d34fc982f599c105e152819fc3b7c82c92960/ models/</span><br></pre></td></tr></table></figure>
+
+<p>要弹出U盘可以这样，sda1是U盘（可用<code>df -h</code>查看）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo eject -s /dev/sda1</span><br></pre></td></tr></table></figure>
+
+<p>安装coco api</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">proxychains git <span class="built_in">clone</span> https://github.com/cocodataset/cocoapi.git</span><br><span class="line"><span class="built_in">cd</span> cocoapi/PythonAPI</span><br><span class="line">proxychains python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>The next step is to compile the Protobuf libraries used by the TFOD API. The Protobuf libraries enable us (and therefore the TFOD API) to serialize structured data in a language-agnostic way:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line"><span class="built_in">cd</span> ~/models/research/</span><br><span class="line">protoc object_detection/protos/*.proto --python_out=.</span><br><span class="line">proxychains python setup.py install</span><br><span class="line"><span class="built_in">cd</span> slim</span><br><span class="line">proxychains python setup.py install</span><br></pre></td></tr></table></figure>
+
+<h3 id="Make-swapfile"><a href="#Make-swapfile" class="headerlink" title="Make swapfile"></a>Make swapfile</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo fallocate -l 4G /var/swapfile</span><br><span class="line">sudo chmod 600 /var/swapfile</span><br><span class="line">sudo mkswap /var/swapfile</span><br><span class="line">sudo swapon /var/swapfile</span><br><span class="line">sudo bash -c <span class="string">'echo "/var/swapfile swap swap defaults 0 0" &gt;&gt; /etc/fstab'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Install-OpenCV-4-1-2-on-Jetson-Nano"><a href="#Install-OpenCV-4-1-2-on-Jetson-Nano" class="headerlink" title="Install OpenCV 4.1.2 on Jetson Nano"></a>Install OpenCV 4.1.2 on Jetson Nano</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">proxychains wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.2.zip</span><br><span class="line">proxychains wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.1.2.zip</span><br><span class="line"></span><br><span class="line">unzip opencv.zip</span><br><span class="line">unzip opencv_contrib.zip</span><br><span class="line">mv opencv-4.1.2 opencv</span><br><span class="line">mv opencv_contrib-4.1.2 opencv_contrib</span><br><span class="line">workon cv</span><br><span class="line"><span class="built_in">cd</span> opencv</span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line"></span><br><span class="line">proxychains cmake -D CMAKE_BUILD_TYPE=RELEASE \</span><br><span class="line">	-D WITH_CUDA=ON \</span><br><span class="line">	-D CUDA_ARCH_PTX=<span class="string">""</span> \</span><br><span class="line">	-D CUDA_ARCH_BIN=<span class="string">"5.3,6.2,7.2"</span> \</span><br><span class="line">	-D WITH_CUBLAS=ON \</span><br><span class="line">	-D WITH_LIBV4L=ON \</span><br><span class="line">	-D BUILD_opencv_python3=ON \</span><br><span class="line">	-D BUILD_opencv_python2=OFF \</span><br><span class="line">	-D BUILD_opencv_java=OFF \</span><br><span class="line">	-D WITH_GSTREAMER=ON \</span><br><span class="line">	-D WITH_GTK=ON \</span><br><span class="line">	-D BUILD_TESTS=OFF \</span><br><span class="line">	-D BUILD_PERF_TESTS=OFF \</span><br><span class="line">	-D BUILD_EXAMPLES=OFF \</span><br><span class="line">	-D OPENCV_ENABLE_NONFREE=ON \</span><br><span class="line">	-D OPENCV_EXTRA_MODULES_PATH=/home/jetson/opencv_contrib/modules ..</span><br><span class="line"></span><br><span class="line">make -j4</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>Then, we need to create a symbolic link from OpenCV’s installation directory to the virtual environment. A symbolic link is like a pointer in that a special operating system file points from one place to another on your computer (in this case our Nano). Let’s create the sym-link now:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/cv/lib/python3.6/site-packages/</span><br><span class="line"><span class="comment"># 下面的地址要先检测一下</span></span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/lib/python3.6/site-packages/cv2/python-3.6/cv2.cpython-36m-aarch64-linux-gnu.so cv2.so</span><br></pre></td></tr></table></figure>
+
+<h3 id="Install-traitlets-master-to-support-the-unlink-method"><a href="#Install-traitlets-master-to-support-the-unlink-method" class="headerlink" title="Install traitlets (master, to support the unlink() method)"></a>Install traitlets (master, to support the unlink() method)</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains python -m pip install git+https://github.com/ipython/traitlets@master</span><br></pre></td></tr></table></figure>
+
+<h3 id="Install-Jupyter-Lab"><a href="#Install-Jupyter-Lab" class="headerlink" title="Install Jupyter Lab"></a>Install Jupyter Lab</h3><p>其实不应该在cv下装的！</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">sudo proxychains apt-get install nodejs-dev node-gyp libssl1.0-dev</span><br><span class="line">sudo proxychains apt install -y nodejs npm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下步骤最好不要执行</span></span><br><span class="line">proxychains pip install jupyter jupyterlab</span><br><span class="line">jupyter lab --generate-config</span><br><span class="line">python -c <span class="string">"from notebook.auth.security import set_password; set_password('jetson', '<span class="variable">$HOME</span>/.jupyter/jupyter_notebook_config.json')"</span></span><br></pre></td></tr></table></figure>
+
+<p>在系统中安装jupyter lab</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 退出虚拟环境</span></span><br><span class="line">deactivate</span><br><span class="line"><span class="comment"># 在cv中运行过jupyter lab要删除下面的文件夹</span></span><br><span class="line">rm -r .ipython/</span><br><span class="line">rm -r .jupyter</span><br><span class="line">sudo -H proxychains pip3 install jupyter jupyterlab</span><br><span class="line">jupyter lab --generate-config</span><br><span class="line">python3 -c <span class="string">"from notebook.auth.security import set_password; set_password('jetson', '<span class="variable">$HOME</span>/.jupyter/jupyter_notebook_config.json')"</span></span><br></pre></td></tr></table></figure>
+
+<p>解决ipywidgets不能正常显示的问题</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains jupyter labextension install @jupyter-widgets/jupyterlab-manager</span><br></pre></td></tr></table></figure>
+
+<p>上面的命令可能会出现以下错误：</p>
+<p><code>ValueError: Please install nodejs &gt;=10.0.0 before continuing. nodejs may be installed using conda or directly from the nodejs website.</code></p>
+<p>解决方法，更新<code>nodejs</code>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">proxychains wget https://nodejs.org/dist/v12.16.3/node-v12.16.3-linux-arm64.tar.xz</span><br><span class="line">tar -xvf node-v12.16.3-linux-arm64.tar.xz</span><br><span class="line"><span class="built_in">cd</span> node-v12.16.3-linux-arm64</span><br><span class="line">sudo cp -R * /usr/<span class="built_in">local</span>/</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br><span class="line"><span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure>
+
+<p>更新nodejs后，重新执行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains jupyter labextension install @jupyter-widgets/jupyterlab-manager</span><br></pre></td></tr></table></figure>
+
+<p>这次可能会出现以下错误：</p>
+<p><code>ValueError: &quot;@jupyter-widgets/jupyterlab-manager&quot; is not a valid npm package</code></p>
+<p>下载ipywidgets源码安装即可：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改npm下载镜像</span></span><br><span class="line">sudo chown -R <span class="variable">$USER</span>:$(id -gn <span class="variable">$USER</span>) /home/jetson/.config</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line"></span><br><span class="line"><span class="comment"># proxychains git clone https://github.com/jupyter-widgets/ipywidgets.git</span></span><br><span class="line"><span class="comment"># cd ipywidgets/packages/jupyterlab-manager</span></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">proxychains wget https://github.com/jupyter-widgets/ipywidgets/archive/@jupyter-widgets/jupyterlab-manager@2.0.0.zip</span><br><span class="line">unzip jupyterlab-manager@2.0.0.zip</span><br><span class="line">mv ipywidgets--jupyter-widgets-jupyterlab-manager-2.0.0 ipywidgets2.0</span><br><span class="line"><span class="built_in">cd</span> ipywidgets2.0/packages/jupyterlab-manager</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面的指令用sock5代理执行会出错</span></span><br><span class="line">npm install</span><br><span class="line">npm run build</span><br><span class="line">sudo jupyter labextension link .</span><br></pre></td></tr></table></figure>
+
+<p>在cv中安装ipykernel</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">proxychains pip install ipykernel</span><br><span class="line">python -m ipykernel install --user --name=cv</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deactivate</span><br><span class="line">jupyter lab --ip=0.0.0.0 --no-browser</span><br></pre></td></tr></table></figure>
+
+<p>修改notebook目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">mkdir Tutorials</span><br><span class="line"><span class="comment"># 实际可以不修改</span></span><br><span class="line">vim ~/.jupyter/jupyter_notebook_config.py</span><br></pre></td></tr></table></figure>
+
+<p>增加以下内容：</p>
+<p><code>c.NotebookApp.notebook_dir = &#39;/home/jetson/Tutorials&#39;</code></p>
+<p>创建自动启动服务</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">proxychains wget https://github.com/z14git/jetcard/raw/jetpack_4.2.1/jetcard/create_jupyter_service.py</span><br><span class="line"></span><br><span class="line">python3 create_jupyter_service.py --working_directory <span class="variable">$HOME</span>/Tutorials --output fro_jupyter.service</span><br><span class="line">sudo mv fro_jupyter.service /etc/systemd/system/fro_jupyter.service</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> fro_jupyter</span><br><span class="line">sudo systemctl start fro_jupyter</span><br><span class="line">rm create_jupyter_service.py</span><br></pre></td></tr></table></figure>
+
+<h3 id="fix-for-Traitlet-permission-error"><a href="#fix-for-Traitlet-permission-error" class="headerlink" title="fix for Traitlet permission error"></a>fix for Traitlet permission error</h3><p>sudo chown -R jetson:jetson ~/.local/share/</p>
+<h3 id="安装JetCam"><a href="#安装JetCam" class="headerlink" title="安装JetCam"></a>安装JetCam</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">proxychains git <span class="built_in">clone</span> https://github.com/NVIDIA-AI-IOT/jetcam</span><br><span class="line"><span class="built_in">cd</span> jetcam</span><br><span class="line">workon cv</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装pandas"><a href="#安装pandas" class="headerlink" title="安装pandas"></a>安装pandas</h3><p>创建object detect数据集时会用到，大概需要几十分钟</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">proxychains pip install pandas</span><br></pre></td></tr></table></figure>
+
+<p>安装失败，之后尝试执行<code>sudo proxychains apt-get install python-pandas</code>没有反应</p>
+<p>测试发现，以下指令也没有反应</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt automove</span><br><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+<p>接上显示器后，发现<code>Sotfware &amp; Updates</code>也打开不了。</p>
+<p>用<code>dmesg | grep apt</code>查看日志时，发现这样的信息：</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[ 5620.829799] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5620.832072] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5620.834376] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5620.836644] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5620.836681] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5620.838935] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5620.841225] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5620.844804] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5620.847132] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5621.223173] EXT4-fs error (device mmcblk0p1): htree_dirblock_to_tree:963: inode #26947: block 2: comm apt-config: Directory block failed checksum</span><br><span class="line">[ 5625.832395] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5625.853068] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5625.884503] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5625.888887] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5625.891077] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5625.893260] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5625.895436] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5625.897635] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5625.899797] EXT4-fs warning (device mmcblk0p1): ext4_dirent_csum_verify:353: inode #26947: comm apt-config: No space for directory leaf checksum. Please run e2fsck -D.</span><br><span class="line">[ 5626.229412] EXT4-fs error (device mmcblk0p1): htree_dirblock_to_tree:963: inode #26947: block 2: comm apt-config: Directory block failed checksum</span><br><span class="line">[ 5626.229425] EXT4-fs error (device mmcblk0p1): htree_dirblock_to_tree:963: inode #26947: block 2: comm apt-config: Directory block failed checksum</span><br><span class="line">[ 5626.247977] EXT4-fs error (device mmcblk0p1): htree_dirblock_to_tree:963: inode #26947: block 2: comm apt-check: Directory block failed checksum</span><br><span class="line">[ 5626.274355] EXT4-fs error (device mmcblk0p1): htree_dirblock_to_tree:963: inode #26947: block 2: comm apt-config: Directory block failed checksum</span><br><span class="line">[ 5626.277675] EXT4-fs error (device mmcblk0p1): htree_dirblock_to_tree:963: inode #26947: block 2: comm apt-config: Directory block failed checksum</span><br><span class="line">[ 5626.277682] EXT4-fs error (device mmcblk0p1): htree_dirblock_to_tree:963: inode #26947: block 2: comm apt-config: Directory block failed checksum</span><br><span class="line">[ 5626.279948] EXT4-fs error (device mmcblk0p1): htree_dirblock_to_tree:963: inode #26947: block 2: comm apt-config: Directory block failed checksum</span><br><span class="line">[ 5626.282194] EXT4-fs error (device mmcblk0p1): htree_dirblock_to_tree:963: inode #26947: block 2: comm apt-config: Directory block failed checksum</span><br><span class="line">[ 5626.284396] EXT4-fs error (device mmcblk0p1): htree_dirblock_to_tree:963: inode #26947: block 2: comm apt-config: Directory block failed checksum</span><br><span class="line">[ 5626.286664] EXT4-fs error (device mmcblk0p1): htree_dirblock_to_tree:963: inode #26947: block 2: comm apt-config: Directory block failed checksum</span><br></pre></td></tr></table></figure>
+
+<p>遂将SD卡用读卡器连接到电脑上，执行<code>sudo fsck -c -y /dev/sdb1</code>修复（<code>/dev/sdb1</code>是SD卡）。</p>
+<p>PS: 修复前要不要挂载SD卡</p>
+<p>修复完后，之前不能用的程序，现在都正常了，暂时未发现异常。</p>
+<p>继续安装pandas</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">sudo proxychains apt-get install python-pandas</span><br><span class="line">proxychains pip install pandas</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装二维码识别库"><a href="#安装二维码识别库" class="headerlink" title="安装二维码识别库"></a>安装二维码识别库</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains apt-get install libzbar0</span><br><span class="line">workon cv</span><br><span class="line">proxychains pip install pyzbar</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装串口库"><a href="#安装串口库" class="headerlink" title="安装串口库"></a>安装串口库</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">proxychains pip install pyserial</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装modbus-tk"><a href="#安装modbus-tk" class="headerlink" title="安装modbus_tk"></a>安装modbus_tk</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">proxychains pip install modbus_tk</span><br></pre></td></tr></table></figure>
+
+<p>使用ttyTHS1作串口通信，需要禁用nvgetty服务</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop nvgetty</span><br><span class="line">sudo systemctl <span class="built_in">disable</span> nvgetty</span><br><span class="line">udevadm trigger</span><br><span class="line"><span class="comment"># You may want to reboot instead</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装crcmod"><a href="#安装crcmod" class="headerlink" title="安装crcmod"></a>安装crcmod</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">proxychains pip install crcmod</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装jtop"><a href="#安装jtop" class="headerlink" title="安装jtop"></a>安装jtop</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">deactivate</span><br><span class="line">sudo proxychains apt-get install python-setuptools</span><br><span class="line">proxychains wget https://github.com/z14git/jetson_stats/archive/aiotlab.zip</span><br><span class="line">unzip aiotlab.zip</span><br><span class="line"><span class="built_in">cd</span> jetson_stats-aiotlab</span><br><span class="line"><span class="comment"># sudo python3 setup.py build</span></span><br><span class="line"><span class="comment"># sudo python3 setup.py install</span></span><br><span class="line"><span class="comment"># 上面2条都会执行失败，用下面这条才成功</span></span><br><span class="line">sudo -H pip install -U .</span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">rm aiotlab.zip</span><br><span class="line">sudo rm -r jetson_stats-aiotlab</span><br></pre></td></tr></table></figure>
+
+<h3 id="清除多余文件"><a href="#清除多余文件" class="headerlink" title="清除多余文件"></a>清除多余文件</h3><p>删除HOME目录下的opencv, opencv_contrib, src, python, ipywidgets等比较占空间的文件夹</p>
+<p>PS: ipywidgets2.0不要删</p>
+<h2 id="tensorrt测试"><a href="#tensorrt测试" class="headerlink" title="tensorrt测试"></a>tensorrt测试</h2><p>复制<code>/usr/src/tensorrt</code>到<code>~/Tutorials</code>目录下</p>
+<p>定义一些基础环境变量(暂时未发现用处)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">proxychains wget https://github.com/jkjung-avt/jetson_nano/raw/master/install_basics.sh</span><br><span class="line">sh install_basics.sh</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试yolov3"><a href="#测试yolov3" class="headerlink" title="测试yolov3"></a>测试yolov3</h3><p>先用proxychains下载yolov3.weights和yolov3.cfg，下载地址见源代码<code>yolov3_to_onnx.py</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line"><span class="built_in">cd</span> &lt;yolov3_onnx&gt;</span><br><span class="line"><span class="built_in">export</span> CPATH=<span class="variable">$CPATH</span>:/usr/<span class="built_in">local</span>/cuda-10.0/targets/aarch64-linux/include</span><br><span class="line"><span class="built_in">export</span> LIBRARY_PATH=<span class="variable">$LIBRARY_PATH</span>:/usr/<span class="built_in">local</span>/cuda-10.0/targets/aarch64-linux/lib</span><br><span class="line">proxychains python -m pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>用<code>md5sum &lt;file&gt;</code>检测<code>yolov3.weights</code>和<code>yolov3.cfg</code>是否正确，然后修改<code>yolov3_to_onnx.py</code></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/yolov3_to_onnx.py b/yolov3_to_onnx.py</span><br><span class="line">index b567e70..1f6bd20 100644</span><br><span class="line"><span class="comment">--- a/yolov3_to_onnx.py</span></span><br><span class="line"><span class="comment">+++ b/yolov3_to_onnx.py</span></span><br><span class="line">@@ -753,14 +753,14 @@ def download_file(local_path, link, checksum_reference=None):</span><br><span class="line"> def main():</span><br><span class="line">     """Run the DarkNet-to-ONNX conversion for YOLOv3-608."""</span><br><span class="line">     # Have to use python 2 due to hashlib compatibility</span><br><span class="line"><span class="deletion">-    if sys.version_info[0] &gt; 2:</span></span><br><span class="line"><span class="deletion">-        raise Exception("This script is only compatible with python2, please re-run this script with python2. The rest of this sample can be run with either version of python.")</span></span><br><span class="line"><span class="addition">+    # if sys.version_info[0] &gt; 2:</span></span><br><span class="line"><span class="addition">+    #     raise Exception("This script is only compatible with python2, please re-run this script with python2. </span></span><br><span class="line">The rest of this sample can be run with either version of python.")</span><br><span class="line"></span><br><span class="line">     # Download the config for YOLOv3 if not present yet, and analyze the checksum:</span><br><span class="line">     cfg_file_path = download_file(</span><br><span class="line">         'yolov3.cfg',</span><br><span class="line">         'https://raw.githubusercontent.com/pjreddie/darknet/f86901f6177dfc6116360a13cc06ab680e0c86b0/cfg/yolov3.cfg',</span><br><span class="line"><span class="deletion">-        'b969a43a848bbf26901643b833cfb96c')</span></span><br><span class="line"><span class="addition">+        None)</span></span><br><span class="line"></span><br><span class="line">     # These are the only layers DarkNetParser will extract parameters from. The three layers of</span><br><span class="line">     # type 'yolo' are not parsed in detail because they are included in the post-processing later:</span><br><span class="line">@@ -789,7 +789,7 @@ def main():</span><br><span class="line">     weights_file_path = download_file(</span><br><span class="line">         'yolov3.weights',</span><br><span class="line">         'https://pjreddie.com/media/files/yolov3.weights',</span><br><span class="line"><span class="deletion">-        'c84e5b99d0e52cd466ae710cadf6d84c')</span></span><br><span class="line"><span class="addition">+        None)</span></span><br><span class="line"></span><br><span class="line">     # Now generate an ONNX graph with weights from the previously parsed layer configurations</span><br><span class="line">     # and the weights file:</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>python yolov3_to_onnx.py</code>失败，在python3上运行还需要继续修改代码，暂时放弃。</p>
+<h3 id="安装tf-trt-models"><a href="#安装tf-trt-models" class="headerlink" title="安装tf_trt_models"></a>安装tf_trt_models</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">workon cv</span><br><span class="line">proxychains git <span class="built_in">clone</span> https://github.com/NVIDIA-Jetson/tf_trt_models.git</span><br><span class="line"><span class="built_in">cd</span> tf_trt_models</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+
+<h2 id="make-tf2-env"><a href="#make-tf2-env" class="headerlink" title="make tf2 env"></a>make tf2 env</h2><p>创建一个新虚拟环境用于tensorflow2</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv tf2 -p python3</span><br><span class="line"><span class="comment"># 在tf2中安装ipykernel</span></span><br><span class="line">workon tf2</span><br><span class="line">proxychains pip install ipykernel</span><br></pre></td></tr></table></figure>
+
+<p>PS: 在<code>workon tf2</code>应该要加上<code>source ~/.bashrc</code></p>
+<p>出现以下错误：</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Exception:</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/cli/base_command.py", line 188, in _main</span><br><span class="line">    status = self.run(options, args)</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/cli/req_command.py", line 185, in wrapper</span><br><span class="line">    return func(self, options, args)</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/commands/install.py", line 333, in run</span><br><span class="line">    reqs, check_supported_wheels=not options.target_dir</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/resolution/legacy/resolver.py", line 179, in resolve</span><br><span class="line">    discovered_reqs.extend(self._resolve_one(requirement_set, req))</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/resolution/legacy/resolver.py", line 362, in _resolve_one</span><br><span class="line">    abstract_dist = self._get_abstract_dist_for(req_to_install)</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/resolution/legacy/resolver.py", line 314, in _get_abstract_dist_for</span><br><span class="line">    abstract_dist = self.preparer.prepare_linked_requirement(req)</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/operations/prepare.py", line 412, in prepare_linked_requirement</span><br><span class="line">    hashes=hashes,</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/operations/prepare.py", line 203, in unpack_url</span><br><span class="line">    unpack_file(file.path, location, file.content_type)</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/utils/unpacking.py", line 252, in unpack_file</span><br><span class="line">    flatten=not filename.endswith('.whl')</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/utils/unpacking.py", line 139, in unzip_file</span><br><span class="line">    shutil.copyfileobj(fp, destfp)</span><br><span class="line">  File "/usr/lib/python3.6/shutil.py", line 79, in copyfileobj</span><br><span class="line">    buf = fsrc.read(length)</span><br><span class="line">  File "/usr/lib/python3.6/zipfile.py", line 872, in read</span><br><span class="line">    data = self._read1(n)</span><br><span class="line">  File "/usr/lib/python3.6/zipfile.py", line 948, in _read1</span><br><span class="line">    data = self._decompressor.decompress(data, n)</span><br><span class="line">zlib.error: Error -3 while decompressing data: invalid distance too far back</span><br></pre></td></tr></table></figure>
+
+<p>将numpy软连过来</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/tf2/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/lib/python3.6/dist-packages/numpy numpy</span><br><span class="line"><span class="comment"># 不应该执行下面这条</span></span><br><span class="line"><span class="comment">#ln -s /usr/local/lib/python3.6/dist-packages/numpy-1.18.1.dist-info numpy-1.18.1.dist-info</span></span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">workon tf2</span><br><span class="line">python -c <span class="string">"import numpy as np;print(np.__version__)"</span></span><br></pre></td></tr></table></figure>
+
+<p>软连cv</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">workon tf2</span><br><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/tf2/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/lib/python3.6/site-packages/cv2/python-3.6/cv2.cpython-36m-aarch64-linux-gnu.so cv2.so</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line">python -c <span class="string">"import cv2;print(cv2.__verion__)"</span></span><br></pre></td></tr></table></figure>
+
+<p>第一次执行会显示：</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "&lt;string&gt;", line 1, in &lt;module&gt;</span><br><span class="line">AttributeError: module 'cv2' has no attribute '__verion__'</span><br></pre></td></tr></table></figure>
+
+<p>进入python repl环境，<code>import cv2</code>后，输入<code>cv2.</code>然后按tab，之后就正常了。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新pip</span></span><br><span class="line">proxychains python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+
+<p>软连pyzmq</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/tf2/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/lib/python3.6/dist-packages/pyzmq-19.0.1.dist-info pyzmq-19.0.1.dist-info</span><br></pre></td></tr></table></figure>
+
+<p>再次尝试安装ipykernel</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">workon tf2</span><br><span class="line">proxychains pip install ipykernel</span><br></pre></td></tr></table></figure>
+
+<p>这次出现以下提示：</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Error checking for conflicts.</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 3021, in _dep_map</span><br><span class="line">    return self.__dep_map</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 2815, in __getattr__</span><br><span class="line">    raise AttributeError(attr)</span><br><span class="line">AttributeError: _DistInfoDistribution__dep_map</span><br><span class="line"></span><br><span class="line">During handling of the above exception, another exception occurred:</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 3012, in _parsed_pkg_info</span><br><span class="line">    return self._pkg_info</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 2815, in __getattr__</span><br><span class="line">    raise AttributeError(attr)</span><br><span class="line">AttributeError: _pkg_info</span><br><span class="line"></span><br><span class="line">During handling of the above exception, another exception occurred:</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/commands/install.py", line 512, in _warn_about_conflicts</span><br><span class="line">    package_set, _dep_info = check_install_conflicts(to_install)</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/operations/check.py", line 114, in check_install_conflicts</span><br><span class="line">    package_set, _ = create_package_set_from_installed()</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/operations/check.py", line 53, in create_package_set_from_installed</span><br><span class="line">    package_set[name] = PackageDetails(dist.version, dist.requires())</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 2736, in requires</span><br><span class="line">    dm = self._dep_map</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 3023, in _dep_map</span><br><span class="line">    self.__dep_map = self._compute_dependencies()</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 3032, in _compute_dependencies</span><br><span class="line">    for req in self._parsed_pkg_info.get_all('Requires-Dist') or []:</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 3014, in _parsed_pkg_info</span><br><span class="line">    metadata = self.get_metadata(self.PKG_INFO)</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 1895, in get_metadata</span><br><span class="line">    raise KeyError("No metadata except PKG-INFO is available")</span><br><span class="line">KeyError: 'No metadata except PKG-INFO is available'</span><br><span class="line">Installing collected packages: decorator, six, ipython-genutils, traitlets, python-dateutil, jupyter-core, tornado, jupyter-client, ptyprocess, pexpect, wcwidth, prompt-toolkit, backcall, pickleshare, parso, jedi, pygments, ipython, ipykernel</span><br><span class="line">Successfully installed backcall-0.1.0 decorator-4.4.2 ipykernel-5.3.0 ipython-7.14.0 ipython-genutils-0.2.0 jedi-0.17.0 jupyter-client-6.1.3 jupyter-core-4.6.3 parso-0.7.0 pexpect-4.8.0 pickleshare-0.7.5 prompt-toolkit-3.0.5 ptyprocess-0.6.0 pygments-2.6.1 python-dateutil-2.8.1 six-1.14.0 tornado-6.0.4 traitlets-4.3.3 wcwidth-0.1.9</span><br></pre></td></tr></table></figure>
+
+<p>继续执行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">workon tf2</span><br><span class="line">python -m ipykernel install --user --name=tf2</span><br></pre></td></tr></table></figure>
+
+<p>会提示：</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ModuleNotFoundError: No module named 'zmq'</span><br></pre></td></tr></table></figure>
+
+<p>发现pyzmq-19.0.1.dist-info软连错误，修复之</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/tf2/lib/python3.6/site-packages/</span><br><span class="line">rm pyzmq-19.0.1.dist-info</span><br><span class="line">ln -s ~/.virtualenvs/cv/lib/python3.6/site-packages/pyzmq-19.0.1.dist-info pyzmq-19.0.1.dist-info</span><br><span class="line">ln -s ~/.virtualenvs/cv/lib/python3.6/site-packages/zmq zmq</span><br></pre></td></tr></table></figure>
+
+<p>继续尝试安装ipykernel</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">workon tf2</span><br><span class="line">proxychains pip install --upgrade setuptools</span><br><span class="line">python -m ipykernel install --user --name=tf2</span><br></pre></td></tr></table></figure>
+
+<p>在执行<code>pip install</code>时会有错误提示：</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Error checking for conflicts.</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 3021, in _dep_map</span><br><span class="line">    return self.__dep_map</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 2815, in __getattr__</span><br><span class="line">    raise AttributeError(attr)</span><br><span class="line">AttributeError: _DistInfoDistribution__dep_map</span><br><span class="line"></span><br><span class="line">During handling of the above exception, another exception occurred:</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 3012, in _parsed_pkg_info</span><br><span class="line">    return self._pkg_info</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 2815, in __getattr__</span><br><span class="line">    raise AttributeError(attr)</span><br><span class="line">AttributeError: _pkg_info</span><br><span class="line"></span><br><span class="line">During handling of the above exception, another exception occurred:</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/commands/install.py", line 512, in _warn_about_conflicts</span><br><span class="line">    package_set, _dep_info = check_install_conflicts(to_install)</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/operations/check.py", line 114, in check_install_conflicts</span><br><span class="line">    package_set, _ = create_package_set_from_installed()</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_internal/operations/check.py", line 53, in create_package_set_from_installed</span><br><span class="line">    package_set[name] = PackageDetails(dist.version, dist.requires())</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 2736, in requires</span><br><span class="line">    dm = self._dep_map</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 3023, in _dep_map</span><br><span class="line">    self.__dep_map = self._compute_dependencies()</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 3032, in _compute_dependencies</span><br><span class="line">    for req in self._parsed_pkg_info.get_all('Requires-Dist') or []:</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 3014, in _parsed_pkg_info</span><br><span class="line">    metadata = self.get_metadata(self.PKG_INFO)</span><br><span class="line">  File "/home/frotech/.virtualenvs/tf2/lib/python3.6/site-packages/pip/_vendor/pkg_resources/__init__.py", line 1895, in get_metadata</span><br><span class="line">    raise KeyError("No metadata except PKG-INFO is available")</span><br><span class="line">KeyError: 'No metadata except PKG-INFO is available'</span><br><span class="line">Installing collected packages: setuptools</span><br><span class="line">  Attempting uninstall: setuptools</span><br><span class="line">    Found existing installation: setuptools 46.1.3</span><br><span class="line">    Uninstalling setuptools-46.1.3:</span><br><span class="line">      Successfully uninstalled setuptools-46.1.3</span><br><span class="line">Successfully installed setuptools-46.4.0</span><br></pre></td></tr></table></figure>
+
+<p>但貌似不影响安装</p>
+<p>测试，发现jupyter lab不能启动，应该是删除了ipywidgets2.0文件夹的原因，修复之</p>
+<ul>
+<li>将U盘格式化为ext4</li>
+<li>复制jp4.3_raw_b246c9.img中的<code>~/ipywidgets2.0</code>到U盘（<code>cp -a</code>)</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /media/&lt;U盘&gt;</span><br><span class="line">cp -a ipywidgets2.0 ~/ipywidgets2.0</span><br><span class="line">sudo systemctl start fro_jupyter</span><br></pre></td></tr></table></figure>
+
+<p>OK，jupyter lab可以重新启动了，测试过tf2内核也可以用</p>
+<h3 id="安装protobuf"><a href="#安装protobuf" class="headerlink" title="安装protobuf"></a>安装protobuf</h3><p>复制jp4.3_raw_b246c9.img中的<code>~/python</code>到U盘（<code>cp -a</code>)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /media/&lt;U盘&gt;</span><br><span class="line">cp -a python ~/python</span><br><span class="line">workon tf2</span><br><span class="line"><span class="built_in">cd</span> ~/python</span><br><span class="line">proxychains python setup.py install --cpp_implementation</span><br><span class="line"><span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure>
+
+<h3 id="Install-TensorFlow2"><a href="#Install-TensorFlow2" class="headerlink" title="Install TensorFlow2"></a>Install TensorFlow2</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">workon tf2</span><br><span class="line">proxychains pip install grpcio absl-py py-cpuinfo psutil portpicker six mock requests gast h5py astor termcolor keras-applications keras-preprocessing wrapt google-pasta</span><br><span class="line">proxychains pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v43 tensorflow==2.1.0+nv20.3</span><br></pre></td></tr></table></figure>
+
+<p>由于网络原因，下载tensorflow失败，改用电脑下载，然后将whl文件复制到U盘</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /media/&lt;U盘&gt;</span><br><span class="line">cp tensorflow-2.1.0+nv20.3-cp36-cp36m-linux_aarch64.whl ~/tensorflow-2.1.0+nv20.3-cp36-cp36m-linux_aarch64.whl</span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">proxychains pip install --pre tensorflow-2.1.0+nv20.3-cp36-cp36m-linux_aarch64.whl</span><br></pre></td></tr></table></figure>
+
+<p>再次遇到<code>KeyError: &#39;No metadata except PKG-INFO is available&#39;</code>且发现安装到<code>scipy-1.4.1</code>时出错</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">proxychains wget https://github.com/scipy/scipy/releases/download/v1.4.1/scipy-1.4.1.tar.gz</span><br><span class="line">tar -xzvf scipy-1.4.1.tar.gz scipy-1.4.1</span><br><span class="line"><span class="built_in">cd</span> scipy-1.4.1</span><br><span class="line">workon tf2</span><br><span class="line">proxychains python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>成功安装scipy后，再次安装tf2</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">proxychains pip install --pre tensorflow-2.1.0+nv20.3-cp36-cp36m-linux_aarch64.whl</span><br></pre></td></tr></table></figure>
+
+<p>这次遇到的错误是：</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Could not find a version that satisfies the requirement opt-einsum&gt;=2.3.2 (from tensorflow==2.1.0+nv20.3) (from versions: none)</span><br><span class="line">ERROR: No matching distribution found for opt-einsum&gt;=2.3.2 (from tensorflow==2.1.0+nv20.3)</span><br></pre></td></tr></table></figure>
+
+<p>用电脑下载<a href="https://files.pythonhosted.org/packages/63/a5/e6c07b08b934831ccb8c98ee335e66b7761c5754ee3cabfe4c11d0b1af28/opt_einsum-3.2.1-py3-none-any.whl" target="_blank" rel="noopener">opt_einsum-3.2.1-py3-none-any.whl</a></p>
+<p>复制到Jetson Nano的<code>~</code>目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">proxychains pip install opt_einsum-3.2.1-py3-none-any.whl</span><br></pre></td></tr></table></figure>
+
+<p>继续安装失败，尝试了以下措施：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rm ~/.virtualenvs/tf2/lib/python3.6/site-packages/numpy-1.18.1.dist-info</span><br><span class="line">workon tf2</span><br><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入桌面重新连接wifi</span></span><br><span class="line">proxychains pip install opt_einsum</span><br><span class="line">proxychains pip install --pre tensorflow-2.1.0+nv20.3-cp36-cp36m-linux_aarch64.whl</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，在<code>import tensorflow</code>时，出现以下错误</p>
+<p><code>ModuleNotFoundError: No module named &#39;google.protobuf&#39;</code></p>
+<p>尝试以下措施</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">workon tf2</span><br><span class="line">proxychains pip install numpy grpcio absl-py py-cpuinfo psutil portpicker six mock requests gast h5py astor termcolor protobuf keras-applications keras-preprocessing wrapt google-pasta</span><br><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple google</span><br><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple protobuf</span><br><span class="line">pip uninstall google</span><br><span class="line">pip uninstall protobuf</span><br><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple google protobuf</span><br></pre></td></tr></table></figure>
+
+<p>执行上面的操作后，可正常<code>import tensorflow</code>了，应该是<code>protobuf</code>的版本低的问题</p>
+<p><del>### install PIL, matplotlib, jetcam, ipywidgets</del></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">workon tf2</span><br><span class="line">pip install -i https://mirrors.aliyun.com/pypi/simple Pillow</span><br><span class="line">pip install -i https://mirrors.aliyun.com/pypi/simple matplotlib</span><br><span class="line">python -m pip install git+https://github.com/ipython/traitlets@master</span><br><span class="line"><span class="built_in">cd</span> ~/jetcam</span><br><span class="line">python setup.py install</span><br><span class="line">pip install -i https://mirrors.aliyun.com/pypi/simple ipywidgets</span><br></pre></td></tr></table></figure>
+
+<p><del>### clean</del></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm tensorflow-2.1.0+nv20.3-cp36-cp36m-linux_aarch64.whl</span><br><span class="line">rm scipy-1.4.1.tar.gz</span><br><span class="line">rm opt_einsum-3.2.1-py3-none-any.whl</span><br></pre></td></tr></table></figure>
+
+<p><del>### Install DeepStream SDK 4</del></p>
+<p>To install additional packages</p>
+<ul>
+<li>Enter the following command to install the prerequisite packages for installing the DeepStream SDK:</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains apt install \</span><br><span class="line">    libssl1.0.0 \</span><br><span class="line">    libgstreamer1.0-0 \</span><br><span class="line">    gstreamer1.0-tools \</span><br><span class="line">    gstreamer1.0-plugins-good \</span><br><span class="line">    gstreamer1.0-plugins-bad \</span><br><span class="line">    gstreamer1.0-plugins-ugly \</span><br><span class="line">    gstreamer1.0-libav \</span><br><span class="line">    libgstrtspserver-1.0-0 \</span><br><span class="line">    libjansson4=2.11-1</span><br></pre></td></tr></table></figure>
+
+<p>To install librdkafka</p>
+<p>Install <code>librdkafka</code> by running <code>apt-get</code> on the Jetson device:</p>
+<p><code>sudo proxychains apt-get install librdkafka1=0.11.3-1build1</code></p>
+<p>To install latest NVIDIA V4L2 GStreamer plugin</p>
+<p><code>sudo proxychains apt install --reinstall nvidia-l4t-gstreamer</code></p>
+<p>To install the DeepStream SDK</p>
+<p>电脑下载<a href="https://developer.download.nvidia.com/assets/embedded/secure/tools/files/jetpack-sdks/jetpack-4.3/JETPACK_43_b132_DEEPSTREAM/deepstream-4.0_4.0.2-1_arm64.deb" target="_blank" rel="noopener">deepstream-4.0_4.0.2-1_arm64.deb</a></p>
+<p>用U盘将deepstream-4.0_4.0.2-1_arm64.deb复制到HOME目录下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains apt-get install ./deepstream-4.0_4.0.2-1_arm64.deb</span><br></pre></td></tr></table></figure>
+
+<h2 id="64G-SD卡"><a href="#64G-SD卡" class="headerlink" title="64G SD卡"></a>64G SD卡</h2><p>突然发现不能正常import numpy等库，遂将版本<code>2e4054d63</code>烧录到64G SD卡上</p>
+<p>以下操作在64G卡上进行</p>
+<h3 id="扩展容量"><a href="#扩展容量" class="headerlink" title="扩展容量"></a>扩展容量</h3><p>增加6G容量</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/lib/nvidia/resizefs/nvresizefs.sh -s 35959</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装dlib"><a href="#安装dlib" class="headerlink" title="安装dlib"></a>安装dlib</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wget http://dlib.net/files/dlib-19.19.tar.bz2</span><br><span class="line">tar jxvf dlib-19.19.tar.bz2</span><br><span class="line"><span class="built_in">cd</span> dlib-19.19</span><br><span class="line">workon cv</span><br><span class="line">sudo apt-get install libopenblas-dev</span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build/</span><br><span class="line">cmake ..</span><br><span class="line">cmake --build .</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装v4l-utils"><a href="#安装v4l-utils" class="headerlink" title="安装v4l-utils"></a>安装v4l-utils</h3><p>查看摄像头参数用</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install v4l-utils</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/sundries/tags/jetson/" rel="tag"># jetson</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/sundries/2020/05/13/build-custom-jetson-nano-image-based-on-jp4-4/" rel="prev" title="build custom jetson nano image based on jp4.4">
+      <i class="fa fa-chevron-left"></i> build custom jetson nano image based on jp4.4
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/sundries/2020/05/27/ubuntu-%E5%A6%82%E4%BD%95%E6%94%AF%E6%8C%81exFAT/" rel="next" title="ubuntu 如何支持exFAT">
+      ubuntu 如何支持exFAT <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#烧录镜像"><span class="nav-number">1.</span> <span class="nav-text">烧录镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#oem-config"><span class="nav-number">2.</span> <span class="nav-text">oem-config</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定制"><span class="nav-number">3.</span> <span class="nav-text">定制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-proxychains"><span class="nav-number">3.1.</span> <span class="nav-text">安装 proxychains</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预处理"><span class="nav-number">3.2.</span> <span class="nav-text">预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-system-level-dependencies"><span class="nav-number">3.3.</span> <span class="nav-text">Install system-level dependencies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-CMake"><span class="nav-number">3.4.</span> <span class="nav-text">Update CMake</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-OpenCV-system-level-dependencies-and-other-development-dependencies"><span class="nav-number">3.5.</span> <span class="nav-text">Install OpenCV system-level dependencies and other development dependencies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-up-Python-virtual-environments-on-your-Jetson-Nano"><span class="nav-number">3.6.</span> <span class="nav-text">Set up Python virtual environments on your Jetson Nano</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-your-‘cv’-virtual-environment"><span class="nav-number">3.7.</span> <span class="nav-text">Create your ‘cv’ virtual environment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-the-Protobuf-Compiler"><span class="nav-number">3.8.</span> <span class="nav-text">Install the Protobuf Compiler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-TensorFlow-NumPy"><span class="nav-number">3.9.</span> <span class="nav-text">Install TensorFlow, NumPy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装PyTorch"><span class="nav-number">3.10.</span> <span class="nav-text">安装PyTorch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-exFAT-Support"><span class="nav-number">3.11.</span> <span class="nav-text">Install exFAT Support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-the-TensorFlow-Object-Detection-API-on-Jetson-Nano"><span class="nav-number">3.12.</span> <span class="nav-text">Install the TensorFlow Object Detection API on Jetson Nano</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Make-swapfile"><span class="nav-number">3.13.</span> <span class="nav-text">Make swapfile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-OpenCV-4-1-2-on-Jetson-Nano"><span class="nav-number">3.14.</span> <span class="nav-text">Install OpenCV 4.1.2 on Jetson Nano</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-traitlets-master-to-support-the-unlink-method"><span class="nav-number">3.15.</span> <span class="nav-text">Install traitlets (master, to support the unlink() method)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-Jupyter-Lab"><span class="nav-number">3.16.</span> <span class="nav-text">Install Jupyter Lab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fix-for-Traitlet-permission-error"><span class="nav-number">3.17.</span> <span class="nav-text">fix for Traitlet permission error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装JetCam"><span class="nav-number">3.18.</span> <span class="nav-text">安装JetCam</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装pandas"><span class="nav-number">3.19.</span> <span class="nav-text">安装pandas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装二维码识别库"><span class="nav-number">3.20.</span> <span class="nav-text">安装二维码识别库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装串口库"><span class="nav-number">3.21.</span> <span class="nav-text">安装串口库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装modbus-tk"><span class="nav-number">3.22.</span> <span class="nav-text">安装modbus_tk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装crcmod"><span class="nav-number">3.23.</span> <span class="nav-text">安装crcmod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装jtop"><span class="nav-number">3.24.</span> <span class="nav-text">安装jtop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清除多余文件"><span class="nav-number">3.25.</span> <span class="nav-text">清除多余文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tensorrt测试"><span class="nav-number">4.</span> <span class="nav-text">tensorrt测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试yolov3"><span class="nav-number">4.1.</span> <span class="nav-text">测试yolov3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装tf-trt-models"><span class="nav-number">4.2.</span> <span class="nav-text">安装tf_trt_models</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#make-tf2-env"><span class="nav-number">5.</span> <span class="nav-text">make tf2 env</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装protobuf"><span class="nav-number">5.1.</span> <span class="nav-text">安装protobuf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-TensorFlow2"><span class="nav-number">5.2.</span> <span class="nav-text">Install TensorFlow2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#64G-SD卡"><span class="nav-number">6.</span> <span class="nav-text">64G SD卡</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展容量"><span class="nav-number">6.1.</span> <span class="nav-text">扩展容量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装dlib"><span class="nav-number">6.2.</span> <span class="nav-text">安装dlib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装v4l-utils"><span class="nav-number">6.3.</span> <span class="nav-text">安装v4l-utils</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">z14git</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/sundries/archives/">
+        
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/sundries/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">z14git</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/sundries/lib/anime.min.js"></script>
+  <script src="/sundries/lib/velocity/velocity.min.js"></script>
+  <script src="/sundries/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/sundries/js/utils.js"></script>
+
+<script src="/sundries/js/motion.js"></script>
+
+
+<script src="/sundries/js/schemes/muse.js"></script>
+
+
+<script src="/sundries/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/sundries/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
