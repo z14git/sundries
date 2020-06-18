@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>windows 10 每次登陆都清除所有用户设置?</title>
+    <url>/sundries/2020/06/18/windows-10-%E6%AF%8F%E6%AC%A1%E7%99%BB%E9%99%86%E9%83%BD%E6%B8%85%E9%99%A4%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<h2 id="症状："><a href="#症状：" class="headerlink" title="症状："></a>症状：</h2><blockquote>
+<p>My Windows 10 system has suddenly started doing something really weird. Every time I log in, I see a “Preparing Windows” message, and once I am logged in, I see that all of my settings are gone. By that I mean:</p>
+<ul>
+<li>The desktop background has been reset to the default one (with the Windows logo)</li>
+<li>All of my pinned taskbar shortcuts are gone</li>
+<li>All my accounts in Google Chrome are gone</li>
+<li>My custom regional settings are gone</li>
+<li>My installed keyboard layouts are gone</li>
+<li>All applications act like it is the first time running them (no applications seem to have been uninstalled)</li>
+</ul>
+<p>The current Windows 10 build number is 10.0.10586. A couple of days ago, I set things up so that I would receive Insider builds as they came out, but to the best of my knowledge, no updates have been installed yet.</p>
+</blockquote>
+<h2 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h2><blockquote>
+<p>I have seen this before. Windows loads an empty profile instead of the existing one, something previously seen with Windows 7, and now Windows 10 as well, but the operating system has not changed that much in this aspect.</p>
+<p>One thing that can work is removing the affected profile from the profile list in the registry:</p>
+<ul>
+<li>HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList</li>
+</ul>
+<p>The problem profile will have two folders starting with the same GUID, one with a .bak extension and one without. Rename the one without the .bak extension to something else (add a .tmp extension, for example), then remove the .bak extension from the one that has it (which has your correct profile settings).</p>
+<p>Reboot and log in as you normally would. Your settings should be back to normal. This “problem” is described in full in this blog post:</p>
+<p><a href="http://www.landviser.net/content/how-fix-windows-7-loads-default-instead-user-modified-profile-wiping-all-settings-files" target="_blank" rel="noopener">How to fix: Windows 7 loads default instead of user-modified profile wiping off all settings, files, email accounts, bookmarks</a></p>
+</blockquote>
+<blockquote>
+<p>ref: <a href="https://www.howtogeek.com/256956/why-has-windows-10-erased-all-my-settings-every-time-i-sign-in/" target="_blank" rel="noopener">Why Has Windows 10 “Erased” All My Settings Every Time I Sign In?</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo Error: Spawn failed</title>
     <url>/sundries/2020/06/14/hexo-Error-Spawn-failed/</url>
     <content><![CDATA[<p>今天，deploy到github上时出现以下错误：</p>
@@ -62,8 +95,8 @@
 </blockquote>
 ]]></content>
       <tags>
-        <tag>linux</tag>
         <tag>jetson</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1128,8 +1161,8 @@
 </ul>
 ]]></content>
       <tags>
-        <tag>linux</tag>
         <tag>jetson</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1145,8 +1178,8 @@
 </ul>
 ]]></content>
       <tags>
-        <tag>linux</tag>
         <tag>jetson</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
