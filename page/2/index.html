@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"z14git.github.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"z14git.gitee.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="十四的杂物">
-<meta property="og:url" content="http://z14git.github.io/sundries/page/2/index.html">
+<meta property="og:url" content="http://z14git.gitee.io/sundries/page/2/index.html">
 <meta property="og:site_name" content="十四的杂物">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="z14git">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://z14git.github.io/sundries/page/2/">
+<link rel="canonical" href="http://z14git.gitee.io/sundries/page/2/">
 
 
 <script id="page-configurations">
@@ -180,7 +180,196 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/04/27/python-writing-utf8-file/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/05/12/%E5%A6%82%E4%BD%95%E5%B0%86img%E6%96%87%E4%BB%B6%E5%BD%93%E4%B8%80%E6%95%B4%E4%B8%AA%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/05/12/%E5%A6%82%E4%BD%95%E5%B0%86img%E6%96%87%E4%BB%B6%E5%BD%93%E4%B8%80%E6%95%B4%E4%B8%AA%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/" class="post-title-link" itemprop="url">如何将img文件当一整个磁盘挂载</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-12 10:52:45" itemprop="dateCreated datePublished" datetime="2020-05-12T10:52:45+08:00">2020-05-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-28 10:44:46" itemprop="dateModified" datetime="2020-05-28T10:44:46+08:00">2020-05-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo udisksctl loop-setup -f disk.img</span></span><br><span class="line">Mapped file disk.img as /dev/loop0.</span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo gparted /dev/loop0</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>source:<a href="https://superuser.com/questions/297299/resize-a-partition-image-with-gparted" target="_blank" rel="noopener">Resize a partition image with GParted?</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/05/08/build-lib-does-not-exist/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/05/08/build-lib-does-not-exist/" class="post-title-link" itemprop="url">'build/lib' does not exist</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-08 11:51:16 / 修改时间：12:05:02" itemprop="dateCreated datePublished" datetime="2020-05-08T11:51:16+08:00">2020-05-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p>在使用<code>python setup.py install</code>安装包时，出现<code>warning: install_lib: &#39;build/lib&#39; does not exist -- no Python modules to install</code></p>
+<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p>在<code>setup.py</code>-&gt;<code>setuptools.setup</code>中加入<code>packages=setuptools.find_packages()</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/04/27/python-writing-file-with-Unix-end-of-line-characters/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/04/27/python-writing-file-with-Unix-end-of-line-characters/" class="post-title-link" itemprop="url">python writing file with Unix end of line characters</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-27 16:59:54 / 修改时间：17:05:45" itemprop="dateCreated datePublished" datetime="2020-04-27T16:59:54+08:00">2020-04-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p>在windows下，python在写文件时，如何以LF作换行符？</p>
+<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> io</span><br><span class="line"></span><br><span class="line">s = <span class="string">"""abc</span></span><br><span class="line"><span class="string">def</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> io.open(<span class="string">'test.txt'</span>, <span class="string">'w'</span>, newline=<span class="string">'\n'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(s)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/04/27/python-writing-utf8-file/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -240,7 +429,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/04/08/%E7%94%A8setup-py%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E5%8C%85/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/04/08/%E7%94%A8setup-py%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E5%8C%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -307,7 +496,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/03/30/linux%E4%B8%8B%E7%94%A8Python%E8%B0%83%E7%94%A8%E4%B8%B2%E5%8F%A3/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/03/30/linux%E4%B8%8B%E7%94%A8Python%E8%B0%83%E7%94%A8%E4%B8%B2%E5%8F%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -371,7 +560,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/03/27/next%E5%90%AF%E7%94%A8%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/03/27/next%E5%90%AF%E7%94%A8%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -438,7 +627,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/03/27/ubuntu%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/03/27/ubuntu%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -505,7 +694,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/03/27/sudo%E6%97%B6%E4%BB%8D%E7%84%B6%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/03/27/sudo%E6%97%B6%E4%BB%8D%E7%84%B6%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -571,7 +760,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/03/27/bat%E8%84%9A%E6%9C%AC-pause%E5%A4%B1%E6%95%88/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/03/27/bat%E8%84%9A%E6%9C%AC-pause%E5%A4%B1%E6%95%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -618,219 +807,6 @@
 
 <blockquote>
 <p>source: <a href="https://stackoverflow.com/questions/4666045/batch-file-command-pause-does-not-work" target="_blank" rel="noopener">Batch file command PAUSE does not work</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/03/27/tar-%E8%A7%A3%E5%8E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/03/27/tar-%E8%A7%A3%E5%8E%8B/" class="post-title-link" itemprop="url">tar 解压</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-27 11:34:54 / 修改时间：13:40:58" itemprop="dateCreated datePublished" datetime="2020-03-27T11:34:54+08:00">2020-03-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p>使用tar解压？</p>
-<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p><strong>1.15版本后：</strong></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf filename.tar.x <span class="comment"># x 代表gz,bz2等格式</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>-x: extract 解压</li>
-<li>-v: verbose 显示解压信息</li>
-<li>-f: file 文件</li>
-</ul>
-<p><strong>1.15版本前：</strong></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf filename.tar.gz</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>-z: gzip 格式</li>
-</ul>
-<p>其它格式可输入<code>tar --help</code>查看</p>
-<blockquote>
-<p>source: <a href="https://www.cnblogs.com/cursorhu/p/5891699.html" target="_blank" rel="noopener">Linux下的解压命令小结</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/03/26/%E5%A6%82%E4%BD%95%E6%8B%96%E6%96%87%E4%BB%B6%E5%88%B0python%E8%84%9A%E6%9C%AC%E4%B8%8A%E6%89%A7%E8%A1%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/03/26/%E5%A6%82%E4%BD%95%E6%8B%96%E6%96%87%E4%BB%B6%E5%88%B0python%E8%84%9A%E6%9C%AC%E4%B8%8A%E6%89%A7%E8%A1%8C/" class="post-title-link" itemprop="url">如何拖文件到python脚本上执行</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-26 17:49:16 / 修改时间：17:57:45" itemprop="dateCreated datePublished" datetime="2020-03-26T17:49:16+08:00">2020-03-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>如何拖文件到python脚本上执行</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>If you don’t need a GUI, and depending on the platform I would use <code>sys.argv</code>.</p>
-<p><del>In windows for example you can’t drag files onto python scripts</del>, but you can drag them onto a batch file. And from the batch file you can call your script with the file-names as arguments.</p>
-<p><strong>Batch File:</strong></p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python "dropScript.py" %*</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
-
-<p>The <code>%*</code> contains all the filenames.</p>
-<p><strong>dropScript.py:</strong></p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">file_paths = sys.argv[<span class="number">1</span>:]  <span class="comment"># the first argument is the script itself</span></span><br><span class="line"><span class="keyword">for</span> p <span class="keyword">in</span> file_paths:</span><br><span class="line">    print(p)</span><br></pre></td></tr></table></figure>
-
-<p>The first argument is the script itself so it is omitted from the file_path list.</p>
-<blockquote>
-<p>source: <a href="https://stackoverflow.com/questions/22281406/python-drag-and-drop-get-filenames" target="_blank" rel="noopener">Python drag and drop, get filenames [closed]</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/03/26/bat%E8%84%9A%E6%9C%AC%E8%B0%83%E7%94%A8anaconda%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/03/26/bat%E8%84%9A%E6%9C%AC%E8%B0%83%E7%94%A8anaconda%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">bat脚本调用anaconda命令</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-26 17:37:55 / 修改时间：17:57:45" itemprop="dateCreated datePublished" datetime="2020-03-26T17:37:55+08:00">2020-03-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在bat脚本中想调用anaconda某个环境中的python去执行某些py文件</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> condaRoot=C:\Users\Noctis\Anaconda3\</span><br><span class="line"><span class="keyword">call</span> <span class="variable">%condaRoot%</span>\Scripts\activate.bat</span><br><span class="line"><span class="keyword">call</span> python C:\Users\Noctis\Desktop\t.py</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>source: <a href="https://stackoverflow.com/questions/46305569/how-to-make-batch-files-run-in-anaconda-prompt/50260029#50260029" target="_blank" rel="noopener">How to make batch files run in anaconda prompt</a></p>
 </blockquote>
 
       
@@ -917,14 +893,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/sundries/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/sundries/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

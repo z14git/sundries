@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>hexo Error: Spawn failed</title>
+    <url>/sundries/2020/06/14/hexo-Error-Spawn-failed/</url>
+    <content><![CDATA[<p>今天，deploy到github上时出现以下错误：</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">Error: Spawn failed</span><br><span class="line">    at ChildProcess.&lt;anonymous&gt; (D:\repositories\z14_sundries\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">    at ChildProcess.emit (events.js:311:20)</span><br><span class="line">    at ChildProcess.cp.emit (D:\repositories\z14_sundries\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">    at Process.ChildProcess._handle.onexit (internal/child_process.js:275:12)</span><br></pre></td></tr></table></figure>
+
+<p>由于gitee那边没有问题，所以猜想是因为github设置了代理，但代理没开，导致错误。<br>于是取消了github的代理，重新deploy，结果成功了。</p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>how to install jupyter in Termux</title>
+    <url>/sundries/2020/06/14/how-to-install-jupyter-in-Termux/</url>
+    <content><![CDATA[<p>直接<code>pip install jupyter</code>，可能会在安装<code>pyzmq</code>时出错。<br>因此，需要先<code>pkg install libzmq</code>。</p>
+<p>安装完后</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">jupyter lab --generate-config</span><br><span class="line">python -c <span class="string">"from notebook.auth.security import set_password; set_password('z14git', '<span class="variable">$HOME</span>/.jupyter/jupyter_notebook_config.json')"</span></span><br></pre></td></tr></table></figure>
+
+<p>用nano修改<code>~/.jupyter/jupyter_notebook_config.py</code></p>
+<p>增加以下内容：</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="string">'*'</span></span><br><span class="line">c.NotebookApp.open_browser = <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>android</tag>
+        <tag>termux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>how to install matplotlib in Termux</title>
+    <url>/sundries/2020/06/14/how-to-install-matplotlib-in-Termux/</url>
+    <content><![CDATA[<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pkg install python clang freetype libpng</span><br><span class="line">pip install cython</span><br><span class="line">pip install matplotlib</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ref: <a href="https://wiki.termux.com/wiki/Instructions_for_installing_python_packages" target="_blank" rel="noopener">Instructions for installing python packages</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>android</tag>
+        <tag>termux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>jetson nano 如何使用摄像头</title>
     <url>/sundries/2020/05/27/jetson-nano-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%91%84%E5%83%8F%E5%A4%B4/</url>
     <content><![CDATA[<p>For using this example on a USB camera:</p>
@@ -363,6 +405,55 @@
 
 <h3 id="安装v4l-utils"><a href="#安装v4l-utils" class="headerlink" title="安装v4l-utils"></a>安装v4l-utils</h3><p>查看摄像头参数用</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install v4l-utils</span><br></pre></td></tr></table></figure>
+
+<h3 id="install-PIL-matplotlib-jetcam-ipywidgets"><a href="#install-PIL-matplotlib-jetcam-ipywidgets" class="headerlink" title="install PIL, matplotlib, jetcam, ipywidgets"></a>install PIL, matplotlib, jetcam, ipywidgets</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">workon tf2</span><br><span class="line">pip install -i https://mirrors.aliyun.com/pypi/simple Pillow</span><br><span class="line">pip install -i https://mirrors.aliyun.com/pypi/simple matplotlib</span><br><span class="line">sudo systemctl stop fro_jupyter.service</span><br><span class="line">python -m pip install git+https://github.com/ipython/traitlets@master</span><br><span class="line"><span class="built_in">cd</span> ~/jetcam</span><br><span class="line">python setup.py install</span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">pip install -i https://mirrors.aliyun.com/pypi/simple ipywidgets</span><br><span class="line">sudo systemctl start fro_jupyter.service</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo nmtui</span><br></pre></td></tr></table></figure>
+
+<h3 id="Install-DeepStream-SDK-4"><a href="#Install-DeepStream-SDK-4" class="headerlink" title="Install DeepStream SDK 4"></a>Install DeepStream SDK 4</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo proxychains apt install \</span><br><span class="line">    libssl1.0.0 \</span><br><span class="line">    libgstreamer1.0-0 \</span><br><span class="line">    gstreamer1.0-tools \</span><br><span class="line">    gstreamer1.0-plugins-good \</span><br><span class="line">    gstreamer1.0-plugins-bad \</span><br><span class="line">    gstreamer1.0-plugins-ugly \</span><br><span class="line">    gstreamer1.0-libav \</span><br><span class="line">    libgstrtspserver-1.0-0 \</span><br><span class="line">    libjansson4=2.11-1</span><br><span class="line"></span><br><span class="line">sudo proxychains apt-get install librdkafka1=0.11.3-1build1</span><br><span class="line">sudo proxychains apt install --reinstall nvidia-l4t-gstreamer</span><br></pre></td></tr></table></figure>
+
+<p>To install the DeepStream SDK</p>
+<p>电脑下载<a href="https://developer.download.nvidia.com/assets/embedded/secure/tools/files/jetpack-sdks/jetpack-4.3/JETPACK_43_b132_DEEPSTREAM/deepstream-4.0_4.0.2-1_arm64.deb" target="_blank" rel="noopener">deepstream-4.0_4.0.2-1_arm64.deb</a></p>
+<p>用scp指令复制到jetson nano上</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo proxychains apt-get install ./deepstream-4.0_4.0.2-1_arm64.deb</span><br></pre></td></tr></table></figure>
+
+<h3 id="Install-temporal-shift-module"><a href="#Install-temporal-shift-module" class="headerlink" title="Install temporal-shift-module"></a>Install temporal-shift-module</h3><p>Build TVM with following commands</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo proxychains apt install llvm <span class="comment"># install llvm which is required by tvm</span></span><br><span class="line">proxychains git <span class="built_in">clone</span> -b v0.6 https://github.com/apache/incubator-tvm.git</span><br><span class="line"><span class="built_in">cd</span> incubator-tvm</span><br><span class="line">proxychains git submodule update --init</span><br><span class="line">mkdir build</span><br><span class="line">cp cmake/config.cmake build/</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line"><span class="comment">#[</span></span><br><span class="line"><span class="comment">#edit config.cmake to change</span></span><br><span class="line"><span class="comment"># 32 line: USE_CUDA OFF -&gt; USE_CUDA ON</span></span><br><span class="line"><span class="comment">#104 line: USE_LLVM OFF -&gt; USE_LLVM ON</span></span><br><span class="line"><span class="comment">#]</span></span><br><span class="line">cmake ..</span><br><span class="line">make -j4</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="built_in">cd</span> python</span><br><span class="line">workon cv</span><br><span class="line">python setup.py install</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="built_in">cd</span> topi/python</span><br><span class="line">python setup.py install</span><br><span class="line"><span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure>
+
+<p>Install ONNX</p>
+<p>略，之前在测试yolo模型时已安装</p>
+<p>export cuda toolkit binary to path</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/<span class="built_in">local</span>/cuda/bin</span><br></pre></td></tr></table></figure>
+
+<p>运行demo</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">proxychains git <span class="built_in">clone</span> https://github.com/mit-han-lab/temporal-shift-module.git</span><br><span class="line"><span class="built_in">cd</span> temporal-shift-module/online_demo</span><br><span class="line">python main.py</span><br></pre></td></tr></table></figure>
+
+<p>出现以下错误</p>
+<p><code>cannot import name &#39;bilinear_sample_nchw&#39;</code></p>
+<p>修复方法</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/lib/python3.6/dist-packages/topi-0.6.dev0-py3.6.egg/topi</span><br></pre></td></tr></table></figure>
+
+<p>另外，预先在电脑上下载<a href="https://file.lzhu.me/projects/tsm/models/mobilenetv2_jester_online.pth.tar" target="_blank" rel="noopener">模型</a>，<br>再用scp复制到Jetson Nano上</p>
+<p>之后运行online_demo时，遇到这个<a href="https://github.com/mit-han-lab/temporal-shift-module/issues/63" target="_blank" rel="noopener">错误</a>，暂时放弃</p>
+<h3 id="使能SPI"><a href="#使能SPI" class="headerlink" title="使能SPI"></a>使能SPI</h3><p>参考<a href="https://docs.nvidia.com/jetson/l4t/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/hw_setup_jetson_io.html" target="_blank" rel="noopener">官方文档</a></p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo find /opt/nvidia/jetson-io/ -mindepth 1 -maxdepth 1 -<span class="built_in">type</span> d -<span class="built_in">exec</span> touch &#123;&#125;/__init__.py \;</span><br><span class="line">sudo mkdir /boot/dtb</span><br><span class="line">sudo cp -v /boot/tegra210-p3448-0000-p3449-0000-[ab]0[02].dtb /boot/dtb/</span><br><span class="line">sudo /opt/nvidia/jetson-io/jetson-io.py</span><br></pre></td></tr></table></figure>
+
+<p>见到界面后，退出，采用命令行方法进行配置</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo /opt/nvidia/jetson-io/config-by-function.py -o dtb spi1</span><br><span class="line">sudo /opt/nvidia/jetson-io/config-by-function.py -o dtbo spi1</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
+
+<p>重启后，输入下面的命令查看是否成功</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo /opt/nvidia/jetson-io/config-by-pin.py</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装adafruit-bus-device"><a href="#安装adafruit-bus-device" class="headerlink" title="安装adafruit_bus_device"></a>安装adafruit_bus_device</h3><p>为了在python中使用spi，安装adafruit_bus_device，用这个包的好处是方便使用其它adafruit硬件</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pip install -i https://mirrors.aliyun.com/pypi/simple adafruit-circuitpython-busdevice</span><br></pre></td></tr></table></figure>
+
+<!-- ### 安装frotech_adapter
+
+...
+
+解决`/dev/ttyUSB0`权限问题:
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo usermod -aG dialout &lt;username&gt; --&gt;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>jetson</tag>
