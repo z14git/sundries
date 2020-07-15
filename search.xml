@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>OpenCV: libgomp.so.1: cannot allocate memory in static TLS block</title>
+    <url>/sundries/2020/07/15/OpenCV-libgomp-so-1-cannot-allocate-memory-in-static-TLS-block/</url>
+    <content><![CDATA[<p>在测试TF2的OD API时，<code>import cv2</code>出现以下错误：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ImportError: /usr/lib/aarch64-linux-gnu/libgomp.so.1: cannot allocate memory in static TLS block</span><br></pre></td></tr></table></figure>
+
+<p>解决方法：</p>
+<p>将<code>import cv2</code>放在前面（应该在<code>import tensorflow</code>前就可以了）</p>
+<p>ref: <a href="https://github.com/opencv/opencv/issues/14884" target="_blank" rel="noopener">aarch64: libgomp.so.1: cannot allocate memory in static TLS block</a></p>
+]]></content>
+      <tags>
+        <tag>opencv</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows 10 每次登陆都清除所有用户设置?</title>
     <url>/sundries/2020/06/18/windows-10-%E6%AF%8F%E6%AC%A1%E7%99%BB%E9%99%86%E9%83%BD%E6%B8%85%E9%99%A4%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%E8%AE%BE%E7%BD%AE/</url>
     <content><![CDATA[<h2 id="症状："><a href="#症状：" class="headerlink" title="症状："></a>症状：</h2><blockquote>
@@ -485,6 +499,113 @@
 
 <p>解决<code>/dev/ttyUSB0</code>权限问题:</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo usermod -aG dialout &lt;username&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="升级到JP4-4"><a href="#升级到JP4-4" class="headerlink" title="升级到JP4.4"></a>升级到JP4.4</h2><ol>
+<li><p>Open the <code>apt</code> source configuration file in a text editor, for example:</p>
+ <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/apt/sources.list.d/nvidia-l4t-apt-source.list</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Change the repository name and download URL in the deb commands.</p>
+<p> The original commands are:</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deb https:&#x2F;&#x2F;repo.download.nvidia.com&#x2F;jetson&#x2F;common r32 main</span><br><span class="line">deb https:&#x2F;&#x2F;repo.download.nvidia.com&#x2F;jetson&#x2F;&lt;platform&gt; r32 main</span><br></pre></td></tr></table></figure>
+
+<p> Where <platform> is identifies the platform’s processor:</p>
+<ul>
+<li><p>t186 for Jetson TX2 series</p>
+</li>
+<li><p>t194 for Jetson AGX Xavier series or Jetson Xavier NX</p>
+</li>
+<li><p>t210 for Jetson Nano or Jetson TX1</p>
+<p>Change the repository name from r32 to r32.4, and <platform> to the appropriate processor name for your platform. If your platform is Jetson Xavier NX, for example:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deb https:&#x2F;&#x2F;repo.download.nvidia.com&#x2F;jetson&#x2F;common r32.4 main</span><br><span class="line">deb https:&#x2F;&#x2F;repo.download.nvidia.com&#x2F;jetson&#x2F;t194 r32.4 main</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Save and close the source configuration file.</p>
+</li>
+<li><p>Enter the commands:</p>
+ <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ sudo apt update</span><br><span class="line">$ sudo apt dist-upgrade</span><br></pre></td></tr></table></figure>
+
+<p> If <code>apt</code> prompts you to choose a configuration file, reply Y for <em>yes</em> (to use the NVIDIA updated version of the file).</p>
+</li>
+<li><p>Reboot your Jetson device when the upgrade is finished.</p>
+</li>
+</ol>
+<h3 id="更新TF2"><a href="#更新TF2" class="headerlink" title="更新TF2"></a>更新TF2</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">workon tf2</span><br><span class="line">sudo apt-get install libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran</span><br><span class="line">pip install -U pip</span><br><span class="line">pip uninstall tensorflow</span><br><span class="line">proxychains pip install -U testresources setuptools future==0.17.1 mock==3.0.5 h5py keras_preprocessing keras_applications==1.0.8 gast futures protobuf pybind11</span><br></pre></td></tr></table></figure>
+
+<p>在电脑上下载好<code>tensorflow-2.2.0+nv20.6-cp36-cp36m-linux_aarch64.whl</code>，然后上传到jetson nano上</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">scp .\tensorflow-2.2.0+nv20.6-cp36-cp36m-linux_aarch64.whl &lt;user&gt;@remote_ip:~</span><br></pre></td></tr></table></figure>
+
+<p>最后在jetson nano上安装</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pip install --pre tensorflow-2.2.0+nv20.6-cp36-cp36m-linux_aarch64.whl</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决-dev-ttyTHS1权限问题"><a href="#解决-dev-ttyTHS1权限问题" class="headerlink" title="解决/dev/ttyTHS1权限问题"></a>解决<code>/dev/ttyTHS1</code>权限问题</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo usermod -aG dialout &lt;username&gt;</span><br></pre></td></tr></table></figure>
+
+<p>使用ttyTHS1作串口通信，需要禁用nvgetty服务</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo systemctl stop nvgetty</span><br><span class="line">sudo systemctl <span class="built_in">disable</span> nvgetty</span><br><span class="line">udevadm trigger</span><br><span class="line"><span class="comment"># You may want to reboot instead</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装TF2的OD-API"><a href="#安装TF2的OD-API" class="headerlink" title="安装TF2的OD API"></a>安装TF2的OD API</h3><p>先删除jetson nano上的<code>models</code>文件夹</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">rm -rf models</span><br></pre></td></tr></table></figure>
+
+<p>在电脑上</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">git clone -<span class="literal">-depth</span> <span class="number">1</span> https://github.com/tensorflow/models</span><br><span class="line">scp <span class="literal">-r</span> .\models &lt;user&gt;@remote_ip:~/models</span><br></pre></td></tr></table></figure>
+
+<p>在jetson nano上</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> models/research/</span><br><span class="line">workon tf2</span><br><span class="line">protoc object_detection/protos/*.proto --python_out=.</span><br><span class="line">cp object_detection/packages/tf2/setup.py .</span><br><span class="line">proxychains python -m pip install .</span><br></pre></td></tr></table></figure>
+
+<p>出现了如下错误：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ERROR: Could not find a version that satisfies the requirement tensorflow-addons (from tf-models-official-&gt;object-detection==0.1) (from versions: none)</span><br><span class="line">ERROR: No matching distribution found for tensorflow-addons (from tf-models-official-&gt;object-detection==0.1)</span><br></pre></td></tr></table></figure>
+
+<p>在电脑上下载<a href="https://github.com/tensorflow/addons/archive/v0.10.0.zip" target="_blank" rel="noopener">TensorFlow Addons v0.10.0</a></p>
+<p>然后上传到Jetson nano上，之后在jetson nano上解压并安装</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">unzip addons-0.10.0.zip</span><br><span class="line"><span class="built_in">cd</span> addons-0.10.0</span><br><span class="line">pip install .</span><br></pre></td></tr></table></figure>
+
+<p>之后继续安装OD API</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">cd</span> models/research/</span><br><span class="line">proxychains python -m pip install .</span><br></pre></td></tr></table></figure>
+
+<p>出现新的错误：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">    ERROR: Command errored out with exit status 1:</span><br><span class="line">     command: /home/frotech/.virtualenvs/tf2/bin/python -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-6y1bd261/sentencepiece/setup.py'"'"'; __file__='"'"'/tmp/pip-install-6y1bd261/sentencepiece/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' egg_info --egg-base /tmp/pip-pip-egg-info-6qn_mdp8</span><br><span class="line">         cwd: /tmp/pip-install-6y1bd261/sentencepiece/</span><br><span class="line">    Complete output (5 lines):</span><br><span class="line">    Package sentencepiece was not found in the pkg-config search path.</span><br><span class="line">    Perhaps you should add the directory containing `sentencepiece.pc'</span><br><span class="line">    to the PKG_CONFIG_PATH environment variable</span><br><span class="line">    No package 'sentencepiece' found</span><br><span class="line">    Failed to find sentencepiece pkgconfig</span><br><span class="line">    ----------------------------------------</span><br><span class="line">ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.</span><br></pre></td></tr></table></figure>
+
+<p>安装过程中，需要安装<code>pandas</code>，但每次出错都要重装一次，十分浪费时间，所以在解决上面的问题之前，先装<code>pandas</code></p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pip install pandas</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决sentencepiece安装问题"><a href="#解决sentencepiece安装问题" class="headerlink" title="解决sentencepiece安装问题"></a>解决<code>sentencepiece</code>安装问题</h4><p>电脑下载<a href="https://github.com/google/sentencepiece/archive/v0.1.92.zip" target="_blank" rel="noopener">sentencepiece-0.1.92.zip</a></p>
+<p>然后上传到jetson nano上</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">unzip sentencepiece-0.1.92.zip</span><br><span class="line"><span class="built_in">cd</span> sentencepiece-0.1.92</span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">sudo apt-get install cmake build-essential pkg-config libgoogle-perftools-dev</span><br><span class="line">cmake ..</span><br><span class="line">make -j $(nproc)</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig -v</span><br><span class="line"><span class="built_in">cd</span> ../python/</span><br><span class="line">python setup.py build</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>之后继续安装OD API</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">cd</span> models/research/</span><br><span class="line">proxychains python -m pip install .</span><br></pre></td></tr></table></figure>
+
+<p>之后出现以下错误：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ERROR: Could not find a version that satisfies the requirement opencv-python-headless (from tf-models-official-&gt;object-detection==0.1) (from versions: none)</span><br><span class="line">ERROR: No matching distribution found for opencv-python-headless (from tf-models-official-&gt;object-detection==0.1)</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>在电脑上创建一个假的<code>opencv-python-headless</code>pip包</p>
+<p>目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">opencv-headless</span><br><span class="line">├── LICENSE</span><br><span class="line">├── opencv-python-headless</span><br><span class="line">│   └── __init__.py</span><br><span class="line">└── setup.py</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>setup.py</code>的内容如下：</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> setuptools</span><br><span class="line"></span><br><span class="line">setuptools.setup(</span><br><span class="line">    name=<span class="string">"opencv-python-headless"</span>, <span class="comment"># Replace with your own username</span></span><br><span class="line">    version=<span class="string">"4.1.2"</span>,</span><br><span class="line">    author=<span class="string">"z14git"</span>,</span><br><span class="line">    author_email=<span class="string">"lzl1992@gmail.com"</span>,</span><br><span class="line">    description=<span class="string">"fake opencv"</span>,</span><br><span class="line">    packages=setuptools.find_packages(),</span><br><span class="line">    classifiers=[</span><br><span class="line">        <span class="string">"Programming Language :: Python :: 3"</span>,</span><br><span class="line">        <span class="string">"License :: OSI Approved :: MIT License"</span>,</span><br><span class="line">        <span class="string">"Operating System :: OS Independent"</span>,</span><br><span class="line">    ],</span><br><span class="line">    python_requires=<span class="string">'&gt;=3.6'</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><code>__init__.py</code>为空</p>
+<p>上传到jetson nano上安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> opencv-headless</span><br><span class="line">pip install .</span><br></pre></td></tr></table></figure>
+
+<p>之后再重新安装OD API，出现如下错误：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">    ERROR: Command errored out with exit status 1:</span><br><span class="line">     command: /home/frotech/.virtualenvs/tf2/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-k9o14eiv/dm-tree/setup.py'"'"'; __file__='"'"'/tmp/pip-install-k9o14eiv/dm-tree/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-zegyuwah/install-record.txt --single-version-externally-managed --compile --install-headers /home/frotech/.virtualenvs/tf2/include/site/python3.6/dm-tree</span><br><span class="line">         cwd: /tmp/pip-install-k9o14eiv/dm-tree/</span><br><span class="line">    Complete output (13 lines):</span><br><span class="line">    running install</span><br><span class="line">    running build</span><br><span class="line">    running build_py</span><br><span class="line">    creating build</span><br><span class="line">    creating build/lib.linux-aarch64-3.6</span><br><span class="line">    creating build/lib.linux-aarch64-3.6/tree</span><br><span class="line">    copying tree/tree_test.py -&gt; build/lib.linux-aarch64-3.6/tree</span><br><span class="line">    copying tree/tree_benchmark.py -&gt; build/lib.linux-aarch64-3.6/tree</span><br><span class="line">    copying tree/__init__.py -&gt; build/lib.linux-aarch64-3.6/tree</span><br><span class="line">    running build_ext</span><br><span class="line">    bazel build //tree:_tree --symlink_prefix=build/temp.linux-aarch64-3.6/bazel- --compilation_mode=opt</span><br><span class="line">    unable to execute 'bazel': No such file or directory</span><br><span class="line">    error: command 'bazel' failed with exit status 1</span><br><span class="line">    ----------------------------------------</span><br><span class="line">ERROR: Command errored out with exit status 1: /home/frotech/.virtualenvs/tf2/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-k9o14eiv/dm-tree/setup.py'"'"'; __file__='"'"'/tmp/pip-install-k9o14eiv/dm-tree/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-zegyuwah/install-record.txt --single-version-externally-managed --compile --install-headers /home/frotech/.virtualenvs/tf2/include/site/python3.6/dm-tree Check the logs for full command output.</span><br></pre></td></tr></table></figure>
+
+<p>安装出错前成功安装的包</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pip install lxml pycocotools kaggle dill pyyaml python-slugify promise</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决dm-tree安装问题"><a href="#解决dm-tree安装问题" class="headerlink" title="解决dm-tree安装问题"></a>解决dm-tree安装问题</h4><p>首先需要安装<code>bazel</code>，安装过程参考<a href="https://github.com/jkjung-avt/jetson_nano/blob/master/install_bazel-0.26.1.sh" target="_blank" rel="noopener">这里</a></p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y pkg-config zip g++ zlib1g-dev unzip</span><br><span class="line">sudo proxychains apt-get install -y openjdk-8-jdk</span><br></pre></td></tr></table></figure>
+
+<p>电脑下载<a href="https://github.com/bazelbuild/bazel/releases/download/2.0.0/bazel-2.0.0-dist.zip" target="_blank" rel="noopener">bazel-2.0.0-dist.zip</a>(PS:构建tensorflow 2.2.0使用的就是bazel 2.0.0)</p>
+<p>上传到jetson nano上安装</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">unzip bazel-2.0.0-dist.zip -d bazel-2.0.0</span><br><span class="line"><span class="built_in">cd</span> bazel-2.0.0/</span><br><span class="line">EXTRA_BAZEL_ARGS=<span class="string">"--host_javabase=@local_jdk//:jdk"</span> ./compile.sh</span><br><span class="line">sudo cp output/bazel /usr/<span class="built_in">local</span>/bin</span><br><span class="line">bazel <span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">workon tf2</span><br><span class="line">pip install dm-tree</span><br></pre></td></tr></table></figure>
+
+<p>之后继续安装OD API</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/models/research/</span><br><span class="line">proxychains python -m pip install .</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>jetson</tag>

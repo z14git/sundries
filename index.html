@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"z14git.github.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"z14git.gitee.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="十四的杂物">
-<meta property="og:url" content="http://z14git.github.io/sundries/index.html">
+<meta property="og:url" content="http://z14git.gitee.io/sundries/index.html">
 <meta property="og:site_name" content="十四的杂物">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="z14git">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://z14git.github.io/sundries/">
+<link rel="canonical" href="http://z14git.gitee.io/sundries/">
 
 
 <script id="page-configurations">
@@ -180,7 +180,71 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/06/18/windows-10-%E6%AF%8F%E6%AC%A1%E7%99%BB%E9%99%86%E9%83%BD%E6%B8%85%E9%99%A4%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%E8%AE%BE%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/07/15/OpenCV-libgomp-so-1-cannot-allocate-memory-in-static-TLS-block/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/07/15/OpenCV-libgomp-so-1-cannot-allocate-memory-in-static-TLS-block/" class="post-title-link" itemprop="url">OpenCV: libgomp.so.1: cannot allocate memory in static TLS block</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-15 09:08:19 / 修改时间：11:55:15" itemprop="dateCreated datePublished" datetime="2020-07-15T09:08:19+08:00">2020-07-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在测试TF2的OD API时，<code>import cv2</code>出现以下错误：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ImportError: /usr/lib/aarch64-linux-gnu/libgomp.so.1: cannot allocate memory in static TLS block</span><br></pre></td></tr></table></figure>
+
+<p>解决方法：</p>
+<p>将<code>import cv2</code>放在前面（应该在<code>import tensorflow</code>前就可以了）</p>
+<p>ref: <a href="https://github.com/opencv/opencv/issues/14884" target="_blank" rel="noopener">aarch64: libgomp.so.1: cannot allocate memory in static TLS block</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/06/18/windows-10-%E6%AF%8F%E6%AC%A1%E7%99%BB%E9%99%86%E9%83%BD%E6%B8%85%E9%99%A4%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%E8%AE%BE%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -269,7 +333,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/06/14/hexo-Error-Spawn-failed/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/06/14/hexo-Error-Spawn-failed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -337,7 +401,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/06/14/how-to-install-jupyter-in-Termux/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/06/14/how-to-install-jupyter-in-Termux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -408,7 +472,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/06/14/how-to-install-matplotlib-in-Termux/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/06/14/how-to-install-matplotlib-in-Termux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -477,7 +541,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/05/27/jetson-nano-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%91%84%E5%83%8F%E5%A4%B4/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/05/27/jetson-nano-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%91%84%E5%83%8F%E5%A4%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -556,7 +620,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/05/27/ubuntu%E5%9C%A8%E7%BB%88%E7%AB%AF%E4%B8%8B%E5%BC%B9%E5%87%BAU%E7%9B%98/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/05/27/ubuntu%E5%9C%A8%E7%BB%88%E7%AB%AF%E4%B8%8B%E5%BC%B9%E5%87%BAU%E7%9B%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -622,7 +686,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/05/27/ubuntu-%E5%A6%82%E4%BD%95%E6%94%AF%E6%8C%81exFAT/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/05/27/ubuntu-%E5%A6%82%E4%BD%95%E6%94%AF%E6%8C%81exFAT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -687,7 +751,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/05/18/build-jetson-nano-image-based-on-jp4-3/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/05/18/build-jetson-nano-image-based-on-jp4-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -718,7 +782,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-13 10:27:46" itemprop="dateModified" datetime="2020-07-13T10:27:46+08:00">2020-07-13</time>
+                <time title="修改时间：2020-07-15 11:55:15" itemprop="dateModified" datetime="2020-07-15T11:55:15+08:00">2020-07-15</time>
               </span>
 
           
@@ -1097,6 +1161,113 @@
 <p>解决<code>/dev/ttyUSB0</code>权限问题:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -aG dialout &lt;username&gt;</span><br></pre></td></tr></table></figure>
 
+<h2 id="升级到JP4-4"><a href="#升级到JP4-4" class="headerlink" title="升级到JP4.4"></a>升级到JP4.4</h2><ol>
+<li><p>Open the <code>apt</code> source configuration file in a text editor, for example:</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/apt/sources.list.d/nvidia-l4t-apt-source.list</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Change the repository name and download URL in the deb commands.</p>
+<p> The original commands are:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb https:&#x2F;&#x2F;repo.download.nvidia.com&#x2F;jetson&#x2F;common r32 main</span><br><span class="line">deb https:&#x2F;&#x2F;repo.download.nvidia.com&#x2F;jetson&#x2F;&lt;platform&gt; r32 main</span><br></pre></td></tr></table></figure>
+
+<p> Where <platform> is identifies the platform’s processor:</p>
+<ul>
+<li><p>t186 for Jetson TX2 series</p>
+</li>
+<li><p>t194 for Jetson AGX Xavier series or Jetson Xavier NX</p>
+</li>
+<li><p>t210 for Jetson Nano or Jetson TX1</p>
+<p>Change the repository name from r32 to r32.4, and <platform> to the appropriate processor name for your platform. If your platform is Jetson Xavier NX, for example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb https:&#x2F;&#x2F;repo.download.nvidia.com&#x2F;jetson&#x2F;common r32.4 main</span><br><span class="line">deb https:&#x2F;&#x2F;repo.download.nvidia.com&#x2F;jetson&#x2F;t194 r32.4 main</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Save and close the source configuration file.</p>
+</li>
+<li><p>Enter the commands:</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt update</span><br><span class="line">$ sudo apt dist-upgrade</span><br></pre></td></tr></table></figure>
+
+<p> If <code>apt</code> prompts you to choose a configuration file, reply Y for <em>yes</em> (to use the NVIDIA updated version of the file).</p>
+</li>
+<li><p>Reboot your Jetson device when the upgrade is finished.</p>
+</li>
+</ol>
+<h3 id="更新TF2"><a href="#更新TF2" class="headerlink" title="更新TF2"></a>更新TF2</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon tf2</span><br><span class="line">sudo apt-get install libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran</span><br><span class="line">pip install -U pip</span><br><span class="line">pip uninstall tensorflow</span><br><span class="line">proxychains pip install -U testresources setuptools future==0.17.1 mock==3.0.5 h5py keras_preprocessing keras_applications==1.0.8 gast futures protobuf pybind11</span><br></pre></td></tr></table></figure>
+
+<p>在电脑上下载好<code>tensorflow-2.2.0+nv20.6-cp36-cp36m-linux_aarch64.whl</code>，然后上传到jetson nano上</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp .\tensorflow-2.2.0+nv20.6-cp36-cp36m-linux_aarch64.whl &lt;user&gt;@remote_ip:~</span><br></pre></td></tr></table></figure>
+
+<p>最后在jetson nano上安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --pre tensorflow-2.2.0+nv20.6-cp36-cp36m-linux_aarch64.whl</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决-dev-ttyTHS1权限问题"><a href="#解决-dev-ttyTHS1权限问题" class="headerlink" title="解决/dev/ttyTHS1权限问题"></a>解决<code>/dev/ttyTHS1</code>权限问题</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -aG dialout &lt;username&gt;</span><br></pre></td></tr></table></figure>
+
+<p>使用ttyTHS1作串口通信，需要禁用nvgetty服务</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop nvgetty</span><br><span class="line">sudo systemctl <span class="built_in">disable</span> nvgetty</span><br><span class="line">udevadm trigger</span><br><span class="line"><span class="comment"># You may want to reboot instead</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装TF2的OD-API"><a href="#安装TF2的OD-API" class="headerlink" title="安装TF2的OD API"></a>安装TF2的OD API</h3><p>先删除jetson nano上的<code>models</code>文件夹</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf models</span><br></pre></td></tr></table></figure>
+
+<p>在电脑上</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone -<span class="literal">-depth</span> <span class="number">1</span> https://github.com/tensorflow/models</span><br><span class="line">scp <span class="literal">-r</span> .\models &lt;user&gt;@remote_ip:~/models</span><br></pre></td></tr></table></figure>
+
+<p>在jetson nano上</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> models/research/</span><br><span class="line">workon tf2</span><br><span class="line">protoc object_detection/protos/*.proto --python_out=.</span><br><span class="line">cp object_detection/packages/tf2/setup.py .</span><br><span class="line">proxychains python -m pip install .</span><br></pre></td></tr></table></figure>
+
+<p>出现了如下错误：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Could not find a version that satisfies the requirement tensorflow-addons (from tf-models-official-&gt;object-detection==0.1) (from versions: none)</span><br><span class="line">ERROR: No matching distribution found for tensorflow-addons (from tf-models-official-&gt;object-detection==0.1)</span><br></pre></td></tr></table></figure>
+
+<p>在电脑上下载<a href="https://github.com/tensorflow/addons/archive/v0.10.0.zip" target="_blank" rel="noopener">TensorFlow Addons v0.10.0</a></p>
+<p>然后上传到Jetson nano上，之后在jetson nano上解压并安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">unzip addons-0.10.0.zip</span><br><span class="line"><span class="built_in">cd</span> addons-0.10.0</span><br><span class="line">pip install .</span><br></pre></td></tr></table></figure>
+
+<p>之后继续安装OD API</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">cd</span> models/research/</span><br><span class="line">proxychains python -m pip install .</span><br></pre></td></tr></table></figure>
+
+<p>出现新的错误：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    ERROR: Command errored out with exit status 1:</span><br><span class="line">     command: /home/frotech/.virtualenvs/tf2/bin/python -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-6y1bd261/sentencepiece/setup.py'"'"'; __file__='"'"'/tmp/pip-install-6y1bd261/sentencepiece/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' egg_info --egg-base /tmp/pip-pip-egg-info-6qn_mdp8</span><br><span class="line">         cwd: /tmp/pip-install-6y1bd261/sentencepiece/</span><br><span class="line">    Complete output (5 lines):</span><br><span class="line">    Package sentencepiece was not found in the pkg-config search path.</span><br><span class="line">    Perhaps you should add the directory containing `sentencepiece.pc'</span><br><span class="line">    to the PKG_CONFIG_PATH environment variable</span><br><span class="line">    No package 'sentencepiece' found</span><br><span class="line">    Failed to find sentencepiece pkgconfig</span><br><span class="line">    ----------------------------------------</span><br><span class="line">ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.</span><br></pre></td></tr></table></figure>
+
+<p>安装过程中，需要安装<code>pandas</code>，但每次出错都要重装一次，十分浪费时间，所以在解决上面的问题之前，先装<code>pandas</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pandas</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决sentencepiece安装问题"><a href="#解决sentencepiece安装问题" class="headerlink" title="解决sentencepiece安装问题"></a>解决<code>sentencepiece</code>安装问题</h4><p>电脑下载<a href="https://github.com/google/sentencepiece/archive/v0.1.92.zip" target="_blank" rel="noopener">sentencepiece-0.1.92.zip</a></p>
+<p>然后上传到jetson nano上</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">unzip sentencepiece-0.1.92.zip</span><br><span class="line"><span class="built_in">cd</span> sentencepiece-0.1.92</span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">sudo apt-get install cmake build-essential pkg-config libgoogle-perftools-dev</span><br><span class="line">cmake ..</span><br><span class="line">make -j $(nproc)</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig -v</span><br><span class="line"><span class="built_in">cd</span> ../python/</span><br><span class="line">python setup.py build</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>之后继续安装OD API</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">cd</span> models/research/</span><br><span class="line">proxychains python -m pip install .</span><br></pre></td></tr></table></figure>
+
+<p>之后出现以下错误：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Could not find a version that satisfies the requirement opencv-python-headless (from tf-models-official-&gt;object-detection==0.1) (from versions: none)</span><br><span class="line">ERROR: No matching distribution found for opencv-python-headless (from tf-models-official-&gt;object-detection==0.1)</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>在电脑上创建一个假的<code>opencv-python-headless</code>pip包</p>
+<p>目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">opencv-headless</span><br><span class="line">├── LICENSE</span><br><span class="line">├── opencv-python-headless</span><br><span class="line">│   └── __init__.py</span><br><span class="line">└── setup.py</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>setup.py</code>的内容如下：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> setuptools</span><br><span class="line"></span><br><span class="line">setuptools.setup(</span><br><span class="line">    name=<span class="string">"opencv-python-headless"</span>, <span class="comment"># Replace with your own username</span></span><br><span class="line">    version=<span class="string">"4.1.2"</span>,</span><br><span class="line">    author=<span class="string">"z14git"</span>,</span><br><span class="line">    author_email=<span class="string">"lzl1992@gmail.com"</span>,</span><br><span class="line">    description=<span class="string">"fake opencv"</span>,</span><br><span class="line">    packages=setuptools.find_packages(),</span><br><span class="line">    classifiers=[</span><br><span class="line">        <span class="string">"Programming Language :: Python :: 3"</span>,</span><br><span class="line">        <span class="string">"License :: OSI Approved :: MIT License"</span>,</span><br><span class="line">        <span class="string">"Operating System :: OS Independent"</span>,</span><br><span class="line">    ],</span><br><span class="line">    python_requires=<span class="string">'&gt;=3.6'</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><code>__init__.py</code>为空</p>
+<p>上传到jetson nano上安装：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> opencv-headless</span><br><span class="line">pip install .</span><br></pre></td></tr></table></figure>
+
+<p>之后再重新安装OD API，出现如下错误：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">    ERROR: Command errored out with exit status 1:</span><br><span class="line">     command: /home/frotech/.virtualenvs/tf2/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-k9o14eiv/dm-tree/setup.py'"'"'; __file__='"'"'/tmp/pip-install-k9o14eiv/dm-tree/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-zegyuwah/install-record.txt --single-version-externally-managed --compile --install-headers /home/frotech/.virtualenvs/tf2/include/site/python3.6/dm-tree</span><br><span class="line">         cwd: /tmp/pip-install-k9o14eiv/dm-tree/</span><br><span class="line">    Complete output (13 lines):</span><br><span class="line">    running install</span><br><span class="line">    running build</span><br><span class="line">    running build_py</span><br><span class="line">    creating build</span><br><span class="line">    creating build/lib.linux-aarch64-3.6</span><br><span class="line">    creating build/lib.linux-aarch64-3.6/tree</span><br><span class="line">    copying tree/tree_test.py -&gt; build/lib.linux-aarch64-3.6/tree</span><br><span class="line">    copying tree/tree_benchmark.py -&gt; build/lib.linux-aarch64-3.6/tree</span><br><span class="line">    copying tree/__init__.py -&gt; build/lib.linux-aarch64-3.6/tree</span><br><span class="line">    running build_ext</span><br><span class="line">    bazel build //tree:_tree --symlink_prefix=build/temp.linux-aarch64-3.6/bazel- --compilation_mode=opt</span><br><span class="line">    unable to execute 'bazel': No such file or directory</span><br><span class="line">    error: command 'bazel' failed with exit status 1</span><br><span class="line">    ----------------------------------------</span><br><span class="line">ERROR: Command errored out with exit status 1: /home/frotech/.virtualenvs/tf2/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-k9o14eiv/dm-tree/setup.py'"'"'; __file__='"'"'/tmp/pip-install-k9o14eiv/dm-tree/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-zegyuwah/install-record.txt --single-version-externally-managed --compile --install-headers /home/frotech/.virtualenvs/tf2/include/site/python3.6/dm-tree Check the logs for full command output.</span><br></pre></td></tr></table></figure>
+
+<p>安装出错前成功安装的包</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install lxml pycocotools kaggle dill pyyaml python-slugify promise</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决dm-tree安装问题"><a href="#解决dm-tree安装问题" class="headerlink" title="解决dm-tree安装问题"></a>解决dm-tree安装问题</h4><p>首先需要安装<code>bazel</code>，安装过程参考<a href="https://github.com/jkjung-avt/jetson_nano/blob/master/install_bazel-0.26.1.sh" target="_blank" rel="noopener">这里</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y pkg-config zip g++ zlib1g-dev unzip</span><br><span class="line">sudo proxychains apt-get install -y openjdk-8-jdk</span><br></pre></td></tr></table></figure>
+
+<p>电脑下载<a href="https://github.com/bazelbuild/bazel/releases/download/2.0.0/bazel-2.0.0-dist.zip" target="_blank" rel="noopener">bazel-2.0.0-dist.zip</a>(PS:构建tensorflow 2.2.0使用的就是bazel 2.0.0)</p>
+<p>上传到jetson nano上安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">unzip bazel-2.0.0-dist.zip -d bazel-2.0.0</span><br><span class="line"><span class="built_in">cd</span> bazel-2.0.0/</span><br><span class="line">EXTRA_BAZEL_ARGS=<span class="string">"--host_javabase=@local_jdk//:jdk"</span> ./compile.sh</span><br><span class="line">sudo cp output/bazel /usr/<span class="built_in">local</span>/bin</span><br><span class="line">bazel <span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">workon tf2</span><br><span class="line">pip install dm-tree</span><br></pre></td></tr></table></figure>
+
+<p>之后继续安装OD API</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/models/research/</span><br><span class="line">proxychains python -m pip install .</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -1115,7 +1286,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/05/13/build-custom-jetson-nano-image-based-on-jp4-4/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/05/13/build-custom-jetson-nano-image-based-on-jp4-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -1246,129 +1417,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/05/12/systemd%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/05/12/systemd%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">systemd配置文件</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-12 15:05:26" itemprop="dateCreated datePublished" datetime="2020-05-12T15:05:26+08:00">2020-05-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-28 10:44:46" itemprop="dateModified" datetime="2020-05-28T10:44:46+08:00">2020-05-28</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="配置文件的格式"><a href="#配置文件的格式" class="headerlink" title="配置文件的格式"></a>配置文件的格式</h2><p>配置文件就是普通的文本文件，可以用文本编辑器打开。</p>
-<p><code>systemctl cat</code>命令可以查看配置文件的内容。</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> systemctl cat atd.service</span></span><br><span class="line"></span><br><span class="line">[Unit]</span><br><span class="line">Description=ATD daemon</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">ExecStart=/usr/bin/atd</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-
-<p>从上面的输出可以看到，配置文件分成几个区块。每个区块的第一行，是用方括号表示的区别名，比如<code>[Unit]</code>。注意，配置文件的区块名和字段名，都是大小写敏感的。</p>
-<p>每个区块内部是一些等号连接的键值对。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Section]</span><br><span class="line">Directive1=value</span><br><span class="line">Directive2=value</span><br><span class="line"></span><br><span class="line">. . .</span><br></pre></td></tr></table></figure>
-
-<p>注意，键值对的等号两侧不能有空格。</p>
-<h2 id="配置文件的区块"><a href="#配置文件的区块" class="headerlink" title="配置文件的区块"></a>配置文件的区块</h2><p><code>[Unit]</code>区块通常是配置文件的第一个区块，用来定义 Unit 的元数据，以及配置与其他 Unit 的关系。它的主要字段如下。</p>
-<blockquote>
-<ul>
-<li>Description：简短描述</li>
-<li>Documentation：文档地址</li>
-<li>Requires：当前 Unit 依赖的其他 Unit，如果它们没有运行，当前 Unit 会启动失败</li>
-<li>Wants：与当前 Unit 配合的其他 Unit，如果它们没有运行，当前 Unit 不会启动失败</li>
-<li>BindsTo：与Requires类似，它指定的 Unit 如果退出，会导致当前 Unit 停止运行</li>
-<li>Before：如果该字段指定的 Unit 也要启动，那么必须在当前 Unit 之后启动</li>
-<li>After：如果该字段指定的 Unit 也要启动，那么必须在当前 Unit 之前启动</li>
-<li>Conflicts：这里指定的 Unit 不能与当前 Unit 同时运行</li>
-<li>Condition…：当前 Unit 运行必须满足的条件，否则不会运行</li>
-<li>Assert…：当前 Unit 运行必须满足的条件，否则会报启动失败</li>
-</ul>
-</blockquote>
-<p><code>[Install]</code>通常是配置文件的最后一个区块，用来定义如何启动，以及是否开机启动。它的主要字段如下。</p>
-<blockquote>
-<ul>
-<li>WantedBy：它的值是一个或多个 Target，当前 Unit 激活时（enable）符号链接会放入/etc/systemd/system目录下面以 Target 名 + .wants后缀构成的子目录中</li>
-<li>RequiredBy：它的值是一个或多个 Target，当前 Unit 激活时，符号链接会放入/etc/systemd/system目录下面以 Target 名 + .required后缀构成的子目录中</li>
-<li>Alias：当前 Unit 可用于启动的别名</li>
-<li>Also：当前 Unit 激活（enable）时，会被同时激活的其他 Unit</li>
-</ul>
-</blockquote>
-<p><code>[Service]</code>区块用来 Service 的配置，只有 Service 类型的 Unit 才有这个区块。它的主要字段如下。</p>
-<blockquote>
-<ul>
-<li>Type：定义启动时的进程行为。它有以下几种值。</li>
-<li>Type=simple：默认值，执行ExecStart指定的命令，启动主进程</li>
-<li>Type=forking：以 fork 方式从父进程创建子进程，创建后父进程会立即退出</li>
-<li>Type=oneshot：一次性进程，Systemd 会等当前服务退出，再继续往下执行</li>
-<li>Type=dbus：当前服务通过D-Bus启动</li>
-<li>Type=notify：当前服务启动完毕，会通知Systemd，再继续往下执行</li>
-<li>Type=idle：若有其他任务执行完毕，当前服务才会运行</li>
-<li>ExecStart：启动当前服务的命令</li>
-<li>ExecStartPre：启动当前服务之前执行的命令</li>
-<li>ExecStartPost：启动当前服务之后执行的命令</li>
-<li>ExecReload：重启当前服务时执行的命令</li>
-<li>ExecStop：停止当前服务时执行的命令</li>
-<li>ExecStopPost：停止当其服务之后执行的命令</li>
-<li>RestartSec：自动重启当前服务间隔的秒数</li>
-<li>Restart：定义何种情况 Systemd 会自动重启当前服务，可能的值包括always（总是重启）、on-success、on-failure、on-abnormal、on-abort、on-watchdog</li>
-<li>TimeoutSec：定义 Systemd 停止当前服务之前等待的秒数</li>
-<li>Environment：指定环境变量</li>
-</ul>
-</blockquote>
-<p>Unit 配置文件的完整字段清单，请参考<a href="https://www.freedesktop.org/software/systemd/man/systemd.unit.html" target="_blank" rel="noopener">官方文档</a>。</p>
-<blockquote>
-<p>ref: <a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html" target="_blank" rel="noopener">Systemd 入门教程：命令篇</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1439,14 +1487,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/sundries/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/sundries/tags/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
