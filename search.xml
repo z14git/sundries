@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>how to remove cards at the end of youtube video</title>
+    <url>/sundries/2020/09/13/how-to-remove-cards-at-the-end-of-youtube-video/</url>
+    <content><![CDATA[<p>在adblock中添加filter(当前位置：Setting-&gt;Customize-&gt;Manually edit your filters)：</p>
+<pre><code>www.youtube.com##.ytp-ce-element</code></pre><blockquote>
+<p>ref: <a href="https://www.reddit.com/r/youtube/comments/5owodn/tip_how_to_block_youtube_end_screen_video_ad_the/" target="_blank" rel="noopener">Tip: How to block youtube end screen video ad, the new youtube feature.</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>youtube</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何获取dtype为string的tf.tensor的string值</title>
     <url>/sundries/2020/07/22/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96dtype%E4%B8%BAstring%E7%9A%84tf.tensor%E7%9A%84string%E5%80%BC/</url>
     <content><![CDATA[<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">AUTOTUNE = tf.data.experimental.AUTOTUNE</span><br><span class="line">list_ds = tf.data.Dataset.list_files(<span class="string">"dataset_xy/*.jpg"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_x</span><span class="params">(file_name)</span>:</span></span><br><span class="line">    <span class="string">"""Gets the x value from the image filename"""</span></span><br><span class="line">    <span class="keyword">return</span> tf.strings.to_number(file_name.numpy()[<span class="number">3</span>:<span class="number">6</span>], tf.float32) / <span class="number">100</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_label</span><span class="params">(file_path)</span>:</span></span><br><span class="line">    file_name = tf.strings.split(file_path, os.path.sep)[<span class="number">-1</span>]</span><br><span class="line">    x = tf.py_function(func=get_x,inp=[file_name],Tout=tf.float32)</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">process_path</span><span class="params">(file_path)</span>:</span></span><br><span class="line">    label = get_label(file_path)</span><br><span class="line">    <span class="keyword">return</span> label</span><br><span class="line"></span><br><span class="line">train_ds = list_ds.map(process_path, num_parallel_calls=AUTOTUNE)</span><br></pre></td></tr></table></figure>
@@ -174,8 +186,8 @@
 </blockquote>
 ]]></content>
       <tags>
-        <tag>linux</tag>
         <tag>jetson</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -695,6 +707,8 @@
 
 <p>still not work，最后参考<a href="https://github.com/jkjung-avt/jetson_nano/issues/9#issuecomment-629803485" target="_blank" rel="noopener">这里</a>，执行以下操作即可</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/tf2/lib/python3.6/site-packages/protobuf-3.12.3-py3.6-linux-aarch64.egg/google</span><br><span class="line">mv __init__.py bak.__init__.py</span><br></pre></td></tr></table></figure>
+
+<h3 id="增加OLED信息显示服务"><a href="#增加OLED信息显示服务" class="headerlink" title="增加OLED信息显示服务"></a>增加OLED信息显示服务</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://gitee.com/z14git/jetbot.git</span><br><span class="line"><span class="built_in">cd</span> jetbot/</span><br><span class="line">git checkout z_jp4.4 <span class="comment">#5ad748d6c8cd763821c07eb2a3c4925784e870d5</span></span><br><span class="line">python3 jetbot/utils/create_stats_service.py</span><br><span class="line">sudo mv jetbot_stats.service /etc/systemd/system/jetbot_stats.service</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> jetbot_stats</span><br><span class="line">sudo systemctl start jetbot_stats</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>jetson</tag>
@@ -1369,8 +1383,8 @@
 </ul>
 ]]></content>
       <tags>
-        <tag>linux</tag>
         <tag>jetson</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1386,8 +1400,8 @@
 </ul>
 ]]></content>
       <tags>
-        <tag>linux</tag>
         <tag>jetson</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
