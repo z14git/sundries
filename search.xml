@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Using Anaconda with proxy</title>
+    <url>/sundries/2020/09/16/Using-Anaconda-with-proxy/</url>
+    <content><![CDATA[<p>在<code>.condarc</code>文件中添加以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">proxy_servers:</span><br><span class="line">    http: socks5:&#x2F;&#x2F;127.0.0.1:10808</span><br><span class="line">    https: socks5:&#x2F;&#x2F;127.0.0.1:10808</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ref:<br>    - <a href="https://tomaxent.com/2018/05/17/Anaconda-uses-socket-proxy-on-Windows-10/" target="_blank" rel="noopener">Anaconda uses socket proxy on Windows 10</a><br>    - <a href="https://docs.anaconda.com/anaconda/user-guide/tasks/proxy/" target="_blank" rel="noopener">Using Anaconda behind a company proxy</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>conda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>how to remove cards at the end of youtube video</title>
     <url>/sundries/2020/09/13/how-to-remove-cards-at-the-end-of-youtube-video/</url>
     <content><![CDATA[<p>在adblock中添加filter(当前位置：Setting-&gt;Customize-&gt;Manually edit your filters)：</p>
@@ -1082,8 +1096,8 @@
 </blockquote>
 ]]></content>
       <tags>
-        <tag>bat</tag>
         <tag>conda</tag>
+        <tag>bat</tag>
       </tags>
   </entry>
   <entry>
