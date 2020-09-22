@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>fix ImportError: IProgress not found.</title>
+    <url>/sundries/2020/09/22/fix-ImportError-IProgress-not-found/</url>
+    <content><![CDATA[<p>执行以下命令：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">conda install -n base -c conda-forge widgetsnbextension</span><br><span class="line">conda install -n py36 -c conda-forge ipywidgets</span><br></pre></td></tr></table></figure>
+
+<p>ps: <code>py36</code>是实际要运行notebook的内核</p>
+<blockquote>
+<p>ref: <a href="https://ipywidgets.readthedocs.io/en/stable/user_install.html" target="_blank" rel="noopener">Installation</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>jupyter</tag>
+        <tag>ipywidgets</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Using Anaconda with proxy</title>
     <url>/sundries/2020/09/16/Using-Anaconda-with-proxy/</url>
     <content><![CDATA[<p>在<code>.condarc</code>文件中添加以下内容：</p>
