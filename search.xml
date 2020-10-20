@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>git remote add</title>
+    <url>/sundries/2020/10/20/git-remote-add/</url>
+    <content><![CDATA[<p>git 添加远程</p>
+<p>eg:</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git remote add z14 https://github.com/z14git/repo.git</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ref: <a href="https://docs.github.com/cn/free-pro-team@latest/github/using-git/adding-a-remote" target="_blank" rel="noopener">添加远程</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>fix ImportError: IProgress not found.</title>
     <url>/sundries/2020/09/22/fix-ImportError-IProgress-not-found/</url>
     <content><![CDATA[<p>执行以下命令：</p>
@@ -738,7 +753,7 @@
 <p>still not work，最后参考<a href="https://github.com/jkjung-avt/jetson_nano/issues/9#issuecomment-629803485" target="_blank" rel="noopener">这里</a>，执行以下操作即可</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/tf2/lib/python3.6/site-packages/protobuf-3.12.3-py3.6-linux-aarch64.egg/google</span><br><span class="line">mv __init__.py bak.__init__.py</span><br></pre></td></tr></table></figure>
 
-<h3 id="增加OLED信息显示服务"><a href="#增加OLED信息显示服务" class="headerlink" title="增加OLED信息显示服务"></a>增加OLED信息显示服务</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://gitee.com/z14git/jetbot.git</span><br><span class="line"><span class="built_in">cd</span> jetbot/</span><br><span class="line">git checkout z_jp4.4 <span class="comment">#5ad748d6c8cd763821c07eb2a3c4925784e870d5</span></span><br><span class="line">python3 jetbot/utils/create_stats_service.py</span><br><span class="line">sudo mv jetbot_stats.service /etc/systemd/system/jetbot_stats.service</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> jetbot_stats</span><br><span class="line">sudo systemctl start jetbot_stats</span><br></pre></td></tr></table></figure>
+<h3 id="增加OLED信息显示服务"><a href="#增加OLED信息显示服务" class="headerlink" title="增加OLED信息显示服务"></a>增加OLED信息显示服务</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://gitee.com/z14git/jetbot.git</span><br><span class="line"><span class="built_in">cd</span> jetbot/</span><br><span class="line">git checkout z_jp4.4 <span class="comment">#5ad748d6c8cd763821c07eb2a3c4925784e870d5</span></span><br><span class="line">python3 jetbot/utils/create_stats_service.py</span><br><span class="line">sudo mv jetbot_stats.service /etc/systemd/system/jetbot_stats.service</span><br><span class="line">workon cv</span><br><span class="line">pip install Adafruit_SSD1306</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> jetbot_stats</span><br><span class="line">sudo systemctl start jetbot_stats</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>jetson</tag>
@@ -1112,8 +1127,8 @@
 </blockquote>
 ]]></content>
       <tags>
-        <tag>conda</tag>
         <tag>bat</tag>
+        <tag>conda</tag>
       </tags>
   </entry>
   <entry>
