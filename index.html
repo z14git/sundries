@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"z14git.github.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"z14git.gitee.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="十四的杂物">
-<meta property="og:url" content="http://z14git.github.io/sundries/index.html">
+<meta property="og:url" content="http://z14git.gitee.io/sundries/index.html">
 <meta property="og:site_name" content="十四的杂物">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="z14git">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://z14git.github.io/sundries/">
+<link rel="canonical" href="http://z14git.gitee.io/sundries/">
 
 
 <script id="page-configurations">
@@ -180,7 +180,149 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/10/20/git-remote-add/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/10/27/%E5%A6%82%E4%BD%95%E7%94%A8cv2-VideoWriter%E5%AE%9E%E7%8E%B0rtsp%E6%8E%A8%E6%B5%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/10/27/%E5%A6%82%E4%BD%95%E7%94%A8cv2-VideoWriter%E5%AE%9E%E7%8E%B0rtsp%E6%8E%A8%E6%B5%81/" class="post-title-link" itemprop="url">如何用cv2.VideoWriter实现rtsp推流</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-10-27 16:38:41 / 修改时间：16:51:55" itemprop="dateCreated datePublished" datetime="2020-10-27T16:38:41+08:00">2020-10-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="安装-v4l2loopback"><a href="#安装-v4l2loopback" class="headerlink" title="安装 v4l2loopback"></a>安装 v4l2loopback</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line"><span class="built_in">cd</span> /usr/src</span><br><span class="line">mkdir v4l2loopback</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/umlaeute/v4l2loopback.git v4l2loopback</span><br><span class="line"><span class="built_in">cd</span> v4l2loopback/</span><br><span class="line">git checkout v0.10.0</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">modprobe v4l2loopback</span><br></pre></td></tr></table></figure>
+
+<p>这里假设 v4l2loopback 创建的设备是 <code>/dev/video1</code></p>
+<p>ref:</p>
+<ul>
+<li><a href="https://github.com/umlaeute/v4l2loopback" target="_blank" rel="noopener">v4l2loopback</a></li>
+<li><a href="https://forums.developer.nvidia.com/t/jetpack-4-2-1-building-v4l2loopback-fails/79201" target="_blank" rel="noopener">Jetpack 4.2.1 : building v4l2loopback fails</a></li>
+</ul>
+<h2 id="build-rtsp-server"><a href="#build-rtsp-server" class="headerlink" title="build rtsp server"></a>build rtsp server</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libgstrtspserver-1.0 libgstreamer1.0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/GStreamer/gst-rtsp-server.git</span><br><span class="line">git checkout 1.14</span><br><span class="line"><span class="built_in">cd</span> examples</span><br><span class="line">gcc <span class="built_in">test</span>-launch.c -o <span class="built_in">test</span>-launch $(pkg-config --cflags --libs gstreamer-1.0 gstreamer-rtsp-server-1.0)</span><br></pre></td></tr></table></figure>
+
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>往 <code>/dev/video1</code>写入数据</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">out = cv2.VideoWriter(<span class="string">"appsrc ! videoconvert ! video/x-raw,format=BGRx ! identity drop-allocation=true ! v4l2sink device=/dev/video1"</span>,</span><br><span class="line">                      <span class="number">0</span>, framerate, (<span class="number">640</span>, <span class="number">360</span>))</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    out.write(frame)</span><br></pre></td></tr></table></figure>
+
+<h2 id="start-rtsp-server"><a href="#start-rtsp-server" class="headerlink" title="start rtsp server"></a>start rtsp server</h2><p><code>./test-launch &quot;v4l2src device=/dev/video1 ! nvvidconv ! nvv4l2h265enc ! h265parse ! rtph265pay name=pay0 pt=96 config-interval=1 &quot;</code></p>
+<p>ref: <a href="https://forums.developer.nvidia.com/t/rtsp-streaming-with-cv-videowriter/111686" target="_blank" rel="noopener">RTSP streaming with cv::VideoWriter</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/10/21/ModuleNotFoundError-No-module-named-IPython-core-profiledir/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/10/21/ModuleNotFoundError-No-module-named-IPython-core-profiledir/" class="post-title-link" itemprop="url">ModuleNotFoundError: No module named 'IPython.core.profiledir'</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-21 20:08:43" itemprop="dateCreated datePublished" datetime="2020-10-21T20:08:43+08:00">2020-10-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-27 16:51:55" itemprop="dateModified" datetime="2020-10-27T16:51:55+08:00">2020-10-27</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>打开某个内核的notebook出现以下错误：</p>
+<p><code>ModuleNotFoundError: No module named &#39;IPython.core.profiledir&#39;</code></p>
+<p>解决方法：</p>
+<p>在出错的内核中，执行以下命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall ipython</span><br><span class="line">pip install ipython</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/10/20/git-remote-add/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -245,7 +387,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/09/22/fix-ImportError-IProgress-not-found/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/09/22/fix-ImportError-IProgress-not-found/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -310,7 +452,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/09/16/Using-Anaconda-with-proxy/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/09/16/Using-Anaconda-with-proxy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -374,7 +516,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/09/13/how-to-remove-cards-at-the-end-of-youtube-video/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/09/13/how-to-remove-cards-at-the-end-of-youtube-video/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -442,7 +584,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/07/22/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96dtype%E4%B8%BAstring%E7%9A%84tf.tensor%E7%9A%84string%E5%80%BC/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/07/22/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96dtype%E4%B8%BAstring%E7%9A%84tf.tensor%E7%9A%84string%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -511,7 +653,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/07/17/%E5%88%9B%E5%BB%BAtrt%E6%A8%A1%E5%9E%8B%E6%97%B6-%E5%87%BA%E7%8E%B0core-dumped/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/07/17/%E5%88%9B%E5%BB%BAtrt%E6%A8%A1%E5%9E%8B%E6%97%B6-%E5%87%BA%E7%8E%B0core-dumped/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -591,7 +733,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/07/15/ubuntu%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD%E7%A3%81%E7%9B%98/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/07/15/ubuntu%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD%E7%A3%81%E7%9B%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -673,7 +815,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/07/15/OpenCV-libgomp-so-1-cannot-allocate-memory-in-static-TLS-block/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/07/15/OpenCV-libgomp-so-1-cannot-allocate-memory-in-static-TLS-block/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -718,163 +860,6 @@
 <p>解决方法：</p>
 <p>将<code>import cv2</code>放在前面（应该在<code>import tensorflow</code>前就可以了）</p>
 <p>ref: <a href="https://github.com/opencv/opencv/issues/14884" target="_blank" rel="noopener">aarch64: libgomp.so.1: cannot allocate memory in static TLS block</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/06/18/windows-10-%E6%AF%8F%E6%AC%A1%E7%99%BB%E9%99%86%E9%83%BD%E6%B8%85%E9%99%A4%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%E8%AE%BE%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/06/18/windows-10-%E6%AF%8F%E6%AC%A1%E7%99%BB%E9%99%86%E9%83%BD%E6%B8%85%E9%99%A4%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%E8%AE%BE%E7%BD%AE/" class="post-title-link" itemprop="url">windows 10 每次登陆都清除所有用户设置?</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-18 15:27:51" itemprop="dateCreated datePublished" datetime="2020-06-18T15:27:51+08:00">2020-06-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-13 10:27:46" itemprop="dateModified" datetime="2020-07-13T10:27:46+08:00">2020-07-13</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="症状："><a href="#症状：" class="headerlink" title="症状："></a>症状：</h2><blockquote>
-<p>My Windows 10 system has suddenly started doing something really weird. Every time I log in, I see a “Preparing Windows” message, and once I am logged in, I see that all of my settings are gone. By that I mean:</p>
-<ul>
-<li>The desktop background has been reset to the default one (with the Windows logo)</li>
-<li>All of my pinned taskbar shortcuts are gone</li>
-<li>All my accounts in Google Chrome are gone</li>
-<li>My custom regional settings are gone</li>
-<li>My installed keyboard layouts are gone</li>
-<li>All applications act like it is the first time running them (no applications seem to have been uninstalled)</li>
-</ul>
-<p>The current Windows 10 build number is 10.0.10586. A couple of days ago, I set things up so that I would receive Insider builds as they came out, but to the best of my knowledge, no updates have been installed yet.</p>
-</blockquote>
-<h2 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h2><blockquote>
-<p>I have seen this before. Windows loads an empty profile instead of the existing one, something previously seen with Windows 7, and now Windows 10 as well, but the operating system has not changed that much in this aspect.</p>
-<p>One thing that can work is removing the affected profile from the profile list in the registry:</p>
-<ul>
-<li>HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList</li>
-</ul>
-<p>The problem profile will have two folders starting with the same GUID, one with a .bak extension and one without. Rename the one without the .bak extension to something else (add a .tmp extension, for example), then remove the .bak extension from the one that has it (which has your correct profile settings).</p>
-<p>Reboot and log in as you normally would. Your settings should be back to normal. This “problem” is described in full in this blog post:</p>
-<p><a href="http://www.landviser.net/content/how-fix-windows-7-loads-default-instead-user-modified-profile-wiping-all-settings-files" target="_blank" rel="noopener">How to fix: Windows 7 loads default instead of user-modified profile wiping off all settings, files, email accounts, bookmarks</a></p>
-</blockquote>
-<blockquote>
-<p>ref: <a href="https://www.howtogeek.com/256956/why-has-windows-10-erased-all-my-settings-every-time-i-sign-in/" target="_blank" rel="noopener">Why Has Windows 10 “Erased” All My Settings Every Time I Sign In?</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/06/14/hexo-Error-Spawn-failed/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/06/14/hexo-Error-Spawn-failed/" class="post-title-link" itemprop="url">hexo Error: Spawn failed</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-14 14:06:54" itemprop="dateCreated datePublished" datetime="2020-06-14T14:06:54+08:00">2020-06-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-18 09:43:02" itemprop="dateModified" datetime="2020-06-18T09:43:02+08:00">2020-06-18</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天，deploy到github上时出现以下错误：</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Error: Spawn failed</span><br><span class="line">    at ChildProcess.&lt;anonymous&gt; (D:\repositories\z14_sundries\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">    at ChildProcess.emit (events.js:311:20)</span><br><span class="line">    at ChildProcess.cp.emit (D:\repositories\z14_sundries\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">    at Process.ChildProcess._handle.onexit (internal/child_process.js:275:12)</span><br></pre></td></tr></table></figure>
-
-<p>由于gitee那边没有问题，所以猜想是因为github设置了代理，但代理没开，导致错误。<br>于是取消了github的代理，重新deploy，结果成功了。</p>
 
       
     </div>
@@ -960,14 +945,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/sundries/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/sundries/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
