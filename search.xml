@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>restart jetson nano camera</title>
+    <url>/sundries/2020/10/30/restart-jetson-nano-camera/</url>
+    <content><![CDATA[<p>重启 Jetson Nano 摄像头：</p>
+<p><code>sudo systemctl restart nvargus-daemon</code></p>
+]]></content>
+      <tags>
+        <tag>jetson</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何用cv2.VideoWriter实现rtsp推流</title>
     <url>/sundries/2020/10/27/%E5%A6%82%E4%BD%95%E7%94%A8cv2-VideoWriter%E5%AE%9E%E7%8E%B0rtsp%E6%8E%A8%E6%B5%81/</url>
     <content><![CDATA[<h2 id="安装-v4l2loopback"><a href="#安装-v4l2loopback" class="headerlink" title="安装 v4l2loopback"></a>安装 v4l2loopback</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo su</span><br><span class="line"><span class="built_in">cd</span> /usr/src</span><br><span class="line">mkdir v4l2loopback</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/umlaeute/v4l2loopback.git v4l2loopback</span><br><span class="line"><span class="built_in">cd</span> v4l2loopback/</span><br><span class="line">git checkout v0.10.0</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">modprobe v4l2loopback</span><br></pre></td></tr></table></figure>
@@ -1233,8 +1243,8 @@
 </blockquote>
 ]]></content>
       <tags>
-        <tag>bat</tag>
         <tag>conda</tag>
+        <tag>bat</tag>
       </tags>
   </entry>
   <entry>
