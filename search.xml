@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>vlc play rtp stream</title>
+    <url>/sundries/2020/11/09/vlc-play-rtp-stream/</url>
+    <content><![CDATA[<p>新建一个SDP文件，假设输入流是H264，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">v&#x3D;0</span><br><span class="line">m&#x3D;video 1234 RTP&#x2F;AVP 96</span><br><span class="line">a&#x3D;rtpmap:96 H264&#x2F;90000</span><br><span class="line">c&#x3D;IN IP4 127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<p>接着用VLC打开SDP文件即可。</p>
+<p>ref:</p>
+<ul>
+<li><a href="https://blog.csdn.net/zhoubotong2012/article/details/86712289" target="_blank" rel="noopener">VLC接收RTP流的SDP文件写法</a></li>
+<li><a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-streaming.md#rtp" target="_blank" rel="noopener">Camera Streaming and Multimedia</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>vlc</tag>
+        <tag>rtp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Opencv编译出现&#39;In-source builds are not allowed&#39;</title>
     <url>/sundries/2020/11/06/Opencv%E7%BC%96%E8%AF%91%E5%87%BA%E7%8E%B0-In-source-builds-are-not-allowed/</url>
     <content><![CDATA[<p>应该是在代码根目录下直接执行过cmake，导致根目录下生成了CMakeCache.txt，需要删除CMakeCache.txt再次执行编译即可。</p>
