@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>using proxy in python script</title>
+    <url>/sundries/2020/11/11/using-proxy-in-python-script/</url>
+    <content><![CDATA[<p>for request:</p>
+<p><code>pip install requests[socks]</code></p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">proxies = &#123;</span><br><span class="line">    <span class="string">'http'</span>: <span class="string">'socks5://127.0.0.1:1080'</span>,</span><br><span class="line">    <span class="string">'https'</span>: <span class="string">'socks5://127.0.0.1:1080'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    response = requests.get(<span class="string">'http://httpbin.org/get'</span>, proxies=proxies)</span><br><span class="line">    print(response.text)</span><br><span class="line"><span class="keyword">except</span> requests.exceptions.ConnectionError <span class="keyword">as</span> e:</span><br><span class="line">    print(e.args)</span><br></pre></td></tr></table></figure>
+
+<p>for urllib:</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> ProxyHandler, build_opener, urlopen</span><br><span class="line"><span class="keyword">from</span> urllib.error <span class="keyword">import</span> URLError</span><br><span class="line"></span><br><span class="line">proxy_handler = ProxyHandler(&#123;<span class="string">'socks5'</span>: <span class="string">'localhost:1080'</span>&#125;)</span><br><span class="line">opener = build_opener(proxy_handler)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    response = urlopen(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line">    print(response.read())</span><br><span class="line"><span class="keyword">except</span> URLError <span class="keyword">as</span> e:</span><br><span class="line">    print(e.reason)</span><br></pre></td></tr></table></figure>
+
+<p>for boto3:</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> boto3</span><br><span class="line"><span class="keyword">from</span> botocore.config <span class="keyword">import</span> Config</span><br><span class="line"></span><br><span class="line">boto3.resource(<span class="string">'s3'</span>, config=Config(proxies=&#123;<span class="string">'https'</span>: <span class="string">'foo.bar:3128'</span>&#125;))</span><br></pre></td></tr></table></figure>
+
+<p>ref:</p>
+<ul>
+<li><a href="https://amberwest.github.io/2018/07/19/python3-%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/" target="_blank" rel="noopener">python3：代理设置</a></li>
+<li><a href="https://www.coder.work/article/6265084" target="_blank" rel="noopener">您如何在boto3中使用HTTP / HTTPS代理？</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>python</tag>
+        <tag>proxy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows 10 用命令行下载</title>
+    <url>/sundries/2020/11/11/windows-10-%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD/</url>
+    <content><![CDATA[<figure class="highlight ps"><table><tr><td class="code"><pre><span class="line"><span class="comment"># example 1</span></span><br><span class="line">curl.exe -<span class="literal">-output</span> index.html -<span class="literal">-url</span> https://superuser.com</span><br><span class="line"><span class="comment"># example 2</span></span><br><span class="line">curl.exe <span class="literal">-o</span> index.html https://superuser.com</span><br></pre></td></tr></table></figure>
+
+<p>ref:</p>
+<ul>
+<li><a href="https://superuser.com/questions/25538/how-to-download-files-from-command-line-in-windows-like-wget-or-curl" target="_blank" rel="noopener">How to download files from command line in Windows like wget or curl</a></li>
+<li><a href="https://techcommunity.microsoft.com/t5/containers/tar-and-curl-come-to-windows/ba-p/382409" target="_blank" rel="noopener">Tar and Curl Come to Windows!</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>windows</tag>
+        <tag>curl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>拉取指定远程分支到本地</title>
+    <url>/sundries/2020/11/11/%E6%8B%89%E5%8F%96%E6%8C%87%E5%AE%9A%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/</url>
+    <content><![CDATA[<p>假设要拉取z14/dev</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git fetch z14 dev</span><br><span class="line">git checkout -b dev z14/dev</span><br></pre></td></tr></table></figure>
+
+<p>ref: <a href="https://zj-git-guide.readthedocs.io/zh_CN/latest/advanced/%E6%8B%89%E5%8F%96%E6%8C%87%E5%AE%9A%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/" target="_blank" rel="noopener">拉取指定远程分支到本地</a></p>
+]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vlc play rtp stream</title>
     <url>/sundries/2020/11/09/vlc-play-rtp-stream/</url>
     <content><![CDATA[<p>新建一个SDP文件，假设输入流是H264，内容如下：</p>
@@ -1245,6 +1297,18 @@
 <li><a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo-2.md" target="_blank" rel="noopener">Building the Project from Source</a></li>
 <li><a href="https://github.com/dusty-nv/jetson-inference/issues/482" target="_blank" rel="noopener">Cmake not Detecting Virtual Environment (venv)</a></li>
 </ul>
+<h2 id="Install-ipywidgets"><a href="#Install-ipywidgets" class="headerlink" title="Install ipywidgets"></a>Install ipywidgets</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pc4 pip install ipywidgets</span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install ipywidgets</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-vscode-server"><a href="#Install-vscode-server" class="headerlink" title="Install vscode server"></a>Install vscode server</h2><p>安装插件：Python, Pylance</p>
+<h2 id="Install-yapf"><a href="#Install-yapf" class="headerlink" title="Install yapf"></a>Install yapf</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pc4 pip install yapf</span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install yapf</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-requests-socks"><a href="#Install-requests-socks" class="headerlink" title="Install requests[socks]"></a>Install requests[socks]</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pc4 pip install requests[socks]</span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install requests[socks]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Pytorch-ssd"><a href="#Pytorch-ssd" class="headerlink" title="Pytorch-ssd"></a>Pytorch-ssd</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos/jetson-inference/python/training/detection/ssd</span><br><span class="line">pc4 wget https://nvidia.box.com/shared/static/djf5w54rjvpqocsiztzaandq1m3avr7c.pth -O models/mobilenet-v1-ssd-mp-0_675.pth</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install boto3 pandas urllib3</span><br><span class="line">workon cv</span><br><span class="line">pc4 pip install boto3 pandas urllib3</span><br><span class="line"></span><br><span class="line">pc4 python open_images_downloader.py --class-names <span class="string">"Apple,Orange,Banana,Strawberry,Grape,Pear,Pineapple,Watermelon"</span> --data=data/fruit</span><br></pre></td></tr></table></figure>
+
+<p>ref: <a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/pytorch-ssd.md" target="_blank" rel="noopener">pytorch-ssd</a></p>
+<h2 id="Install-bmon"><a href="#Install-bmon" class="headerlink" title="Install bmon"></a>Install bmon</h2><p>查网络流量</p>
+<p><code>sudo pc4 apt install bmon</code></p>
 ]]></content>
       <tags>
         <tag>jetson</tag>
