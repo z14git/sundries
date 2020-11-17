@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"z14git.github.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"z14git.gitee.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="十四的杂物">
-<meta property="og:url" content="http://z14git.github.io/sundries/index.html">
+<meta property="og:url" content="http://z14git.gitee.io/sundries/index.html">
 <meta property="og:site_name" content="十四的杂物">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="z14git">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://z14git.github.io/sundries/">
+<link rel="canonical" href="http://z14git.gitee.io/sundries/">
 
 
 <script id="page-configurations">
@@ -180,7 +180,168 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/11/using-proxy-in-python-script/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/17/re-enable-oem-config/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/11/17/re-enable-oem-config/" class="post-title-link" itemprop="url">Reconfiguring a Jetson Device with oem-config</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-17 10:51:41 / 修改时间：13:59:38" itemprop="dateCreated datePublished" datetime="2020-11-17T10:51:41+08:00">2020-11-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>Enter this command to install the following packages on the source device to enable <code>oem-config</code> for the next reboot: <code>ubiquity</code>, <code>oem-config</code>, and <code>oem-config-gtk</code>:</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install --no-install-recommends ubiquity oem-config oem-config-gtk</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Remove the package <code>nvidia-l4f-oem-config</code>:</p>
+<p> <code>sudo dpkg --purge nvidia-l4t-oem-config</code></p>
+</li>
+<li><p>Power off the source device and remove the SD card from it, then insert it into in the host system.</p>
+</li>
+<li><p>Mount partition #1 of the SD card (an ext4 filesystem) on the host, using a mount point of your choice.</p>
+<p> ps: 直接用读卡器接入电脑即可，默认会自动挂载到 <code>/media/xxx</code> 目录下</p>
+</li>
+<li><p>Apply any Jetson-specific binaries to partition #1 of SD card. The appropriate files are listed in nv-oem-config, and are applied by the <code>apply_binaries</code> script. Enter these commands to run the script:</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Linux_for_Tegra</span><br><span class="line">sudo ./apply_binaries.sh -r &lt;root&gt;</span><br></pre></td></tr></table></figure>
+
+<p> Where <code>&lt;root&gt;</code> represents the partition #1 of SD card mount point.</p>
+</li>
+<li><p>Set <code>nv-oem-config.target</code> as the default.target:</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="variable">$root</span>/etc/systemd/system <span class="comment"># 将 $root 替换为 /media/xxx</span></span><br><span class="line">sudo rm default.target</span><br><span class="line">sudo ln -s /lib/systemd/system/nv-oem-config.target default.target</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Run <code>jetson-disk-image-creator.sh</code> to create a new SD card image with modified rootfs:</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Linux_for_Tegra/tools</span><br><span class="line">sudo ROOTFS_DIR=&lt;root&gt; ./jetson-disk-image-creator.sh -o sd-blob.img -b jetson-nano -r 100</span><br></pre></td></tr></table></figure>
+
+<p> Where <code>&lt;root&gt;</code> represents partition #1 of the SD card on its mount point. For details, see <a href="https://docs.nvidia.com/jetson/archives/l4t-archived/l4t-3243/Tegra%20Linux%20Driver%20Package%20Development%20Guide/flashing.html#wwpID0E0DG0HA" target="_blank" rel="noopener">To generate an image to be flashed to an SD card</a>.</p>
+</li>
+<li><p>弹出读卡器</p>
+</li>
+<li><p>Flash <code>sd-blob.img</code> to the new SD card.</p>
+</li>
+</ol>
+<blockquote>
+<p>ref: <a href="https://docs.nvidia.com/jetson/archives/l4t-archived/l4t-3243/index.html#page/Tegra%2520Linux%2520Driver%2520Package%2520Development%2520Guide%2Fflashing.html%23wwpID0E0KD0HA" target="_blank" rel="noopener">Reconfiguring a Jetson Device with oem-config</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/16/ubuntu-turn-on-wifi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/11/16/ubuntu-turn-on-wifi/" class="post-title-link" itemprop="url">ubuntu turn on wifi</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-16 14:38:43" itemprop="dateCreated datePublished" datetime="2020-11-16T14:38:43+08:00">2020-11-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-17 13:59:38" itemprop="dateModified" datetime="2020-11-17T13:59:38+08:00">2020-11-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>用<code>iwconfig</code>查看无线接口，一般是<code>wlan0</code>之类的名称。</p>
+<p>然后执行</p>
+<p><code>sudo ifconfig wlan0 up</code></p>
+<blockquote>
+<p>ref: <a href="https://www.linuxbabe.com/ubuntu/connect-to-wi-fi-from-terminal-on-ubuntu-18-04-19-04-with-wpa-supplicant" target="_blank" rel="noopener">Connect to Wi-Fi From Terminal on Ubuntu 18.04/20.04 with WPA Supplicant</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/11/using-proxy-in-python-script/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -259,7 +420,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/11/windows-10-%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/11/windows-10-%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -330,7 +491,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/11/%E6%8B%89%E5%8F%96%E6%8C%87%E5%AE%9A%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/11/%E6%8B%89%E5%8F%96%E6%8C%87%E5%AE%9A%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -398,7 +559,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/09/vlc-play-rtp-stream/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/09/vlc-play-rtp-stream/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -465,7 +626,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/06/Opencv%E7%BC%96%E8%AF%91%E5%87%BA%E7%8E%B0-In-source-builds-are-not-allowed/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/06/Opencv%E7%BC%96%E8%AF%91%E5%87%BA%E7%8E%B0-In-source-builds-are-not-allowed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -529,7 +690,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/06/screen%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/06/screen%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -595,7 +756,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/04/%E9%80%9A%E8%BF%87ssh%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5windows/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/04/%E9%80%9A%E8%BF%87ssh%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5windows/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -666,7 +827,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/03/Using-SCP-to-copy-a-file-on-a-non-standard-ssh-port/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/03/Using-SCP-to-copy-a-file-on-a-non-standard-ssh-port/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -716,147 +877,6 @@
 
 <p>ps: <code>-P</code> 要在文件前</p>
 <p>ref: <a href="https://askubuntu.com/questions/32413/copy-with-ssh-with-port-other-than-22" target="_blank" rel="noopener">copy with ssh with port other than 22</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/03/install-v2ray-on-ubuntu/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/11/03/install-v2ray-on-ubuntu/" class="post-title-link" itemprop="url">install v2ray on ubuntu</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-03 16:13:36" itemprop="dateCreated datePublished" datetime="2020-11-03T16:13:36+08:00">2020-11-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-04 21:19:31" itemprop="dateModified" datetime="2020-11-04T21:19:31+08:00">2020-11-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>先在能FQ的电脑上下载<a href="https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh" target="_blank" rel="noopener">安装脚本</a></p>
-</li>
-<li><p>然后将脚本传到要安装v2ray的电脑上并执行：</p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo bash install-release.sh</span><br></pre></td></tr></table></figure>
-
-<p> ps: 遇到连接超时就再试一次</p>
-</li>
-<li><p>将windows上的v2ray安装目录下的已配置好的config.json复制到 <code>/usr/local/etc/v2ray/config.json</code></p>
-</li>
-<li><p>再执行以下命令：</p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> v2ray</span><br><span class="line">sudo systemctl start v2ray</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>ps: 装完后连不上- -||</p>
-<p>ref: <a href="https://github.com/v2fly/fhs-install-v2ray" target="_blank" rel="noopener">fhs-install-v2ray</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/10/30/restart-jetson-nano-camera/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/10/30/restart-jetson-nano-camera/" class="post-title-link" itemprop="url">restart jetson nano camera</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-10-30 15:35:50 / 修改时间：15:56:42" itemprop="dateCreated datePublished" datetime="2020-10-30T15:35:50+08:00">2020-10-30</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>重启 Jetson Nano 摄像头：</p>
-<p><code>sudo systemctl restart nvargus-daemon</code></p>
 
       
     </div>
@@ -942,14 +962,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/sundries/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/sundries/tags/">
           
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

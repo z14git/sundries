@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Reconfiguring a Jetson Device with oem-config</title>
+    <url>/sundries/2020/11/17/re-enable-oem-config/</url>
+    <content><![CDATA[<ol>
+<li><p>Enter this command to install the following packages on the source device to enable <code>oem-config</code> for the next reboot: <code>ubiquity</code>, <code>oem-config</code>, and <code>oem-config-gtk</code>:</p>
+ <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get install --no-install-recommends ubiquity oem-config oem-config-gtk</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Remove the package <code>nvidia-l4f-oem-config</code>:</p>
+<p> <code>sudo dpkg --purge nvidia-l4t-oem-config</code></p>
+</li>
+<li><p>Power off the source device and remove the SD card from it, then insert it into in the host system.</p>
+</li>
+<li><p>Mount partition #1 of the SD card (an ext4 filesystem) on the host, using a mount point of your choice.</p>
+<p> ps: 直接用读卡器接入电脑即可，默认会自动挂载到 <code>/media/xxx</code> 目录下</p>
+</li>
+<li><p>Apply any Jetson-specific binaries to partition #1 of SD card. The appropriate files are listed in nv-oem-config, and are applied by the <code>apply_binaries</code> script. Enter these commands to run the script:</p>
+ <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> Linux_for_Tegra</span><br><span class="line">sudo ./apply_binaries.sh -r &lt;root&gt;</span><br></pre></td></tr></table></figure>
+
+<p> Where <code>&lt;root&gt;</code> represents the partition #1 of SD card mount point.</p>
+</li>
+<li><p>Set <code>nv-oem-config.target</code> as the default.target:</p>
+ <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="variable">$root</span>/etc/systemd/system <span class="comment"># 将 $root 替换为 /media/xxx</span></span><br><span class="line">sudo rm default.target</span><br><span class="line">sudo ln -s /lib/systemd/system/nv-oem-config.target default.target</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Run <code>jetson-disk-image-creator.sh</code> to create a new SD card image with modified rootfs:</p>
+ <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> Linux_for_Tegra/tools</span><br><span class="line">sudo ROOTFS_DIR=&lt;root&gt; ./jetson-disk-image-creator.sh -o sd-blob.img -b jetson-nano -r 100</span><br></pre></td></tr></table></figure>
+
+<p> Where <code>&lt;root&gt;</code> represents partition #1 of the SD card on its mount point. For details, see <a href="https://docs.nvidia.com/jetson/archives/l4t-archived/l4t-3243/Tegra%20Linux%20Driver%20Package%20Development%20Guide/flashing.html#wwpID0E0DG0HA" target="_blank" rel="noopener">To generate an image to be flashed to an SD card</a>.</p>
+</li>
+<li><p>弹出读卡器</p>
+</li>
+<li><p>Flash <code>sd-blob.img</code> to the new SD card.</p>
+</li>
+</ol>
+<blockquote>
+<p>ref: <a href="https://docs.nvidia.com/jetson/archives/l4t-archived/l4t-3243/index.html#page/Tegra%2520Linux%2520Driver%2520Package%2520Development%2520Guide%2Fflashing.html%23wwpID0E0KD0HA" target="_blank" rel="noopener">Reconfiguring a Jetson Device with oem-config</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>jetson</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu turn on wifi</title>
+    <url>/sundries/2020/11/16/ubuntu-turn-on-wifi/</url>
+    <content><![CDATA[<p>用<code>iwconfig</code>查看无线接口，一般是<code>wlan0</code>之类的名称。</p>
+<p>然后执行</p>
+<p><code>sudo ifconfig wlan0 up</code></p>
+<blockquote>
+<p>ref: <a href="https://www.linuxbabe.com/ubuntu/connect-to-wi-fi-from-terminal-on-ubuntu-18-04-19-04-with-wpa-supplicant" target="_blank" rel="noopener">Connect to Wi-Fi From Terminal on Ubuntu 18.04/20.04 with WPA Supplicant</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>wifi</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>using proxy in python script</title>
     <url>/sundries/2020/11/11/using-proxy-in-python-script/</url>
     <content><![CDATA[<p>for request:</p>
@@ -1255,9 +1311,8 @@
 
 <h2 id="解决-dev-ttyTHS1权限问题"><a href="#解决-dev-ttyTHS1权限问题" class="headerlink" title="解决/dev/ttyTHS1权限问题"></a>解决<code>/dev/ttyTHS1</code>权限问题</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo usermod -aG dialout &lt;username&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="增加OLED信息显示服务"><a href="#增加OLED信息显示服务" class="headerlink" title="增加OLED信息显示服务"></a>增加OLED信息显示服务</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">git <span class="built_in">clone</span> https://gitee.com/z14git/jetbot.git</span><br><span class="line"><span class="built_in">cd</span> jetbot/</span><br><span class="line">git checkout z_jp4.4</span><br><span class="line">deactivate</span><br><span class="line">python3 jetbot/utils/create_stats_service.py</span><br></pre></td></tr></table></figure>
+<h2 id="增加OLED信息显示服务"><a href="#增加OLED信息显示服务" class="headerlink" title="增加OLED信息显示服务"></a>增加OLED信息显示服务</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">git <span class="built_in">clone</span> https://gitee.com/z14git/jetbot.git</span><br><span class="line"><span class="built_in">cd</span> jetbot/</span><br><span class="line">git checkout z_jp4.4</span><br><span class="line">deactivate</span><br><span class="line">python3 jetbot/utils/create_stats_service.py</span><br><span class="line">sudo mv jetbot_stats.service /etc/systemd/system/jetbot_stats.service</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> jetbot_stats</span><br><span class="line">sudo systemctl start jetbot_stats</span><br></pre></td></tr></table></figure>
 
-<p>PS: 日后再装</p>
 <h2 id="Install-Adafruit-SSD1306"><a href="#Install-Adafruit-SSD1306" class="headerlink" title="Install Adafruit_SSD1306"></a>Install Adafruit_SSD1306</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pc4 pip install Adafruit_SSD1306</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install Adafruit_SSD1306</span><br></pre></td></tr></table></figure>
 
 <h2 id="build-rtsp-server"><a href="#build-rtsp-server" class="headerlink" title="build rtsp server"></a>build rtsp server</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pc4 apt-get install libgstrtspserver-1.0 libgstreamer1.0-dev</span><br><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/GStreamer/gst-rtsp-server.git</span><br><span class="line"><span class="built_in">cd</span> gst-rtsp-server/</span><br><span class="line">git checkout 1.14</span><br><span class="line"><span class="built_in">cd</span> examples/</span><br><span class="line">gcc <span class="built_in">test</span>-launch.c -o <span class="built_in">test</span>-launch $(pkg-config --cflags --libs gstreamer-1.0 gstreamer-rtsp-server-1.0)</span><br></pre></td></tr></table></figure>
@@ -1309,6 +1364,7 @@
 <p>ref: <a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/pytorch-ssd.md" target="_blank" rel="noopener">pytorch-ssd</a></p>
 <h2 id="Install-bmon"><a href="#Install-bmon" class="headerlink" title="Install bmon"></a>Install bmon</h2><p>查网络流量</p>
 <p><code>sudo pc4 apt install bmon</code></p>
+<h2 id="Re-enable-oem-config"><a href="#Re-enable-oem-config" class="headerlink" title="Re-enable oem-config"></a>Re-enable oem-config</h2><p>见：<a href="/sundries/2020/11/17/re-enable-oem-config/" title="Reconfiguring a Jetson Device with oem-config">Reconfiguring a Jetson Device with oem-config</a></p>
 ]]></content>
       <tags>
         <tag>jetson</tag>
