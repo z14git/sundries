@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>mdk 编译包含中文的源代码</title>
+    <url>/sundries/2021/01/04/mdk-%E7%BC%96%E8%AF%91%E5%8C%85%E5%90%AB%E4%B8%AD%E6%96%87%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/</url>
+    <content><![CDATA[<p>在非英文操作系统上，即使源代码使用UTF8，编译时仍有可能报错。</p>
+<p><strong>解决方法</strong></p>
+<p>添加编译选项 <code>--locale=english</code></p>
+<blockquote>
+<p>ref: <a href="https://www.keil.com/support/man/docs/armcc/armcc_chr1359124931077.htm" target="_blank" rel="noopener">–locale=lang_country</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mdk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu安装显卡驱动</title>
+    <url>/sundries/2020/11/18/ubuntu%E5%AE%89%E8%A3%85%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/</url>
+    <content><![CDATA[<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ubuntu-drivers devices <span class="comment"># 查看设备和推荐的驱动</span></span><br><span class="line">sudo ubuntu-drivers autoinstall <span class="comment"># 安装推荐的驱动</span></span><br><span class="line"><span class="comment"># sudo apt install nvidia-340 # 安装指定版本</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>ubuntu</tag>
+        <tag>driver</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>修改默认启动项</title>
     <url>/sundries/2020/11/17/%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%90%AF%E5%8A%A8%E9%A1%B9/</url>
     <content><![CDATA[<p>修改<code>/etc/default/grub</code>, 然后执行<code>sudo update-grub</code></p>
@@ -130,10 +155,14 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">v&#x3D;0</span><br><span class="line">m&#x3D;video 1234 RTP&#x2F;AVP 96</span><br><span class="line">a&#x3D;rtpmap:96 H264&#x2F;90000</span><br><span class="line">c&#x3D;IN IP4 127.0.0.1</span><br></pre></td></tr></table></figure>
 
 <p>接着用VLC打开SDP文件即可。</p>
+<p>若输入流是MJPEG，则SDP文件内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">v&#x3D;0</span><br><span class="line">m&#x3D;video 1234 RTP&#x2F;AVP 26</span><br><span class="line">a&#x3D;rtpmap:26 JPEG&#x2F;90000</span><br><span class="line">c&#x3D;IN IP4 127.0.0.1</span><br></pre></td></tr></table></figure>
+
 <p>ref:</p>
 <ul>
 <li><a href="https://blog.csdn.net/zhoubotong2012/article/details/86712289" target="_blank" rel="noopener">VLC接收RTP流的SDP文件写法</a></li>
 <li><a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-streaming.md#rtp" target="_blank" rel="noopener">Camera Streaming and Multimedia</a></li>
+<li><a href="https://github.com/wang-bin/QtAV/issues/712" target="_blank" rel="noopener">Problems playing RTP-streams (mjpeg, h264)</a></li>
 </ul>
 ]]></content>
       <tags>
@@ -1381,6 +1410,8 @@
 <p><code>sudo pc4 apt install bmon</code></p>
 <h2 id="Re-enable-oem-config"><a href="#Re-enable-oem-config" class="headerlink" title="Re-enable oem-config"></a>Re-enable oem-config</h2><p>见：<a href="/sundries/2020/11/17/re-enable-oem-config/" title="Reconfiguring a Jetson Device with oem-config">Reconfiguring a Jetson Device with oem-config</a></p>
 <h2 id="Install-frotech-adapter"><a href="#Install-frotech-adapter" class="headerlink" title="Install frotech_adapter"></a>Install frotech_adapter</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">git <span class="built_in">clone</span> https://gitee.com/z14git/aiotlab_jetson_adapter.git</span><br><span class="line"><span class="built_in">cd</span> aiotlab_jetson_adapter/</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pip install .</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pip install .</span><br></pre></td></tr></table></figure>
+
+<h2 id="重新禁用nvgetty服务"><a href="#重新禁用nvgetty服务" class="headerlink" title="重新禁用nvgetty服务"></a>重新禁用nvgetty服务</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo systemctl stop nvgetty</span><br><span class="line">sudo systemctl <span class="built_in">disable</span> nvgetty</span><br><span class="line">udevadm trigger</span><br><span class="line"><span class="comment"># You may want to reboot instead</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>jetson</tag>
@@ -1675,8 +1706,8 @@
 </blockquote>
 ]]></content>
       <tags>
-        <tag>bat</tag>
         <tag>conda</tag>
+        <tag>bat</tag>
       </tags>
   </entry>
   <entry>
