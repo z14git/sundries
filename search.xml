@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Fix Error 0x80071160</title>
+    <url>/sundries/2021/01/21/Fix-Error-0x80071160/</url>
+    <content><![CDATA[<ol>
+<li>已管理员身份运行Terminal</li>
+<li>执行<code>dism.exe /Online /Cleanup-image /Restorehealth</code></li>
+<li>执行<code>sfc /scannow</code></li>
+</ol>
+<blockquote>
+<p>ref: <a href="https://www.youtube.com/watch?v=3xbTDspwQNU&ab_channel=AarohanTechSol" target="_blank" rel="noopener">Fix Error 0x80071160 While Updating Windows 10</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mdk 编译包含中文的源代码</title>
     <url>/sundries/2021/01/04/mdk-%E7%BC%96%E8%AF%91%E5%8C%85%E5%90%AB%E4%B8%AD%E6%96%87%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/</url>
     <content><![CDATA[<p>在非英文操作系统上，即使源代码使用UTF8，编译时仍有可能报错。</p>
@@ -218,8 +234,8 @@
 <p>ref: <a href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse" target="_blank" rel="noopener">Installation of OpenSSH For Windows Server 2019 and Windows 10</a></p>
 ]]></content>
       <tags>
-        <tag>ssh</tag>
         <tag>windows</tag>
+        <tag>ssh</tag>
       </tags>
   </entry>
   <entry>
@@ -1706,8 +1722,8 @@
 </blockquote>
 ]]></content>
       <tags>
-        <tag>conda</tag>
         <tag>bat</tag>
+        <tag>conda</tag>
       </tags>
   </entry>
   <entry>
