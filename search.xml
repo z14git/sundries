@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ubuntu安装TL-WDN6200驱动</title>
+    <url>/sundries/2021/01/30/ubuntu%E5%AE%89%E8%A3%85TL-WDN6200%E9%A9%B1%E5%8A%A8/</url>
+    <content><![CDATA[<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/gnab/rtl8812au.git</span><br><span class="line"><span class="built_in">cd</span> rtl8812au</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">sudo modprobe 8812au</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ref: <a href="https://www.jianshu.com/p/58938a9b75a6" target="_blank" rel="noopener">Ubuntu12.04安装TL-wdn6200 linux驱动</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Fix Error 0x80071160</title>
     <url>/sundries/2021/01/21/Fix-Error-0x80071160/</url>
     <content><![CDATA[<ol>
