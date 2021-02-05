@@ -1441,6 +1441,8 @@
 <h2 id="Install-frotech-adapter"><a href="#Install-frotech-adapter" class="headerlink" title="Install frotech_adapter"></a>Install frotech_adapter</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">git <span class="built_in">clone</span> https://gitee.com/z14git/aiotlab_jetson_adapter.git</span><br><span class="line"><span class="built_in">cd</span> aiotlab_jetson_adapter/</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pip install .</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pip install .</span><br></pre></td></tr></table></figure>
 
 <h2 id="重新禁用nvgetty服务"><a href="#重新禁用nvgetty服务" class="headerlink" title="重新禁用nvgetty服务"></a>重新禁用nvgetty服务</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo systemctl stop nvgetty</span><br><span class="line">sudo systemctl <span class="built_in">disable</span> nvgetty</span><br><span class="line">udevadm trigger</span><br><span class="line"><span class="comment"># You may want to reboot instead</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装torch2trt"><a href="#安装torch2trt" class="headerlink" title="安装torch2trt"></a>安装torch2trt</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> repos/</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/NVIDIA-AI-IOT/torch2trt</span><br><span class="line"><span class="built_in">cd</span> torch2trt/</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">python setup.py install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 软件tensorrt到cv</span></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">cd</span> .virtualenvs/cv/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/lib/python3.6/dist-packages/tensorrt tensorrt</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>jetson</tag>
@@ -1720,8 +1722,8 @@
 </blockquote>
 ]]></content>
       <tags>
-        <tag>bat</tag>
         <tag>python</tag>
+        <tag>bat</tag>
       </tags>
   </entry>
   <entry>
