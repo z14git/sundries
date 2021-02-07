@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/sundries/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/sundries/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/sundries/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/sundries/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/sundries/css/main.css">
+
+
+<link rel="stylesheet" href="/sundries/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"z14git.gitee.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="预处理卸载多余应用12sudo apt-get purge libreoffice*sudo apt-get purge thunderbird*  最高性能模式12sudo nvpmodel -m 0sudo jetson_clocks  Install system-level dependencies12345678910sudo apt updatesudo apt-get install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jp4.5 log">
+<meta property="og:url" content="http://z14git.gitee.io/sundries/2021/02/07/jp4-5-log/index.html">
+<meta property="og:site_name" content="十四的杂物">
+<meta property="og:description" content="预处理卸载多余应用12sudo apt-get purge libreoffice*sudo apt-get purge thunderbird*  最高性能模式12sudo nvpmodel -m 0sudo jetson_clocks  Install system-level dependencies12345678910sudo apt updatesudo apt-get install">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-07T01:35:40.000Z">
+<meta property="article:modified_time" content="2021-02-07T08:56:23.913Z">
+<meta property="article:author" content="z14git">
+<meta property="article:tag" content="jetson">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://z14git.gitee.io/sundries/2021/02/07/jp4-5-log/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>jp4.5 log | 十四的杂物</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/sundries/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">十四的杂物</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/sundries/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/sundries/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/sundries/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/02/07/jp4-5-log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          jp4.5 log
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-02-07 09:35:40 / 修改时间：16:56:23" itemprop="dateCreated datePublished" datetime="2021-02-07T09:35:40+08:00">2021-02-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><h3 id="卸载多余应用"><a href="#卸载多余应用" class="headerlink" title="卸载多余应用"></a>卸载多余应用</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get purge libreoffice*</span><br><span class="line">sudo apt-get purge thunderbird*</span><br></pre></td></tr></table></figure>
+
+<h3 id="最高性能模式"><a href="#最高性能模式" class="headerlink" title="最高性能模式"></a>最高性能模式</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo nvpmodel -m 0</span><br><span class="line">sudo jetson_clocks</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-system-level-dependencies"><a href="#Install-system-level-dependencies" class="headerlink" title="Install system-level dependencies"></a>Install system-level dependencies</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt-get install git cmake</span><br><span class="line">sudo apt-get install libatlas-base-dev gfortran</span><br><span class="line">sudo apt-get install libhdf5-serial-dev hdf5-tools</span><br><span class="line">sudo apt-get install python3-dev</span><br><span class="line">sudo apt-get install nano locate</span><br><span class="line">sudo apt-get install libfreetype6-dev python3-setuptools</span><br><span class="line">sudo apt-get install cython3</span><br><span class="line">sudo apt-get install libxml2-dev libxslt1-dev</span><br><span class="line">sudo apt install curl</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-proxychains"><a href="#安装-proxychains" class="headerlink" title="安装 proxychains"></a>安装 proxychains</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> repos</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/rofl0r/proxychains-ng.git</span><br><span class="line"><span class="built_in">cd</span> proxychains-ng</span><br><span class="line">./configure --prefix=/usr --sysconfdir=/etc</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">sudo make install-config</span><br><span class="line">sudo vim /etc/proxychains.conf <span class="comment"># 修改代理地址</span></span><br></pre></td></tr></table></figure>
+
+<p>ref: <a href="https://github.com/rofl0r/proxychains-ng/issues/139#issuecomment-260360687" target="_blank" rel="noopener">#139</a></p>
+<h3 id="简化proxychains4"><a href="#简化proxychains4" class="headerlink" title="简化proxychains4"></a>简化proxychains4</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"alias pc4='proxychains4'"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"alias sudo='sudo '"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>ref :</p>
+<ul>
+<li><a href="https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo" target="_blank" rel="noopener">Aliases not available when using sudo</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/111228714" target="_blank" rel="noopener">chainproxys-ng：在服务器/终端也能使用代理</a></li>
+</ul>
+<h2 id="Set-up-Python-virtual-environments-on-your-Jetson-Nano"><a href="#Set-up-Python-virtual-environments-on-your-Jetson-Nano" class="headerlink" title="Set up Python virtual environments on your Jetson Nano"></a>Set up Python virtual environments on your Jetson Nano</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">sudo -H proxychains4 python3 get-pip.py</span><br><span class="line">rm get-pip.py</span><br><span class="line"></span><br><span class="line">sudo -H proxychains4 pip install virtualenv virtualenvwrapper</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export WORKON_HOME=<span class="variable">$HOME</span>/.virtualenvs"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"source /usr/local/bin/virtualenvwrapper.sh"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="Create-your-‘cv’-virtual-environment"><a href="#Create-your-‘cv’-virtual-environment" class="headerlink" title="Create your ‘cv’ virtual environment"></a>Create your ‘cv’ virtual environment</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv cv -p python3</span><br><span class="line">workon cv</span><br></pre></td></tr></table></figure>
+
+<h2 id="Create-‘tf2’-virtual-environment"><a href="#Create-‘tf2’-virtual-environment" class="headerlink" title="Create ‘tf2’ virtual environment"></a>Create ‘tf2’ virtual environment</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv tf2 -p python3</span><br></pre></td></tr></table></figure>
+
+<h2 id="Make-swapfile"><a href="#Make-swapfile" class="headerlink" title="Make swapfile"></a>Make swapfile</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo fallocate -l 4G /var/swapfile</span><br><span class="line">sudo chmod 600 /var/swapfile</span><br><span class="line">sudo mkswap /var/swapfile</span><br><span class="line">sudo swapon /var/swapfile</span><br><span class="line">sudo bash -c <span class="string">'echo "/var/swapfile swap swap defaults 0 0" &gt;&gt; /etc/fstab'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-Jetson-stats"><a href="#安装-Jetson-stats" class="headerlink" title="安装 Jetson stats"></a>安装 Jetson stats</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -H proxychains4 pip install -U jetson-stats</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-PyTorch"><a href="#Install-PyTorch" class="headerlink" title="Install PyTorch"></a>Install PyTorch</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sudo pc4 apt install libopenblas-base libopenmpi-dev </span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pc4 pip install Cython</span><br><span class="line"></span><br><span class="line">pc4 wget https://nvidia.box.com/shared/static/cs3xn3td6sfgtene6jdvsxlr366m2dhq.whl -O torch-1.7.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line"></span><br><span class="line">pc4 pip install numpy==1.16.1 torch-1.7.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line"></span><br><span class="line"><span class="comment"># torchvision</span></span><br><span class="line">sudo pc4 apt install libjpeg-dev zlib1g-dev libpython3-dev libavcodec-dev libavformat-dev libswscale-dev</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/pytorch/vision torchvision</span><br><span class="line"><span class="built_in">cd</span> torchvision</span><br><span class="line">git checkout v0.8.1</span><br><span class="line"><span class="built_in">export</span> BUILD_VERSION=0.8.1</span><br><span class="line">pc4 python setup.py install</span><br><span class="line"><span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-six"><a href="#Install-six" class="headerlink" title="Install six"></a>Install six</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pc4 pip install six</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装screen"><a href="#安装screen" class="headerlink" title="安装screen"></a>安装screen</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pc4 apt update</span><br><span class="line">sudo pc4 apt install screen</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新protobuf"><a href="#更新protobuf" class="headerlink" title="更新protobuf"></a>更新protobuf</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget https://github.com/protocolbuffers/protobuf/releases/download/v3.12.3/protoc-3.12.3-linux-aarch_64.zip</span><br><span class="line">pc4 wget https://github.com/protocolbuffers/protobuf/releases/download/v3.12.3/protobuf-python-3.12.3.zip</span><br><span class="line">unzip protobuf-python-3.12.3.zip</span><br><span class="line">unzip protoc-3.12.3-linux-aarch_64.zip -d protoc-3.12.3</span><br><span class="line">sudo cp protoc-3.12.3/bin/protoc /usr/<span class="built_in">local</span>/bin/protoc</span><br><span class="line">workon cv</span><br><span class="line"><span class="built_in">export</span> PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=cpp</span><br><span class="line"><span class="built_in">cd</span> protobuf-3.12.3/</span><br><span class="line">./autogen.sh</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span></span><br><span class="line">make</span><br><span class="line">make check</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig</span><br><span class="line">pip install Cython</span><br><span class="line"><span class="built_in">cd</span> python/</span><br><span class="line">python setup.py build --cpp_implementation</span><br><span class="line">python setup.py <span class="built_in">test</span> --cpp_implementation</span><br><span class="line">python setup.py install --cpp_implementation</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-opencv"><a href="#Install-opencv" class="headerlink" title="Install opencv"></a>Install opencv</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos/</span><br><span class="line">pc4 wget -O opencv-4.5.1.zip https://github.com/opencv/opencv/archive/4.5.1.zip</span><br><span class="line">pc4 wget -O opencv_contrib-4.5.1.zip https://github.com/opencv/opencv_contrib/archive/4.5.1.zip</span><br><span class="line">sudo pc4 apt install libeigen3-dev libglew-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev libgstreamer1.0-dev libjpeg-turbo8-dev liblapacke-dev libopenblas-dev libpostproc-dev libtesseract-dev libxine2-dev libx264-dev qv4l2 v4l-utils v4l2ucp</span><br><span class="line">unzip -q opencv-4.5.1.zip</span><br><span class="line">unzip -q opencv_contrib-4.5.1.zip</span><br><span class="line">mv opencv-4.5.1 opencv</span><br><span class="line">mv opencv_contrib-4.5.1 opencv_contrib</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line"><span class="built_in">cd</span> opencv/</span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line"></span><br><span class="line">pc4 cmake -D CMAKE_BUILD_TYPE=RELEASE \</span><br><span class="line">	-D BUILD_opencv_python2=OFF \</span><br><span class="line">	-D BUILD_opencv_python3=ON \</span><br><span class="line">	-D BUILD_opencv_java_bindings_generator=OFF \</span><br><span class="line">	-D CMAKE_BUILD_TYPE=RELEASE \</span><br><span class="line">    -D BUILD_PROTOBUF=OFF \</span><br><span class="line">    -D PROTOBUF_UPDATE_FILES=ON \</span><br><span class="line">	-D OPENCV_DNN_CUDA=ON \</span><br><span class="line">	-D OPENCV_ENABLE_NONFREE=ON \</span><br><span class="line">	-D OPENCV_EXTRA_MODULES_PATH=/home/frotech/repos/opencv_contrib/modules \</span><br><span class="line">	-D PYTHON3_NUMPY_INCLUDE_DIRS=/home/frotech/.virtualenvs/cv/lib/python3.6/site-packages/numpy/core/include \</span><br><span class="line">	-D WITH_CUDA=ON \</span><br><span class="line">	-D WITH_GSTREAMER=ON \</span><br><span class="line">	-D WITH_TENGINE=ON \</span><br><span class="line">	-D WITH_VULKAN=ON \</span><br><span class="line">	-D WITH_FREETYPE=ON \</span><br><span class="line">	-D WITH_OPENGL=ON ..</span><br><span class="line"></span><br><span class="line"><span class="comment"># make -j4</span></span><br></pre></td></tr></table></figure>
+
+<p>ref: <a href="https://docs.opencv.org/master/db/d05/tutorial_config_reference.html" target="_blank" rel="noopener">OpenCV configuration options reference</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/sundries/tags/jetson/" rel="tag"># jetson</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/sundries/2021/01/30/ubuntu%E5%AE%89%E8%A3%85TL-WDN6200%E9%A9%B1%E5%8A%A8/" rel="prev" title="ubuntu安装TL-WDN6200驱动">
+      <i class="fa fa-chevron-left"></i> ubuntu安装TL-WDN6200驱动
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#预处理"><span class="nav-number">1.</span> <span class="nav-text">预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载多余应用"><span class="nav-number">1.1.</span> <span class="nav-text">卸载多余应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最高性能模式"><span class="nav-number">1.2.</span> <span class="nav-text">最高性能模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-system-level-dependencies"><span class="nav-number">2.</span> <span class="nav-text">Install system-level dependencies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-proxychains"><span class="nav-number">3.</span> <span class="nav-text">安装 proxychains</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简化proxychains4"><span class="nav-number">3.1.</span> <span class="nav-text">简化proxychains4</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-up-Python-virtual-environments-on-your-Jetson-Nano"><span class="nav-number">4.</span> <span class="nav-text">Set up Python virtual environments on your Jetson Nano</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-your-‘cv’-virtual-environment"><span class="nav-number">5.</span> <span class="nav-text">Create your ‘cv’ virtual environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-‘tf2’-virtual-environment"><span class="nav-number">6.</span> <span class="nav-text">Create ‘tf2’ virtual environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Make-swapfile"><span class="nav-number">7.</span> <span class="nav-text">Make swapfile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Jetson-stats"><span class="nav-number">8.</span> <span class="nav-text">安装 Jetson stats</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-PyTorch"><span class="nav-number">9.</span> <span class="nav-text">Install PyTorch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-six"><span class="nav-number">10.</span> <span class="nav-text">Install six</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装screen"><span class="nav-number">11.</span> <span class="nav-text">安装screen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新protobuf"><span class="nav-number">12.</span> <span class="nav-text">更新protobuf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-opencv"><span class="nav-number">13.</span> <span class="nav-text">Install opencv</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">z14git</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/sundries/archives/">
+        
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/sundries/tags/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">z14git</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/sundries/lib/anime.min.js"></script>
+  <script src="/sundries/lib/velocity/velocity.min.js"></script>
+  <script src="/sundries/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/sundries/js/utils.js"></script>
+
+<script src="/sundries/js/motion.js"></script>
+
+
+<script src="/sundries/js/schemes/muse.js"></script>
+
+
+<script src="/sundries/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/sundries/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

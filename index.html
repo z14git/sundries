@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"z14git.github.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"z14git.gitee.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="十四的杂物">
-<meta property="og:url" content="http://z14git.github.io/sundries/index.html">
+<meta property="og:url" content="http://z14git.gitee.io/sundries/index.html">
 <meta property="og:site_name" content="十四的杂物">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="z14git">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://z14git.github.io/sundries/">
+<link rel="canonical" href="http://z14git.gitee.io/sundries/">
 
 
 <script id="page-configurations">
@@ -180,7 +180,102 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/30/ubuntu%E5%AE%89%E8%A3%85TL-WDN6200%E9%A9%B1%E5%8A%A8/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/02/07/jp4-5-log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2021/02/07/jp4-5-log/" class="post-title-link" itemprop="url">jp4.5 log</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-02-07 09:35:40 / 修改时间：16:56:23" itemprop="dateCreated datePublished" datetime="2021-02-07T09:35:40+08:00">2021-02-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><h3 id="卸载多余应用"><a href="#卸载多余应用" class="headerlink" title="卸载多余应用"></a>卸载多余应用</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get purge libreoffice*</span><br><span class="line">sudo apt-get purge thunderbird*</span><br></pre></td></tr></table></figure>
+
+<h3 id="最高性能模式"><a href="#最高性能模式" class="headerlink" title="最高性能模式"></a>最高性能模式</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo nvpmodel -m 0</span><br><span class="line">sudo jetson_clocks</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-system-level-dependencies"><a href="#Install-system-level-dependencies" class="headerlink" title="Install system-level dependencies"></a>Install system-level dependencies</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt-get install git cmake</span><br><span class="line">sudo apt-get install libatlas-base-dev gfortran</span><br><span class="line">sudo apt-get install libhdf5-serial-dev hdf5-tools</span><br><span class="line">sudo apt-get install python3-dev</span><br><span class="line">sudo apt-get install nano locate</span><br><span class="line">sudo apt-get install libfreetype6-dev python3-setuptools</span><br><span class="line">sudo apt-get install cython3</span><br><span class="line">sudo apt-get install libxml2-dev libxslt1-dev</span><br><span class="line">sudo apt install curl</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-proxychains"><a href="#安装-proxychains" class="headerlink" title="安装 proxychains"></a>安装 proxychains</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> repos</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/rofl0r/proxychains-ng.git</span><br><span class="line"><span class="built_in">cd</span> proxychains-ng</span><br><span class="line">./configure --prefix=/usr --sysconfdir=/etc</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">sudo make install-config</span><br><span class="line">sudo vim /etc/proxychains.conf <span class="comment"># 修改代理地址</span></span><br></pre></td></tr></table></figure>
+
+<p>ref: <a href="https://github.com/rofl0r/proxychains-ng/issues/139#issuecomment-260360687" target="_blank" rel="noopener">#139</a></p>
+<h3 id="简化proxychains4"><a href="#简化proxychains4" class="headerlink" title="简化proxychains4"></a>简化proxychains4</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"alias pc4='proxychains4'"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"alias sudo='sudo '"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>ref :</p>
+<ul>
+<li><a href="https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo" target="_blank" rel="noopener">Aliases not available when using sudo</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/111228714" target="_blank" rel="noopener">chainproxys-ng：在服务器/终端也能使用代理</a></li>
+</ul>
+<h2 id="Set-up-Python-virtual-environments-on-your-Jetson-Nano"><a href="#Set-up-Python-virtual-environments-on-your-Jetson-Nano" class="headerlink" title="Set up Python virtual environments on your Jetson Nano"></a>Set up Python virtual environments on your Jetson Nano</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">sudo -H proxychains4 python3 get-pip.py</span><br><span class="line">rm get-pip.py</span><br><span class="line"></span><br><span class="line">sudo -H proxychains4 pip install virtualenv virtualenvwrapper</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export WORKON_HOME=<span class="variable">$HOME</span>/.virtualenvs"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"source /usr/local/bin/virtualenvwrapper.sh"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="Create-your-‘cv’-virtual-environment"><a href="#Create-your-‘cv’-virtual-environment" class="headerlink" title="Create your ‘cv’ virtual environment"></a>Create your ‘cv’ virtual environment</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv cv -p python3</span><br><span class="line">workon cv</span><br></pre></td></tr></table></figure>
+
+<h2 id="Create-‘tf2’-virtual-environment"><a href="#Create-‘tf2’-virtual-environment" class="headerlink" title="Create ‘tf2’ virtual environment"></a>Create ‘tf2’ virtual environment</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv tf2 -p python3</span><br></pre></td></tr></table></figure>
+
+<h2 id="Make-swapfile"><a href="#Make-swapfile" class="headerlink" title="Make swapfile"></a>Make swapfile</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo fallocate -l 4G /var/swapfile</span><br><span class="line">sudo chmod 600 /var/swapfile</span><br><span class="line">sudo mkswap /var/swapfile</span><br><span class="line">sudo swapon /var/swapfile</span><br><span class="line">sudo bash -c <span class="string">'echo "/var/swapfile swap swap defaults 0 0" &gt;&gt; /etc/fstab'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-Jetson-stats"><a href="#安装-Jetson-stats" class="headerlink" title="安装 Jetson stats"></a>安装 Jetson stats</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -H proxychains4 pip install -U jetson-stats</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-PyTorch"><a href="#Install-PyTorch" class="headerlink" title="Install PyTorch"></a>Install PyTorch</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sudo pc4 apt install libopenblas-base libopenmpi-dev </span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pc4 pip install Cython</span><br><span class="line"></span><br><span class="line">pc4 wget https://nvidia.box.com/shared/static/cs3xn3td6sfgtene6jdvsxlr366m2dhq.whl -O torch-1.7.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line"></span><br><span class="line">pc4 pip install numpy==1.16.1 torch-1.7.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line"></span><br><span class="line"><span class="comment"># torchvision</span></span><br><span class="line">sudo pc4 apt install libjpeg-dev zlib1g-dev libpython3-dev libavcodec-dev libavformat-dev libswscale-dev</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/pytorch/vision torchvision</span><br><span class="line"><span class="built_in">cd</span> torchvision</span><br><span class="line">git checkout v0.8.1</span><br><span class="line"><span class="built_in">export</span> BUILD_VERSION=0.8.1</span><br><span class="line">pc4 python setup.py install</span><br><span class="line"><span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-six"><a href="#Install-six" class="headerlink" title="Install six"></a>Install six</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pc4 pip install six</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装screen"><a href="#安装screen" class="headerlink" title="安装screen"></a>安装screen</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pc4 apt update</span><br><span class="line">sudo pc4 apt install screen</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新protobuf"><a href="#更新protobuf" class="headerlink" title="更新protobuf"></a>更新protobuf</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget https://github.com/protocolbuffers/protobuf/releases/download/v3.12.3/protoc-3.12.3-linux-aarch_64.zip</span><br><span class="line">pc4 wget https://github.com/protocolbuffers/protobuf/releases/download/v3.12.3/protobuf-python-3.12.3.zip</span><br><span class="line">unzip protobuf-python-3.12.3.zip</span><br><span class="line">unzip protoc-3.12.3-linux-aarch_64.zip -d protoc-3.12.3</span><br><span class="line">sudo cp protoc-3.12.3/bin/protoc /usr/<span class="built_in">local</span>/bin/protoc</span><br><span class="line">workon cv</span><br><span class="line"><span class="built_in">export</span> PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=cpp</span><br><span class="line"><span class="built_in">cd</span> protobuf-3.12.3/</span><br><span class="line">./autogen.sh</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span></span><br><span class="line">make</span><br><span class="line">make check</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig</span><br><span class="line">pip install Cython</span><br><span class="line"><span class="built_in">cd</span> python/</span><br><span class="line">python setup.py build --cpp_implementation</span><br><span class="line">python setup.py <span class="built_in">test</span> --cpp_implementation</span><br><span class="line">python setup.py install --cpp_implementation</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-opencv"><a href="#Install-opencv" class="headerlink" title="Install opencv"></a>Install opencv</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos/</span><br><span class="line">pc4 wget -O opencv-4.5.1.zip https://github.com/opencv/opencv/archive/4.5.1.zip</span><br><span class="line">pc4 wget -O opencv_contrib-4.5.1.zip https://github.com/opencv/opencv_contrib/archive/4.5.1.zip</span><br><span class="line">sudo pc4 apt install libeigen3-dev libglew-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev libgstreamer1.0-dev libjpeg-turbo8-dev liblapacke-dev libopenblas-dev libpostproc-dev libtesseract-dev libxine2-dev libx264-dev qv4l2 v4l-utils v4l2ucp</span><br><span class="line">unzip -q opencv-4.5.1.zip</span><br><span class="line">unzip -q opencv_contrib-4.5.1.zip</span><br><span class="line">mv opencv-4.5.1 opencv</span><br><span class="line">mv opencv_contrib-4.5.1 opencv_contrib</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line"><span class="built_in">cd</span> opencv/</span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line"></span><br><span class="line">pc4 cmake -D CMAKE_BUILD_TYPE=RELEASE \</span><br><span class="line">	-D BUILD_opencv_python2=OFF \</span><br><span class="line">	-D BUILD_opencv_python3=ON \</span><br><span class="line">	-D BUILD_opencv_java_bindings_generator=OFF \</span><br><span class="line">	-D CMAKE_BUILD_TYPE=RELEASE \</span><br><span class="line">    -D BUILD_PROTOBUF=OFF \</span><br><span class="line">    -D PROTOBUF_UPDATE_FILES=ON \</span><br><span class="line">	-D OPENCV_DNN_CUDA=ON \</span><br><span class="line">	-D OPENCV_ENABLE_NONFREE=ON \</span><br><span class="line">	-D OPENCV_EXTRA_MODULES_PATH=/home/frotech/repos/opencv_contrib/modules \</span><br><span class="line">	-D PYTHON3_NUMPY_INCLUDE_DIRS=/home/frotech/.virtualenvs/cv/lib/python3.6/site-packages/numpy/core/include \</span><br><span class="line">	-D WITH_CUDA=ON \</span><br><span class="line">	-D WITH_GSTREAMER=ON \</span><br><span class="line">	-D WITH_TENGINE=ON \</span><br><span class="line">	-D WITH_VULKAN=ON \</span><br><span class="line">	-D WITH_FREETYPE=ON \</span><br><span class="line">	-D WITH_OPENGL=ON ..</span><br><span class="line"></span><br><span class="line"><span class="comment"># make -j4</span></span><br></pre></td></tr></table></figure>
+
+<p>ref: <a href="https://docs.opencv.org/master/db/d05/tutorial_config_reference.html" target="_blank" rel="noopener">OpenCV configuration options reference</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/01/30/ubuntu%E5%AE%89%E8%A3%85TL-WDN6200%E9%A9%B1%E5%8A%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -243,7 +338,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/21/Fix-Error-0x80071160/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/01/21/Fix-Error-0x80071160/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -309,7 +404,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/04/mdk-%E7%BC%96%E8%AF%91%E5%8C%85%E5%90%AB%E4%B8%AD%E6%96%87%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/01/04/mdk-%E7%BC%96%E8%AF%91%E5%8C%85%E5%90%AB%E4%B8%AD%E6%96%87%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -373,7 +468,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/18/ubuntu%E5%AE%89%E8%A3%85%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/18/ubuntu%E5%AE%89%E8%A3%85%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -438,7 +533,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/17/%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%90%AF%E5%8A%A8%E9%A1%B9/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/17/%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%90%AF%E5%8A%A8%E9%A1%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -502,7 +597,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/17/re-enable-oem-config/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/17/re-enable-oem-config/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -593,7 +688,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/16/ubuntu-turn-on-wifi/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/16/ubuntu-turn-on-wifi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -663,7 +758,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/11/using-proxy-in-python-script/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/11/using-proxy-in-python-script/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -742,7 +837,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/11/windows-10-%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/11/windows-10-%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -794,74 +889,6 @@
 <li><a href="https://superuser.com/questions/25538/how-to-download-files-from-command-line-in-windows-like-wget-or-curl" target="_blank" rel="noopener">How to download files from command line in Windows like wget or curl</a></li>
 <li><a href="https://techcommunity.microsoft.com/t5/containers/tar-and-curl-come-to-windows/ba-p/382409" target="_blank" rel="noopener">Tar and Curl Come to Windows!</a></li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/11/%E6%8B%89%E5%8F%96%E6%8C%87%E5%AE%9A%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/11/11/%E6%8B%89%E5%8F%96%E6%8C%87%E5%AE%9A%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/" class="post-title-link" itemprop="url">拉取指定远程分支到本地</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-11 17:15:54" itemprop="dateCreated datePublished" datetime="2020-11-11T17:15:54+08:00">2020-11-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-13 16:09:24" itemprop="dateModified" datetime="2020-11-13T16:09:24+08:00">2020-11-13</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>假设要拉取z14/dev</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch z14 dev</span><br><span class="line">git checkout -b dev z14/dev</span><br></pre></td></tr></table></figure>
-
-<p>ref: <a href="https://zj-git-guide.readthedocs.io/zh_CN/latest/advanced/%E6%8B%89%E5%8F%96%E6%8C%87%E5%AE%9A%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/" target="_blank" rel="noopener">拉取指定远程分支到本地</a></p>
 
       
     </div>
@@ -947,7 +974,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/sundries/archives/">
         
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
