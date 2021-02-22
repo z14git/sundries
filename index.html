@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"z14git.github.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"z14git.gitee.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="十四的杂物">
-<meta property="og:url" content="http://z14git.github.io/sundries/index.html">
+<meta property="og:url" content="http://z14git.gitee.io/sundries/index.html">
 <meta property="og:site_name" content="十四的杂物">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="z14git">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://z14git.github.io/sundries/">
+<link rel="canonical" href="http://z14git.gitee.io/sundries/">
 
 
 <script id="page-configurations">
@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/02/07/jp4-5-log/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/02/07/jp4-5-log/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -211,7 +211,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-18 09:46:22" itemprop="dateModified" datetime="2021-02-18T09:46:22+08:00">2021-02-18</time>
+                <time title="修改时间：2021-02-22 15:58:28" itemprop="dateModified" datetime="2021-02-22T15:58:28+08:00">2021-02-22</time>
               </span>
 
           
@@ -306,13 +306,18 @@
 
 <h2 id="安装torch2trt"><a href="#安装torch2trt" class="headerlink" title="安装torch2trt"></a>安装torch2trt</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos/</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/NVIDIA-AI-IOT/torch2trt</span><br><span class="line"><span class="built_in">cd</span> torch2trt/</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pc4 python setup.py install</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 python setup.py install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 软链tensorrt到cv</span></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">cd</span> .virtualenvs/cv/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/lib/python3.6/dist-packages/tensorrt tensorrt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 软链tensorrt到tf2</span></span><br><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/tf2/lib/python3.6/site-packages/</span><br></pre></td></tr></table></figure>
 
-<h2 id="Install-jetson-inference"><a href="#Install-jetson-inference" class="headerlink" title="Install jetson-inference"></a>Install jetson-inference</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 git <span class="built_in">clone</span> --recursive https://github.com/dusty-nv/jetson-inference.git</span><br><span class="line"><span class="built_in">cd</span> jetson-inference</span><br><span class="line">vim tools/download-models.sh <span class="comment"># 在wget前增加proxychains4</span></span><br><span class="line">vim CMakePreBuild.sh <span class="comment"># 增加proxychains4</span></span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ../ <span class="comment"># 选择下载哪些模型，跳过安装PyTorch</span></span><br><span class="line">make -j4</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig</span><br><span class="line"><span class="comment"># 安装到cv</span></span><br><span class="line">vim ../python/bindings/CMakeLists.txt</span><br><span class="line"><span class="comment">## 修改下面的路径，将其改为cv环境的路径，注意dist-packages改为site-packages</span></span><br><span class="line"><span class="comment"># set(PYTHON_BINDING_INSTALL_DIR /usr/lib/python$&#123;PYTHON_VERSION_MAJOR&#125;.$&#123;PYTHON_VERSION_MINOR&#125;/dist-packages)</span></span><br><span class="line">vim ../utils/python/bindings/CMakeLists.txt <span class="comment">#修改方法同上</span></span><br><span class="line">workon cv</span><br><span class="line">make -j4</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装到tf2，一样要修改路径</span></span><br><span class="line">workon tf2</span><br><span class="line">vim ../python/bindings/CMakeLists.txt</span><br><span class="line">vim ../utils/python/bindings/CMakeLists.txt <span class="comment">#修改方法同上</span></span><br><span class="line">make -j4</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure>
+<h2 id="Install-jetson-inference"><a href="#Install-jetson-inference" class="headerlink" title="Install jetson-inference"></a>Install jetson-inference</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 git <span class="built_in">clone</span> --recursive https://github.com/dusty-nv/jetson-inference.git</span><br><span class="line"><span class="built_in">cd</span> jetson-inference</span><br><span class="line">vim tools/download-models.sh <span class="comment"># 在wget前增加proxychains4</span></span><br><span class="line">vim CMakePreBuild.sh <span class="comment"># 增加proxychains4</span></span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ../ <span class="comment"># 选择下载哪些模型，跳过安装PyTorch</span></span><br><span class="line">make -j4</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig</span><br><span class="line"><span class="comment"># 安装到cv</span></span><br><span class="line">vim ../python/bindings/CMakeLists.txt</span><br><span class="line"><span class="comment">## 修改下面的路径，将其改为cv环境的路径，注意dist-packages改为site-packages</span></span><br><span class="line"><span class="comment"># set(PYTHON_BINDING_INSTALL_DIR /usr/lib/python$&#123;PYTHON_VERSION_MAJOR&#125;.$&#123;PYTHON_VERSION_MINOR&#125;/dist-packages)</span></span><br><span class="line">vim ../utils/python/bindings/CMakeLists.txt <span class="comment">#修改方法同上</span></span><br><span class="line">workon cv</span><br><span class="line">make -j4</span><br><span class="line">sudo make install</span><br><span class="line">sudo rm -r ~/.virtualenvs/cv/lib/python2.7/</span><br><span class="line">sudo ldconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装到tf2，一样要修改路径</span></span><br><span class="line">workon tf2</span><br><span class="line">vim ../python/bindings/CMakeLists.txt</span><br><span class="line">vim ../utils/python/bindings/CMakeLists.txt <span class="comment">#修改方法同上</span></span><br><span class="line">make -j4</span><br><span class="line">sudo make install</span><br><span class="line">sudo rm -r ~/.virtualenvs/tf2/lib/python2.7/</span><br><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure>
 
 <p>ref:</p>
 <ul>
 <li><a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo-2.md" target="_blank" rel="noopener">Building the Project from Source</a></li>
 <li><a href="https://github.com/dusty-nv/jetson-inference/issues/482" target="_blank" rel="noopener">Cmake not Detecting Virtual Environment (venv)</a></li>
 </ul>
+<h2 id="修改pip源"><a href="#修改pip源" class="headerlink" title="修改pip源"></a>修改pip源</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pip config <span class="built_in">set</span> global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装yapf"><a href="#安装yapf" class="headerlink" title="安装yapf"></a>安装yapf</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pip install yapf</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pip install yapf</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装flask-restful"><a href="#安装flask-restful" class="headerlink" title="安装flask_restful"></a>安装flask_restful</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pip install flask_restful</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pip install flask_restful</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -332,7 +337,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/30/ubuntu%E5%AE%89%E8%A3%85TL-WDN6200%E9%A9%B1%E5%8A%A8/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/01/30/ubuntu%E5%AE%89%E8%A3%85TL-WDN6200%E9%A9%B1%E5%8A%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -395,7 +400,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/21/Fix-Error-0x80071160/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/01/21/Fix-Error-0x80071160/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -461,7 +466,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/04/mdk-%E7%BC%96%E8%AF%91%E5%8C%85%E5%90%AB%E4%B8%AD%E6%96%87%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/01/04/mdk-%E7%BC%96%E8%AF%91%E5%8C%85%E5%90%AB%E4%B8%AD%E6%96%87%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -525,7 +530,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/18/ubuntu%E5%AE%89%E8%A3%85%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/18/ubuntu%E5%AE%89%E8%A3%85%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -590,7 +595,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/17/%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%90%AF%E5%8A%A8%E9%A1%B9/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/17/%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%90%AF%E5%8A%A8%E9%A1%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -654,7 +659,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/17/re-enable-oem-config/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/17/re-enable-oem-config/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -745,7 +750,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/16/ubuntu-turn-on-wifi/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/16/ubuntu-turn-on-wifi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -815,7 +820,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/11/using-proxy-in-python-script/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/11/using-proxy-in-python-script/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -894,7 +899,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/11/windows-10-%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/11/windows-10-%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
