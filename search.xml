@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ubuntu install v2ray</title>
+    <url>/sundries/2021/02/22/ubuntu-install-v2ray/</url>
+    <content><![CDATA[<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo snap install qv2ray</span><br><span class="line">下载 https://github.com/v2fly/v2ray-core/releases/download/v&lt;版本号&gt;/v2ray-linux-64.zip</span><br><span class="line">cp v2ray-linux-64.zip ~/snap/qv2ray/4091/.config/qv2ray</span><br><span class="line">unzip v2ray-linux-64.zip -d vcore</span><br><span class="line">rm v2ray-linux-64.zip</span><br></pre></td></tr></table></figure>
+
+<p>打开qv2ray，依次点击Preference-&gt;Kernel Settings-&gt;Check V2Ray Core Settings</p>
+<blockquote>
+<p>ref: <a href="https://medium.com/@eleveninstrangerthings/%E5%9C%A8ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E5%8C%96v2ray%E5%AE%A2%E6%88%B7%E7%AB%AFqv2ray-d0f690b7c519" target="_blank" rel="noopener">在Ubuntu上安装图形化v2Ray客户端Qv2Ray （2021年1月更新）</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>v2ray</tag>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>jp4.5 log</title>
     <url>/sundries/2021/02/07/jp4-5-log/</url>
     <content><![CDATA[<h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开网卡</span></span><br><span class="line">sudo ifconfig wlan0 up</span><br><span class="line"><span class="comment"># 配wifi</span></span><br><span class="line">sudo nmtui</span><br><span class="line">mkdir repos</span><br></pre></td></tr></table></figure>
