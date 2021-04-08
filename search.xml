@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>git 服务器证书验证失败</title>
+    <url>/sundries/2021/04/08/git-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5/</url>
+    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p><code>git clone https://xxx.git</code> 时报错：</p>
+<p><code>CAfile: /etc/ssl/certs/ca-certificates.crt CRLfile: none</code></p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p><strong>Linux:</strong></p>
+<p><code>export GIT_SSL_NO_VERIFY=1</code></p>
+<p><strong>Windows:</strong></p>
+<p><code>set GIT_SSL_NO_VERIFY 1</code></p>
+<p><strong>Git:</strong></p>
+<p><code>git config --global http.sslVerify false</code></p>
+<blockquote>
+<p>ref: <a href="https://www.jianshu.com/p/7d599bdf370a" target="_blank" rel="noopener">git错误error: server certificate verification failed. CAfile: /etc/ssl/certs/ca-certificates.crt CRLfile: none</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ubuntu install v2ray</title>
     <url>/sundries/2021/02/22/ubuntu-install-v2ray/</url>
     <content><![CDATA[<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo snap install qv2ray</span><br><span class="line">下载 https://github.com/v2fly/v2ray-core/releases/download/v&lt;版本号&gt;/v2ray-linux-64.zip</span><br><span class="line">cp v2ray-linux-64.zip ~/snap/qv2ray/4091/.config/qv2ray</span><br><span class="line">unzip v2ray-linux-64.zip -d vcore</span><br><span class="line">rm v2ray-linux-64.zip</span><br></pre></td></tr></table></figure>
