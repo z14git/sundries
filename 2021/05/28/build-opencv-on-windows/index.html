@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/sundries/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/sundries/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/sundries/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/sundries/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/sundries/css/main.css">
+
+
+<link rel="stylesheet" href="/sundries/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"z14git.gitee.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="prerequisites Python  Cmake   Download the windows installer from https:&#x2F;&#x2F;cmake.org&#x2F;download&#x2F; . Just double click the downloaded MSI installer and follow normal windows installation process.  vcpkg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="build opencv on windows">
+<meta property="og:url" content="http://z14git.gitee.io/sundries/2021/05/28/build-opencv-on-windows/index.html">
+<meta property="og:site_name" content="十四的杂物">
+<meta property="og:description" content="prerequisites Python  Cmake   Download the windows installer from https:&#x2F;&#x2F;cmake.org&#x2F;download&#x2F; . Just double click the downloaded MSI installer and follow normal windows installation process.  vcpkg">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-28T02:32:51.000Z">
+<meta property="article:modified_time" content="2021-05-31T01:01:05.624Z">
+<meta property="article:author" content="z14git">
+<meta property="article:tag" content="opencv">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://z14git.gitee.io/sundries/2021/05/28/build-opencv-on-windows/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>build opencv on windows | 十四的杂物</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/sundries/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">十四的杂物</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/sundries/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/sundries/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/sundries/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/05/28/build-opencv-on-windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          build opencv on windows
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-28 10:32:51" itemprop="dateCreated datePublished" datetime="2021-05-28T10:32:51+08:00">2021-05-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-31 09:01:05" itemprop="dateModified" datetime="2021-05-31T09:01:05+08:00">2021-05-31</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="prerequisites"><a href="#prerequisites" class="headerlink" title="prerequisites"></a>prerequisites</h2><ul>
+<li><p>Python</p>
+</li>
+<li><p>Cmake</p>
+<p>  Download the windows installer from <a href="https://cmake.org/download/" target="_blank" rel="noopener">https://cmake.org/download/</a> . Just double click the downloaded MSI installer and follow normal windows installation process.</p>
+</li>
+<li><p>vcpkg</p>
+  <figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> d:/repos</span><br><span class="line">git clone https://github.com/Microsoft/vcpkg.git</span><br><span class="line"><span class="built_in">cd</span> vcpkg</span><br><span class="line">.\bootstrap-vcpkg.bat</span><br><span class="line">vcpkg install freetype:x64-windows</span><br><span class="line">vcpkg install harfbuzz:x64-windows</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a href="https://visualstudio.microsoft.com/downloads/" target="_blank" rel="noopener">visualstudio</a><br>  install C++ build tools</p>
+</li>
+<li><p>OpenCV source code</p>
+<ul>
+<li><a href="https://github.com/opencv/opencv/releases" target="_blank" rel="noopener">OpenCV</a></li>
+<li><a href="https://github.com/opencv/opencv_contrib/releases" target="_blank" rel="noopener">OpenCV-Contrib</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><ol>
+<li><p>解压源代码</p>
+</li>
+<li><p>在 OpenCV-x.x.x 目录下创建 <code>build</code> 目录</p>
+</li>
+<li><p>修改 <code>opencv_contrib-x.x.x\modules\freetype\CMakeLists.txt</code>, eg:</p>
+ <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span>(the_description <span class="string">"FreeType module. It enables to draw strings with outlines and mono-bitmaps/gray-bitmaps."</span>)</span><br><span class="line"><span class="keyword">if</span>(APPLE_FRAMEWORK)</span><br><span class="line">ocv_module_disable(freetype)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(OPENCV_INITIAL_PASS)</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">NOT</span> FREETYPE_FOUND)</span><br><span class="line">    <span class="keyword">message</span>(STATUS <span class="string">"freetype2:   NO"</span>)</span><br><span class="line"><span class="keyword">else</span>()</span><br><span class="line">    <span class="keyword">message</span>(STATUS <span class="string">"freetype2:   YES (ver $&#123;FREETYPE_VERSION&#125;)"</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">NOT</span> HARFBUZZ_FOUND)</span><br><span class="line">    <span class="keyword">message</span>(STATUS <span class="string">"harfbuzz:    NO"</span>)</span><br><span class="line"><span class="keyword">else</span>()</span><br><span class="line">    <span class="keyword">message</span>(STATUS <span class="string">"harfbuzz:    YES (ver $&#123;HARFBUZZ_VERSION&#125;)"</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># if(FREETYPE_FOUND AND HARFBUZZ_FOUND)</span></span><br><span class="line"><span class="comment"># ocv_define_module(freetype opencv_core opencv_imgproc WRAP python)</span></span><br><span class="line"><span class="comment"># ocv_target_link_libraries($&#123;the_module&#125; $&#123;FREETYPE_LIBRARIES&#125; $&#123;HARFBUZZ_LIBRARIES&#125;)</span></span><br><span class="line"><span class="comment"># ocv_include_directories( $&#123;FREETYPE_INCLUDE_DIRS&#125; $&#123;HARFBUZZ_INCLUDE_DIRS&#125; )</span></span><br><span class="line"><span class="comment"># else()</span></span><br><span class="line"><span class="comment">#   ocv_module_disable(freetype)</span></span><br><span class="line"><span class="comment"># endif()</span></span><br><span class="line"><span class="keyword">link_directories</span>(<span class="string">"D:/repos/vcpkg/installed/x64-windows/lib"</span>)</span><br><span class="line">ocv_define_module(freetype opencv_core opencv_imgproc WRAP python)</span><br><span class="line">ocv_target_link_libraries(<span class="variable">$&#123;the_module&#125;</span> freetype harfbuzz)</span><br><span class="line">ocv_include_directories( <span class="string">"D:/repos/vcpkg/installed/x64-windows/include"</span> <span class="string">"D:/repos/vcpkg/installed/x64-windows/include/harfbuzz"</span> )</span><br></pre></td></tr></table></figure>
+
+<p> ref:<a href="https://blog.csdn.net/hfxy520704031010/article/details/106680888" target="_blank" rel="noopener">windows下opencv的编译过程记录</a></p>
+</li>
+<li><p>cd 到 OpenCV 根目录</p>
+</li>
+<li><p>执行命令</p>
+<p> cmake -G “Visual Studio 16 2019” -B D:\tmp\opencv-4.5.2\build -D BUILD_NEW_PYTHON_SUPPORT=ON -D BUILD_PYTHON_SUPPORT=ON -D BUILD_opencv_python3=yes -D PYTHON_DEFAULT_EXECUTABLE=C:\Users\Noctis.venv\torch\Scripts\python.exe -D OPENCV_SKIP_PYTHON_LOADER=ON -D PYTHON_LIBRARY=D:\Python3\libs\python38.lib -D OPENCV_EXTRA_MODULES_PATH=D:\tmp\opencv_contrib-4.5.2\modules -D OPEN_CV_FORCE_PYTHON_LIBS=yes -D CMAKE_TOOLCHAIN_FILE=D:\repos\vcpkg\scripts\buildsystems\vcpkg.cmake</p>
+</li>
+<li><p>Open the CMake GUI, browse for the folder of the source code folder (root folder) and build folder and then click File-Reload Cache. Also ensure the grouped and Advanced check box are checked (this makes it easier to read). Then check the following:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">a. Click on Build, make sure:</span><br><span class="line">       i. BUILD_opencv_python_bindings_generator is checked.</span><br><span class="line">b. Click on ENABLE, make sure in addition to others selected ENABLE_PYLINT is also selected</span><br><span class="line">c. CLICK on OPENCV, make sure:</span><br><span class="line">       i. OPENCV_EXTRA_MODULES_PATH has the right path if not, click the entry field and input the right path</span><br><span class="line">       ii. OPENCV_PYTHON3_VERSION is checked</span><br><span class="line">       iii. OPENCV_FORCE_PYTHON_LIBS is checked</span><br><span class="line">d. Click on PYTHON3 and make sure:</span><br><span class="line">       i. PYTHON3_EXECUTABLE has the right path</span><br><span class="line">       ii. PYTHON3_INCLUDE_DIR has the right path</span><br><span class="line">       iii. PYTHON3_LIBRARY has the right lib file link</span><br><span class="line">       iv. PYTHON3_NUMPY_INCLUDE_DIRS has the right link</span><br><span class="line">       v. PYTHON3_PACKAGES_PATH has the right link</span><br><span class="line">e. Finally click Configure (once) and then generate</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建一个环境变量 <code>PYTHONPATH</code>，输入3个地址，示例：<code>D:\tmp\opencv-4.5.2\build\python_loader;D:\Python3\Scripts\;D:\Python3\</code></p>
+</li>
+</ol>
+<h2 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h2><ol>
+<li>打开 <code>opencv-x.x.x\build\OpenCV.sln</code></li>
+<li>在 <code>Solution Explorer</code> 面板下，展开 <code>CMakeTargets</code>，右键 <code>INSTALL</code>，点击 ‘Build`</li>
+<li>将 <code>Solution Configurations</code> 由 <code>Debug</code> 改为 <code>Release</code> 再 <code>Build</code> 一次。出现 <code>fatal error LNK1104: cannot open file &#39;python38_d.lib&#39;</code> 类似的错误可以不用管。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/sundries/tags/opencv/" rel="tag"># opencv</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/sundries/2021/04/29/jp4-5-1-log/" rel="prev" title="jp4.5.1 log">
+      <i class="fa fa-chevron-left"></i> jp4.5.1 log
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#prerequisites"><span class="nav-number">1.</span> <span class="nav-text">prerequisites</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config"><span class="nav-number">2.</span> <span class="nav-text">Config</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Build"><span class="nav-number">3.</span> <span class="nav-text">Build</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">z14git</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/sundries/archives/">
+        
+          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/sundries/tags/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">z14git</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/sundries/lib/anime.min.js"></script>
+  <script src="/sundries/lib/velocity/velocity.min.js"></script>
+  <script src="/sundries/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/sundries/js/utils.js"></script>
+
+<script src="/sundries/js/motion.js"></script>
+
+
+<script src="/sundries/js/schemes/muse.js"></script>
+
+
+<script src="/sundries/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/sundries/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
