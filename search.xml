@@ -146,6 +146,8 @@
 <h2 id="Install-fro-ai"><a href="#Install-fro-ai" class="headerlink" title="Install fro_ai"></a>Install fro_ai</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">git <span class="built_in">clone</span> https://gitee.com/z14git/fro_-ai.git fro_AI</span><br><span class="line"><span class="built_in">cd</span> fro_AI</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> ~/.venv/torch/bin/activate</span><br><span class="line">pc4 pip install .</span><br></pre></td></tr></table></figure>
 
 <h2 id="低功耗模式"><a href="#低功耗模式" class="headerlink" title="低功耗模式"></a>低功耗模式</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo nvpmodel -m 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"export OPENBLAS_CORETYPE=ARMV8"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"></span><br><span class="line"><span class="comment"># torch 的 Jetcam 调用 jetson-inference 的 API</span></span><br><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/z14git/jetcam.git jetcam_z14</span><br><span class="line"><span class="built_in">source</span> ~/.venv/torch/bin/activate</span><br><span class="line"><span class="built_in">cd</span> jetcam_z14/</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>jetson</tag>
@@ -2008,8 +2010,8 @@
 </blockquote>
 ]]></content>
       <tags>
-        <tag>python</tag>
         <tag>bat</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -2023,8 +2025,8 @@
 </blockquote>
 ]]></content>
       <tags>
-        <tag>conda</tag>
         <tag>bat</tag>
+        <tag>conda</tag>
       </tags>
   </entry>
   <entry>
