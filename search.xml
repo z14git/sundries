@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>修改trt batchSize</title>
+    <url>/sundries/2021/07/28/%E4%BF%AE%E6%94%B9trt-batchSize/</url>
+    <content><![CDATA[<p><strong>问题：</strong></p>
+<p>在数字识别时，一次输入多张图片时出现以下错误：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Error: condition: batchSize &gt; 0 &amp;&amp; batchSize &lt;&#x3D; mEngine.getMaxBatchSize(). Note: Batch size was: 2, but engine max batch size was: 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：</strong></p>
+<p>在转换 trt 模型时，增加参数 <code>max_batch_size=16</code></p>
+<p><strong>参考：</strong></p>
+<ul>
+<li><a href="https://github.com/NVIDIA-AI-IOT/torch2trt/issues/540#issuecomment-825494765" target="_blank" rel="noopener">how to fix this error</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>torch2trt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OSError: SavedModel file does not exist at</title>
+    <url>/sundries/2021/07/25/OSError-SavedModel-file-does-not-exist-at/</url>
+    <content><![CDATA[<p><strong>问题：</strong></p>
+<p>OSError: SavedModel file does not exist at: main.h5/{saved_model.pbtxt|saved_model.pb}</p>
+<p><strong>解决方法：</strong></p>
+<p>填写模型文件的详细路径。</p>
+<p>参考：<a href="https://github.com/tensorflow/tensorflow/issues/35909#issuecomment-845859164" target="_blank" rel="noopener">OSError: SavedModel file does not exist at: main.h5/{saved_model.pbtxt|saved_model.pb}</a></p>
+]]></content>
+      <tags>
+        <tag>tensorflow</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>build opencv on windows</title>
     <url>/sundries/2021/05/28/build-opencv-on-windows/</url>
     <content><![CDATA[<h2 id="prerequisites"><a href="#prerequisites" class="headerlink" title="prerequisites"></a>prerequisites</h2><ul>
@@ -694,8 +725,8 @@
 </blockquote>
 ]]></content>
       <tags>
-        <tag>python</tag>
         <tag>tensorflow</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -719,8 +750,8 @@
 </ul>
 ]]></content>
       <tags>
-        <tag>jetson</tag>
         <tag>tensorflow</tag>
+        <tag>jetson</tag>
       </tags>
   </entry>
   <entry>

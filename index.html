@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"z14git.github.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"z14git.gitee.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="十四的杂物">
-<meta property="og:url" content="http://z14git.github.io/sundries/index.html">
+<meta property="og:url" content="http://z14git.gitee.io/sundries/index.html">
 <meta property="og:site_name" content="十四的杂物">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="z14git">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://z14git.github.io/sundries/">
+<link rel="canonical" href="http://z14git.gitee.io/sundries/">
 
 
 <script id="page-configurations">
@@ -180,7 +180,144 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/05/28/build-opencv-on-windows/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/07/28/%E4%BF%AE%E6%94%B9trt-batchSize/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2021/07/28/%E4%BF%AE%E6%94%B9trt-batchSize/" class="post-title-link" itemprop="url">修改trt batchSize</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-28 17:34:02 / 修改时间：17:38:20" itemprop="dateCreated datePublished" datetime="2021-07-28T17:34:02+08:00">2021-07-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>问题：</strong></p>
+<p>在数字识别时，一次输入多张图片时出现以下错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: condition: batchSize &gt; 0 &amp;&amp; batchSize &lt;&#x3D; mEngine.getMaxBatchSize(). Note: Batch size was: 2, but engine max batch size was: 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：</strong></p>
+<p>在转换 trt 模型时，增加参数 <code>max_batch_size=16</code></p>
+<p><strong>参考：</strong></p>
+<ul>
+<li><a href="https://github.com/NVIDIA-AI-IOT/torch2trt/issues/540#issuecomment-825494765" target="_blank" rel="noopener">how to fix this error</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/07/25/OSError-SavedModel-file-does-not-exist-at/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2021/07/25/OSError-SavedModel-file-does-not-exist-at/" class="post-title-link" itemprop="url">OSError: SavedModel file does not exist at</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-25 16:32:46" itemprop="dateCreated datePublished" datetime="2021-07-25T16:32:46+08:00">2021-07-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-28 17:38:20" itemprop="dateModified" datetime="2021-07-28T17:38:20+08:00">2021-07-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>问题：</strong></p>
+<p>OSError: SavedModel file does not exist at: main.h5/{saved_model.pbtxt|saved_model.pb}</p>
+<p><strong>解决方法：</strong></p>
+<p>填写模型文件的详细路径。</p>
+<p>参考：<a href="https://github.com/tensorflow/tensorflow/issues/35909#issuecomment-845859164" target="_blank" rel="noopener">OSError: SavedModel file does not exist at: main.h5/{saved_model.pbtxt|saved_model.pb}</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/05/28/build-opencv-on-windows/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -292,7 +429,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/04/29/jp4-5-1-log/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/04/29/jp4-5-1-log/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -445,7 +582,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/04/08/git-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/04/08/git-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -514,7 +651,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/02/22/ubuntu-install-v2ray/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/02/22/ubuntu-install-v2ray/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -578,7 +715,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/02/07/jp4-5-log/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/02/07/jp4-5-log/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -735,7 +872,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/30/ubuntu%E5%AE%89%E8%A3%85TL-WDN6200%E9%A9%B1%E5%8A%A8/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/01/30/ubuntu%E5%AE%89%E8%A3%85TL-WDN6200%E9%A9%B1%E5%8A%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -798,7 +935,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/21/Fix-Error-0x80071160/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/01/21/Fix-Error-0x80071160/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -864,7 +1001,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/04/mdk-%E7%BC%96%E8%AF%91%E5%8C%85%E5%90%AB%E4%B8%AD%E6%96%87%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/01/04/mdk-%E7%BC%96%E8%AF%91%E5%8C%85%E5%90%AB%E4%B8%AD%E6%96%87%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -908,135 +1045,6 @@
 <p>添加编译选项 <code>--locale=english</code></p>
 <blockquote>
 <p>ref: <a href="https://www.keil.com/support/man/docs/armcc/armcc_chr1359124931077.htm" target="_blank" rel="noopener">–locale=lang_country</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/18/ubuntu%E5%AE%89%E8%A3%85%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/11/18/ubuntu%E5%AE%89%E8%A3%85%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/" class="post-title-link" itemprop="url">ubuntu安装显卡驱动</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-18 09:08:11" itemprop="dateCreated datePublished" datetime="2020-11-18T09:08:11+08:00">2020-11-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-04 16:25:53" itemprop="dateModified" datetime="2021-01-04T16:25:53+08:00">2021-01-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ubuntu-drivers devices <span class="comment"># 查看设备和推荐的驱动</span></span><br><span class="line">sudo ubuntu-drivers autoinstall <span class="comment"># 安装推荐的驱动</span></span><br><span class="line"><span class="comment"># sudo apt install nvidia-340 # 安装指定版本</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/17/%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%90%AF%E5%8A%A8%E9%A1%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/11/17/%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%90%AF%E5%8A%A8%E9%A1%B9/" class="post-title-link" itemprop="url">修改默认启动项</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-11-17 20:43:24 / 修改时间：20:47:18" itemprop="dateCreated datePublished" datetime="2020-11-17T20:43:24+08:00">2020-11-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>修改<code>/etc/default/grub</code>, 然后执行<code>sudo update-grub</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"># If you change this file, run &#39;update-grub&#39; afterwards to update</span><br><span class="line"></span><br><span class="line"># &#x2F;boot&#x2F;grub&#x2F;grub.cfg.</span><br><span class="line"></span><br><span class="line"># For full documentation of the options in this file, see:</span><br><span class="line"></span><br><span class="line">#   info -f grub -n &#39;Simple configuration&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GRUB_DEFAULT&#x3D;0</span><br><span class="line">&#x2F;&#x2F; ★ 默认启动项，按menuentry顺序，从0开始；若改为saved，则默认上次启动项</span><br><span class="line"></span><br><span class="line">#GRUB_HIDDEN_TIMEOUT&#x3D;0      &#x2F;&#x2F;隐藏菜单，grub2不再使</span><br><span class="line"></span><br><span class="line">GRUB_HIDDEN_TIMEOUT_QUIET&#x3D;true</span><br><span class="line">&#x2F;&#x2F;true不显示倒计时，屏幕将会是空白的；false空白屏幕上有计时器</span><br><span class="line"></span><br><span class="line">GRUB_TIMEOUT&#x3D;3</span><br><span class="line">&#x2F;&#x2F; ★ 设置进入默认启动项的等候时间，默认值10秒；若为-1则一直等待</span><br><span class="line"></span><br><span class="line">GRUB_DISTRIBUTOR&#x3D;&#96;lsb_release -i -s 2&gt; &#x2F;dev&#x2F;null || echo Debian&#96;</span><br><span class="line"></span><br><span class="line">GRUB_CMDLINE_LINUX_DEFAULT&#x3D;&quot;quiet splash&quot;</span><br><span class="line">&#x2F;&#x2F; ★ 添加内核启动参数，这个为默认</span><br><span class="line"></span><br><span class="line">GRUB_CMDLINE_LINUX&#x3D;&quot;acpi_osi&#x3D;Linux&quot;</span><br><span class="line">&#x2F;&#x2F; ★ 手动添加内核启动参数，比如 acpi&#x3D;off noapic等可在这里添加</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Uncomment to enable BadRAM filtering, modify to suit your needs</span><br><span class="line"></span><br><span class="line"># This works with Linux (no patch required) and with any kernel that obtains</span><br><span class="line"></span><br><span class="line"># the memory map information from GRUB (GNU Mach, kernel of FreeBSD ...)</span><br><span class="line"></span><br><span class="line">#GRUB_BADRAM&#x3D;&quot;0x01234567,0xfefefefe,0x89abcdef,0xefefefef&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Uncomment to disable graphical terminal (grub-pc only)</span><br><span class="line"></span><br><span class="line">#GRUB_TERMINAL&#x3D;console</span><br><span class="line">&#x2F;&#x2F;设置是否使用图形介面。去除前面#，仅使用控制台终端，不使用图形介面</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># The resolution used on graphical terminal</span><br><span class="line"></span><br><span class="line"># note that you can use only modes which your graphic card supports via VBE</span><br><span class="line"></span><br><span class="line"># you can see them in real GRUB with the command &#96;vbeinfo&#39;</span><br><span class="line"></span><br><span class="line">#GRUB_GFXMODE&#x3D;640x480</span><br><span class="line">&#x2F;&#x2F; ★ 设定图形介面分辨率，如不使用默认，把前面#去掉，分辨率按需修改</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Uncomment if you don&#39;t want GRUB to pass &quot;root&#x3D;UUID&#x3D;xxx&quot; parameter to Linux</span><br><span class="line"></span><br><span class="line">#GRUB_DISABLE_LINUX_UUID&#x3D;true</span><br><span class="line">&#x2F;&#x2F;设置grub命令是否使用UUID，去掉#，使用root&#x3D;&#x2F;dev&#x2F;sdax而不用root&#x3D;UUDI&#x3D;xxx</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Uncomment to disable generation of recovery mode menu entries</span><br><span class="line"></span><br><span class="line">#GRUB_DISABLE_RECOVERY&#x3D;&quot;true&quot;</span><br><span class="line">&#x2F;&#x2F;设定是否创建修复模式菜单项</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Uncomment to get a beep at grub start</span><br><span class="line"></span><br><span class="line">#GRUB_INIT_TUNE&#x3D;&quot;480 440 1&quot;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>ref: <a href="https://www.jianshu.com/p/f9e17ba42943" target="_blank" rel="noopener">/etc/default/grub 文件详解</a></p>
 </blockquote>
 
       
@@ -1123,14 +1131,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/sundries/archives/">
         
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/sundries/tags/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"z14git.github.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"z14git.gitee.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="十四的杂物">
-<meta property="og:url" content="http://z14git.github.io/sundries/page/3/index.html">
+<meta property="og:url" content="http://z14git.gitee.io/sundries/page/3/index.html">
 <meta property="og:site_name" content="十四的杂物">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="z14git">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://z14git.github.io/sundries/page/3/">
+<link rel="canonical" href="http://z14git.gitee.io/sundries/page/3/">
 
 
 <script id="page-configurations">
@@ -180,7 +180,147 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/03/install-v2ray-on-ubuntu/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/04/%E9%80%9A%E8%BF%87ssh%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/11/04/%E9%80%9A%E8%BF%87ssh%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5windows/" class="post-title-link" itemprop="url">通过ssh远程连接windows</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-04 11:41:03 / 修改时间：21:19:31" itemprop="dateCreated datePublished" datetime="2020-11-04T11:41:03+08:00">2020-11-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Installing-OpenSSH-with-PowerShell"><a href="#Installing-OpenSSH-with-PowerShell" class="headerlink" title="Installing OpenSSH with PowerShell"></a>Installing OpenSSH with PowerShell</h2><p>To install OpenSSH using PowerShell, first launch PowerShell as an Administrator. To make sure that the OpenSSH features are available for install:</p>
+<figure class="highlight ps"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-WindowsCapability</span> <span class="literal">-Online</span> | ? Name <span class="operator">-like</span> <span class="string">'OpenSSH*'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This should return the following output:</span></span><br><span class="line"></span><br><span class="line">Name  : OpenSSH.Client~~~~<span class="number">0.0</span>.<span class="number">1.0</span></span><br><span class="line">State : NotPresent</span><br><span class="line">Name  : OpenSSH.Server~~~~<span class="number">0.0</span>.<span class="number">1.0</span></span><br><span class="line">State : NotPresent</span><br></pre></td></tr></table></figure>
+
+<p>Then, install the server and/or client features:</p>
+<figure class="highlight ps"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Install the OpenSSH Client</span></span><br><span class="line"><span class="built_in">Add-WindowsCapability</span> <span class="literal">-Online</span> <span class="literal">-Name</span> OpenSSH.Client~~~~<span class="number">0.0</span>.<span class="number">1.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Install the OpenSSH Server</span></span><br><span class="line"><span class="built_in">Add-WindowsCapability</span> <span class="literal">-Online</span> <span class="literal">-Name</span> OpenSSH.Server~~~~<span class="number">0.0</span>.<span class="number">1.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Both of these should return the following output:</span></span><br><span class="line"></span><br><span class="line">Path          :</span><br><span class="line">Online        : True</span><br><span class="line">RestartNeeded : False</span><br></pre></td></tr></table></figure>
+
+<h2 id="Initial-Configuration-of-SSH-Server"><a href="#Initial-Configuration-of-SSH-Server" class="headerlink" title="Initial Configuration of SSH Server"></a>Initial Configuration of SSH Server</h2><p>To configure the OpenSSH server for initial use on Windows, launch PowerShell as an administrator, then run the following commands to start the SSHD service:</p>
+<figure class="highlight ps"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Start-Service</span> sshd</span><br><span class="line"><span class="comment"># OPTIONAL but recommended:</span></span><br><span class="line"><span class="built_in">Set-Service</span> <span class="literal">-Name</span> sshd <span class="literal">-StartupType</span> <span class="string">'Automatic'</span></span><br><span class="line"><span class="comment"># Confirm the Firewall rule is configured. It should be created automatically by setup.</span></span><br><span class="line"><span class="built_in">Get-NetFirewallRule</span> <span class="literal">-Name</span> *ssh*</span><br><span class="line"><span class="comment"># There should be a firewall rule named "OpenSSH-Server-In-TCP", which should be enabled</span></span><br><span class="line"><span class="comment"># If the firewall does not exist, create one</span></span><br><span class="line"><span class="built_in">New-NetFirewallRule</span> <span class="literal">-Name</span> sshd <span class="literal">-DisplayName</span> <span class="string">'OpenSSH Server (sshd)'</span> <span class="literal">-Enabled</span> True <span class="literal">-Direction</span> Inbound <span class="literal">-Protocol</span> TCP <span class="literal">-Action</span> Allow <span class="literal">-LocalPort</span> <span class="number">22</span></span><br></pre></td></tr></table></figure>
+
+<p>部署好后，在另一台windows电脑上，可通过以下方式连接：</p>
+<figure class="highlight ps"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ssh <span class="literal">-p</span> port username@servername</span><br></pre></td></tr></table></figure>
+
+<p>ref: <a href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse" target="_blank" rel="noopener">Installation of OpenSSH For Windows Server 2019 and Windows 10</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/03/Using-SCP-to-copy-a-file-on-a-non-standard-ssh-port/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/11/03/Using-SCP-to-copy-a-file-on-a-non-standard-ssh-port/" class="post-title-link" itemprop="url">Using SCP to copy a file on a non standard ssh port</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-03 16:20:29" itemprop="dateCreated datePublished" datetime="2020-11-03T16:20:29+08:00">2020-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-04 21:19:31" itemprop="dateModified" datetime="2020-11-04T21:19:31+08:00">2020-11-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>用<code>-P</code>参数即可：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P port file user@remote_ip</span><br></pre></td></tr></table></figure>
+
+<p>ps: <code>-P</code> 要在文件前</p>
+<p>ref: <a href="https://askubuntu.com/questions/32413/copy-with-ssh-with-port-other-than-22" target="_blank" rel="noopener">copy with ssh with port other than 22</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/11/03/install-v2ray-on-ubuntu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -261,7 +401,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/10/30/restart-jetson-nano-camera/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/10/30/restart-jetson-nano-camera/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -321,7 +461,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/10/27/%E5%A6%82%E4%BD%95%E7%94%A8cv2-VideoWriter%E5%AE%9E%E7%8E%B0rtsp%E6%8E%A8%E6%B5%81/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/10/27/%E5%A6%82%E4%BD%95%E7%94%A8cv2-VideoWriter%E5%AE%9E%E7%8E%B0rtsp%E6%8E%A8%E6%B5%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -400,7 +540,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/10/21/ModuleNotFoundError-No-module-named-IPython-core-profiledir/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/10/21/ModuleNotFoundError-No-module-named-IPython-core-profiledir/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -469,7 +609,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/10/20/git-remote-add/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/10/20/git-remote-add/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -534,7 +674,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/09/22/fix-ImportError-IProgress-not-found/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/09/22/fix-ImportError-IProgress-not-found/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -599,7 +739,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/09/16/Using-Anaconda-with-proxy/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/09/16/Using-Anaconda-with-proxy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -663,7 +803,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/09/13/how-to-remove-cards-at-the-end-of-youtube-video/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2020/09/13/how-to-remove-cards-at-the-end-of-youtube-video/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -712,155 +852,6 @@
 <pre><code>www.youtube.com##.ytp-ce-element</code></pre><blockquote>
 <p>ref: <a href="https://www.reddit.com/r/youtube/comments/5owodn/tip_how_to_block_youtube_end_screen_video_ad_the/" target="_blank" rel="noopener">Tip: How to block youtube end screen video ad, the new youtube feature.</a></p>
 </blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/07/22/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96dtype%E4%B8%BAstring%E7%9A%84tf.tensor%E7%9A%84string%E5%80%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/07/22/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96dtype%E4%B8%BAstring%E7%9A%84tf.tensor%E7%9A%84string%E5%80%BC/" class="post-title-link" itemprop="url">如何获取dtype为string的tf.tensor的string值</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-22 09:16:26" itemprop="dateCreated datePublished" datetime="2020-07-22T09:16:26+08:00">2020-07-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-07 13:43:47" itemprop="dateModified" datetime="2020-09-07T13:43:47+08:00">2020-09-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">AUTOTUNE = tf.data.experimental.AUTOTUNE</span><br><span class="line">list_ds = tf.data.Dataset.list_files(<span class="string">"dataset_xy/*.jpg"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_x</span><span class="params">(file_name)</span>:</span></span><br><span class="line">    <span class="string">"""Gets the x value from the image filename"""</span></span><br><span class="line">    <span class="keyword">return</span> tf.strings.to_number(file_name.numpy()[<span class="number">3</span>:<span class="number">6</span>], tf.float32) / <span class="number">100</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_label</span><span class="params">(file_path)</span>:</span></span><br><span class="line">    file_name = tf.strings.split(file_path, os.path.sep)[<span class="number">-1</span>]</span><br><span class="line">    x = tf.py_function(func=get_x,inp=[file_name],Tout=tf.float32)</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">process_path</span><span class="params">(file_path)</span>:</span></span><br><span class="line">    label = get_label(file_path)</span><br><span class="line">    <span class="keyword">return</span> label</span><br><span class="line"></span><br><span class="line">train_ds = list_ds.map(process_path, num_parallel_calls=AUTOTUNE)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>ref: <a href="https://stackoverflow.com/questions/56122670/how-to-get-string-value-out-of-tf-tensor-which-dtype-is-string" target="_blank" rel="noopener">how to get string value out of tf.tensor which dtype is string</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/07/17/%E5%88%9B%E5%BB%BAtrt%E6%A8%A1%E5%9E%8B%E6%97%B6-%E5%87%BA%E7%8E%B0core-dumped/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/07/17/%E5%88%9B%E5%BB%BAtrt%E6%A8%A1%E5%9E%8B%E6%97%B6-%E5%87%BA%E7%8E%B0core-dumped/" class="post-title-link" itemprop="url">创建trt模型时，出现core dumped</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-17 18:07:51" itemprop="dateCreated datePublished" datetime="2020-07-17T18:07:51+08:00">2020-07-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-07 13:43:47" itemprop="dateModified" datetime="2020-09-07T13:43:47+08:00">2020-09-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><ul>
-<li>JetPack4.4</li>
-</ul>
-<p>使用这份<a href="https://github.com/tensorflow/tensorrt/blob/r1.14%2B/tftrt/examples/object_detection/object_detection.py" target="_blank" rel="noopener">代码</a></p>
-<p>在优化模型时，若<code>force_nms_cpu</code>为<code>True</code>，则会出现core dumped</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>方法1：</p>
-<p>修改<a href="https://github.com/tensorflow/tensorrt/blob/r1.14%2B/tftrt/examples/object_detection/graph_utils.py" target="_blank" rel="noopener">graph_utils.py</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def force_nms_cpu(frozen_graph):</span><br><span class="line">    for node in frozen_graph.node:</span><br><span class="line">        if &#39;NonMaxSuppression&#39; in node.name:</span><br><span class="line">-             node.device &#x3D; &#39;&#x2F;device:CPU:0&#39;</span><br><span class="line">+             node.device &#x3D; &#39;&#x2F;job:localhost&#x2F;replica:0&#x2F;task:0&#x2F;device:CPU:0&#39;</span><br><span class="line">    return frozen_graph</span><br></pre></td></tr></table></figure>
-
-<p>方法2：</p>
-<p>不开启<code>force_nms_cpu</code></p>
-<p>ref:</p>
-<ul>
-<li><a href="https://github.com/tensorflow/tensorrt/issues/107" target="_blank" rel="noopener">when force_nms_cpu is true and use_trt is true, will be core dumped</a></li>
-<li><a href="https://github.com/dataplayer12/homesecurity/issues/6" target="_blank" rel="noopener">Tensorflow Model issue</a></li>
-</ul>
 
       
     </div>
@@ -946,14 +937,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/sundries/archives/">
         
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/sundries/tags/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
