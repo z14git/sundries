@@ -476,8 +476,8 @@
     <content><![CDATA[<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ubuntu-drivers devices <span class="comment"># 查看设备和推荐的驱动</span></span><br><span class="line">sudo ubuntu-drivers autoinstall <span class="comment"># 安装推荐的驱动</span></span><br><span class="line"><span class="comment"># sudo apt install nvidia-340 # 安装指定版本</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>ubuntu</tag>
         <tag>linux</tag>
+        <tag>ubuntu</tag>
         <tag>driver</tag>
       </tags>
   </entry>
