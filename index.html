@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"z14git.github.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"z14git.gitee.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="十四的杂物">
-<meta property="og:url" content="http://z14git.github.io/sundries/index.html">
+<meta property="og:url" content="http://z14git.gitee.io/sundries/index.html">
 <meta property="og:site_name" content="十四的杂物">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="z14git">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://z14git.github.io/sundries/">
+<link rel="canonical" href="http://z14git.gitee.io/sundries/">
 
 
 <script id="page-configurations">
@@ -180,7 +180,80 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/08/19/jp4-6-log/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/11/25/How-To-Disable-Unattended-Upgrades-On-Ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2021/11/25/How-To-Disable-Unattended-Upgrades-On-Ubuntu/" class="post-title-link" itemprop="url">How To Disable Unattended Upgrades On Ubuntu</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-25 09:58:24 / 修改时间：17:16:37" itemprop="dateCreated datePublished" datetime="2021-11-25T09:58:24+08:00">2021-11-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>有时在使用 <code>apt install xxx</code> 时会出现以下错误信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E: Could not get lock &#x2F;var&#x2F;lib&#x2F;dpkg&#x2F;lock-frontend - open (11: Resource temporarily unavailable)</span><br><span class="line">E: Unable to acquire the dpkg frontend lock (&#x2F;var&#x2F;lib&#x2F;dpkg&#x2F;lock-frontend), is another process using it?</span><br></pre></td></tr></table></figure>
+
+<p>而且在关机时还会出现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A stop job is running for Unattended Upgrades Shutdown (10s &#x2F; 30 min)</span><br></pre></td></tr></table></figure>
+
+<p>这就是 <code>unattended-upgrades</code> 服务造成的。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>运行：</p>
+<p><code>sudo dpkg-reconfigure unattended-upgrades</code></p>
+<p>选择 <strong>No</strong>。</p>
+<p>又或者直接移除：</p>
+<p><code>sudo apt remove unattended-upgrades</code></p>
+<blockquote>
+<p>ref: <a href="https://ostechnix.com/how-to-disable-unattended-upgrades-on-ubuntu/" target="_blank" rel="noopener">How To Disable Unattended Upgrades On Ubuntu</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/08/19/jp4-6-log/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -211,7 +284,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-23 15:48:15" itemprop="dateModified" datetime="2021-08-23T15:48:15+08:00">2021-08-23</time>
+                <time title="修改时间：2021-11-25 17:16:37" itemprop="dateModified" datetime="2021-11-25T17:16:37+08:00">2021-11-25</time>
               </span>
 
           
@@ -255,7 +328,7 @@
 
 <h2 id="Install-OpenCV"><a href="#Install-OpenCV" class="headerlink" title="Install OpenCV"></a>Install OpenCV</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos/</span><br><span class="line">wget -O opencv-4.5.3.zip https://github.com/opencv/opencv/archive/4.5.3.zip</span><br><span class="line">wget -O opencv_contrib-4.5.3.zip https://github.com/opencv/opencv_contrib/archive/refs/tags/4.5.3.zip</span><br><span class="line"></span><br><span class="line">sudo apt install libeigen3-dev libglew-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev libgstreamer1.0-dev libjpeg-turbo8-dev liblapacke-dev libopenblas-dev libpostproc-dev libtesseract-dev libxine2-dev libx264-dev qv4l2 v4l-utils v4l2ucp libgoogle-glog-dev</span><br><span class="line"></span><br><span class="line">unzip -q opencv-4.5.3.zip</span><br><span class="line">unzip -q opencv_contrib-4.5.3.zip</span><br><span class="line">mv opencv-4.5.3 opencv</span><br><span class="line">mv opencv_contrib-4.5.3 opencv_contrib</span><br><span class="line"><span class="built_in">cd</span> opencv/</span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line"></span><br><span class="line">sudo mkdir /usr/venv_cv</span><br><span class="line">workon cv</span><br><span class="line">cmake -D CMAKE_BUILD_TYPE=RELEASE -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=ON -D BUILD_opencv_java_bindings_generator=OFF -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/venv_cv -D OPENCV_DNN_CUDA=ON -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=~/repos/opencv_contrib/modules -D PYTHON3_NUMPY_INCLUDE_DIRS=~/.venv/cv/lib/python3.6/site-packages/numpy/core/include -D WITH_CUDA=ON -D CUDA_ARCH_PTX=<span class="string">""</span> -D CUDA_ARCH_BIN=5.3 -D WITH_GSTREAMER=ON -D WITH_TENGINE=ON -D WITH_FREETYPE=ON -D WITH_OPENGL=ON ..</span><br><span class="line">make -j4</span><br><span class="line">sudo pc4 make install</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/cv/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/venv_cv/lib/python3.6/site-packages/cv2 cv2</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/tf2/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/venv_cv/lib/python3.6/site-packages/cv2 cv2</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/torch/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/venv_cv/lib/python3.6/site-packages/cv2 cv2</span><br></pre></td></tr></table></figure>
 
-<h2 id="Install-torch2trt"><a href="#Install-torch2trt" class="headerlink" title="Install torch2trt"></a>Install torch2trt</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos/</span><br><span class="line"></span><br><span class="line"><span class="comment"># fix: AttributeError: 'tensorrt.tensorrt.Builder' object has no attribute 'max_workspace_size'</span></span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/gcunhase/torch2trt</span><br><span class="line"><span class="built_in">cd</span> torch2trt/</span><br><span class="line"></span><br><span class="line">workon torch</span><br><span class="line">pc4 python setup.py install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 软链tensorrt到torch</span></span><br><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/torch/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/lib/python3.6/dist-packages/tensorrt tensorrt</span><br></pre></td></tr></table></figure>
+<h2 id="Install-torch2trt"><a href="#Install-torch2trt" class="headerlink" title="Install torch2trt"></a>Install torch2trt</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos/</span><br><span class="line"></span><br><span class="line"><span class="comment"># fix: AttributeError: 'tensorrt.tensorrt.Builder' object has no attribute 'max_workspace_size'</span></span><br><span class="line"><span class="comment"># pc4 git clone https://github.com/gcunhase/torch2trt</span></span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/NVIDIA-AI-IOT/torch2trt.git</span><br><span class="line"><span class="built_in">cd</span> torch2trt/</span><br><span class="line"></span><br><span class="line">workon torch</span><br><span class="line">pc4 python setup.py install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 软链tensorrt到torch</span></span><br><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/torch/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/lib/python3.6/dist-packages/tensorrt tensorrt</span><br></pre></td></tr></table></figure>
 
 <p>ref: <a href="https://github.com/NVIDIA-AI-IOT/torch2trt/issues/592" target="_blank" rel="noopener">Example fails with ‘tensorrt.tensorrt.Builder’ object has no attribute ‘max_workspace_size’</a></p>
 <h2 id="Install-jetson-inference"><a href="#Install-jetson-inference" class="headerlink" title="Install jetson-inference"></a>Install jetson-inference</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 git <span class="built_in">clone</span> --recursive https://github.com/dusty-nv/jetson-inference.git</span><br><span class="line"><span class="built_in">cd</span> jetson-inference</span><br><span class="line">vim tools/download-models.sh <span class="comment"># 在wget前增加proxychains4</span></span><br><span class="line">vim CMakePreBuild.sh <span class="comment"># 增加proxychains4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 $&#123;PYTHON_EXECUTABLE&#125; 为 /home/frotech/.virtualenvs/torch/bin/python3</span></span><br><span class="line">vim utils/python/bindings/FindNumPy.cmake</span><br><span class="line"></span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line"></span><br><span class="line">workon torch</span><br><span class="line"><span class="built_in">export</span> OPENBLAS_CORETYPE=ARMV8</span><br><span class="line"><span class="comment"># 选择下载哪些模型，跳过安装PyTorch</span></span><br><span class="line">cmake ../</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装到torch</span></span><br><span class="line"><span class="comment">## 修改下面的路径，将其改为torch环境的路径，注意dist-packages改为site-packages</span></span><br><span class="line"><span class="comment"># set(PYTHON_BINDING_INSTALL_DIR /usr/lib/python$&#123;PYTHON_VERSION_MAJOR&#125;.$&#123;PYTHON_VERSION_MINOR&#125;/dist-packages)</span></span><br><span class="line">vim ../python/bindings/CMakeLists.txt</span><br><span class="line">vim ../utils/python/bindings/CMakeLists.txt <span class="comment">#修改方法同上</span></span><br><span class="line">make -j4</span><br><span class="line">OPENBLAS_CORETYPE=ARMV8 sudo -E make install</span><br><span class="line">sudo ldconfig</span><br><span class="line"><span class="comment"># maybe need to reboot</span></span><br></pre></td></tr></table></figure>
@@ -292,6 +365,17 @@
 <p>ref: <a href="http://google.github.io/proto-lens/installing-protoc.html" target="_blank" rel="noopener">Installing protoc</a></p>
 <h2 id="Install-TensorFlow-Object-Detection-API-1-x"><a href="#Install-TensorFlow-Object-Detection-API-1-x" class="headerlink" title="Install TensorFlow Object Detection API(1.x)"></a>Install TensorFlow Object Detection API(1.x)</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/tensorflow/models.git</span><br><span class="line"><span class="built_in">cd</span> models/research</span><br><span class="line">git checkout 5f4d34fc</span><br><span class="line">sudo protoc object_detection/protos/*.proto --python_out=.</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pc4 python setup.py install</span><br><span class="line"><span class="built_in">cd</span> slim</span><br><span class="line">pc4 python setup.py install</span><br></pre></td></tr></table></figure>
 
+<h2 id="Fix-autocomplete-not-working-Todo"><a href="#Fix-autocomplete-not-working-Todo" class="headerlink" title="Fix autocomplete not working (Todo)"></a>Fix autocomplete not working (Todo)</h2><p>原 0.18 版本 tab 键自动补全为失效，需要降低版本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">workon torch</span><br><span class="line">pip install jedi==0.17.2</span><br><span class="line">workon cv</span><br><span class="line">pip install jedi==0.17.2</span><br><span class="line">workon tf2</span><br><span class="line">pip install jedi==0.17.2</span><br></pre></td></tr></table></figure>
+
+<p>ref: <a href="https://github.com/jupyterlab/jupyterlab/issues/9602#issuecomment-758752192" target="_blank" rel="noopener">The autocomplete does not work when I press Tab or Shift + Tab</a></p>
+<h2 id="Install-YOLOX"><a href="#Install-YOLOX" class="headerlink" title="Install YOLOX"></a>Install YOLOX</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">workon torch</span><br><span class="line"><span class="built_in">cd</span> ~/repos/</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/Megvii-BaseDetection/YOLOX.git</span><br><span class="line"><span class="built_in">cd</span> YOLOX/</span><br><span class="line">pc4 pip install loguru tqdm Pillow thop ninja tabulate</span><br><span class="line">pip install -v -e .</span><br><span class="line">pc4 pip install <span class="string">'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Update-CMake"><a href="#Update-CMake" class="headerlink" title="Update CMake"></a>Update CMake</h2><p>编译 onnx-tensorrt 需要 &gt; 3.13 版本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget http://www.cmake.org/files/v3.20/cmake-3.20.6.tar.gz</span><br><span class="line">tar xpf cmake-3.20.6.tar.gz cmake-3.20.6/</span><br><span class="line"><span class="built_in">cd</span> cmake-3.20.6/</span><br><span class="line">sudo pc4 apt-get install libssl-dev libcurl4-openssl-dev</span><br><span class="line">./bootstrap --system-curl</span><br><span class="line">make -j4</span><br><span class="line"><span class="comment"># 将z14git替换为你的用户名</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export PATH=/home/z14git/repos/cmake-3.20.6/bin/:$PATH'</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-onnx-tensorrt"><a href="#Install-onnx-tensorrt" class="headerlink" title="Install onnx-tensorrt"></a>Install onnx-tensorrt</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos/</span><br><span class="line">pc4 git <span class="built_in">clone</span> --recursive https://github.com/onnx/onnx-tensorrt.git</span><br><span class="line"><span class="built_in">cd</span> onnx-tensorrt</span><br><span class="line">mkdir build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">sudo apt-get install libprotobuf-dev protobuf-compiler</span><br><span class="line">cmake .. -DTENSORRT_ROOT=/usr/src/tensorrt/ </span><br><span class="line">sudo chmod -R 751 /usr/<span class="built_in">local</span>/include/google/</span><br><span class="line">make -j4</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$PWD</span>:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -310,7 +394,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/07/28/%E4%BF%AE%E6%94%B9trt-batchSize/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/07/28/%E4%BF%AE%E6%94%B9trt-batchSize/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -378,7 +462,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/07/25/OSError-SavedModel-file-does-not-exist-at/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/07/25/OSError-SavedModel-file-does-not-exist-at/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -447,7 +531,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/05/28/build-opencv-on-windows/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/05/28/build-opencv-on-windows/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -559,7 +643,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/04/29/jp4-5-1-log/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/04/29/jp4-5-1-log/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -712,7 +796,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/04/08/git-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/04/08/git-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -781,7 +865,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/02/22/ubuntu-install-v2ray/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/02/22/ubuntu-install-v2ray/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -845,7 +929,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/02/07/jp4-5-log/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/02/07/jp4-5-log/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -1002,7 +1086,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/30/ubuntu%E5%AE%89%E8%A3%85TL-WDN6200%E9%A9%B1%E5%8A%A8/">
+    <link itemprop="mainEntityOfPage" href="http://z14git.gitee.io/sundries/2021/01/30/ubuntu%E5%AE%89%E8%A3%85TL-WDN6200%E9%A9%B1%E5%8A%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/sundries/images/avatar.gif">
@@ -1061,77 +1145,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/21/Fix-Error-0x80071160/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2021/01/21/Fix-Error-0x80071160/" class="post-title-link" itemprop="url">Fix Error 0x80071160</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-01-21 09:50:39 / 修改时间：09:53:41" itemprop="dateCreated datePublished" datetime="2021-01-21T09:50:39+08:00">2021-01-21</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>已管理员身份运行Terminal</li>
-<li>执行<code>dism.exe /Online /Cleanup-image /Restorehealth</code></li>
-<li>执行<code>sfc /scannow</code></li>
-</ol>
-<blockquote>
-<p>ref: <a href="https://www.youtube.com/watch?v=3xbTDspwQNU&ab_channel=AarohanTechSol" target="_blank" rel="noopener">Fix Error 0x80071160 While Updating Windows 10</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/sundries/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/sundries/page/8/">8</a><a class="extend next" rel="next" href="/sundries/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/sundries/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/sundries/page/9/">9</a><a class="extend next" rel="next" href="/sundries/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1197,7 +1215,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/sundries/archives/">
         
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">81</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
