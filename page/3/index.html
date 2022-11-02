@@ -180,6 +180,155 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/16/ubuntu-turn-on-wifi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/11/16/ubuntu-turn-on-wifi/" class="post-title-link" itemprop="url">ubuntu turn on wifi</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-16 14:38:43" itemprop="dateCreated datePublished" datetime="2020-11-16T14:38:43+08:00">2020-11-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-17 13:59:54" itemprop="dateModified" datetime="2020-11-17T13:59:54+08:00">2020-11-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>用<code>iwconfig</code>查看无线接口，一般是<code>wlan0</code>之类的名称。</p>
+<p>然后执行</p>
+<p><code>sudo ifconfig wlan0 up</code></p>
+<blockquote>
+<p>ref: <a href="https://www.linuxbabe.com/ubuntu/connect-to-wi-fi-from-terminal-on-ubuntu-18-04-19-04-with-wpa-supplicant" target="_blank" rel="noopener">Connect to Wi-Fi From Terminal on Ubuntu 18.04/20.04 with WPA Supplicant</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/11/using-proxy-in-python-script/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/11/11/using-proxy-in-python-script/" class="post-title-link" itemprop="url">using proxy in python script</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-11 20:32:43" itemprop="dateCreated datePublished" datetime="2020-11-11T20:32:43+08:00">2020-11-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-13 16:09:24" itemprop="dateModified" datetime="2020-11-13T16:09:24+08:00">2020-11-13</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>for request:</p>
+<p><code>pip install requests[socks]</code></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">proxies = &#123;</span><br><span class="line">    <span class="string">'http'</span>: <span class="string">'socks5://127.0.0.1:1080'</span>,</span><br><span class="line">    <span class="string">'https'</span>: <span class="string">'socks5://127.0.0.1:1080'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    response = requests.get(<span class="string">'http://httpbin.org/get'</span>, proxies=proxies)</span><br><span class="line">    print(response.text)</span><br><span class="line"><span class="keyword">except</span> requests.exceptions.ConnectionError <span class="keyword">as</span> e:</span><br><span class="line">    print(e.args)</span><br></pre></td></tr></table></figure>
+
+<p>for urllib:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> ProxyHandler, build_opener, urlopen</span><br><span class="line"><span class="keyword">from</span> urllib.error <span class="keyword">import</span> URLError</span><br><span class="line"></span><br><span class="line">proxy_handler = ProxyHandler(&#123;<span class="string">'socks5'</span>: <span class="string">'localhost:1080'</span>&#125;)</span><br><span class="line">opener = build_opener(proxy_handler)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    response = urlopen(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line">    print(response.read())</span><br><span class="line"><span class="keyword">except</span> URLError <span class="keyword">as</span> e:</span><br><span class="line">    print(e.reason)</span><br></pre></td></tr></table></figure>
+
+<p>for boto3:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> boto3</span><br><span class="line"><span class="keyword">from</span> botocore.config <span class="keyword">import</span> Config</span><br><span class="line"></span><br><span class="line">boto3.resource(<span class="string">'s3'</span>, config=Config(proxies=&#123;<span class="string">'https'</span>: <span class="string">'foo.bar:3128'</span>&#125;))</span><br></pre></td></tr></table></figure>
+
+<p>ref:</p>
+<ul>
+<li><a href="https://amberwest.github.io/2018/07/19/python3-%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/" target="_blank" rel="noopener">python3：代理设置</a></li>
+<li><a href="https://www.coder.work/article/6265084" target="_blank" rel="noopener">您如何在boto3中使用HTTP / HTTPS代理？</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/11/windows-10-%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -743,145 +892,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/10/30/restart-jetson-nano-camera/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/10/30/restart-jetson-nano-camera/" class="post-title-link" itemprop="url">restart jetson nano camera</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-10-30 15:35:50 / 修改时间：15:56:42" itemprop="dateCreated datePublished" datetime="2020-10-30T15:35:50+08:00">2020-10-30</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>重启 Jetson Nano 摄像头：</p>
-<p><code>sudo systemctl restart nvargus-daemon</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/10/27/%E5%A6%82%E4%BD%95%E7%94%A8cv2-VideoWriter%E5%AE%9E%E7%8E%B0rtsp%E6%8E%A8%E6%B5%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/10/27/%E5%A6%82%E4%BD%95%E7%94%A8cv2-VideoWriter%E5%AE%9E%E7%8E%B0rtsp%E6%8E%A8%E6%B5%81/" class="post-title-link" itemprop="url">如何用cv2.VideoWriter实现rtsp推流</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-27 16:38:41" itemprop="dateCreated datePublished" datetime="2020-10-27T16:38:41+08:00">2020-10-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-28 21:24:49" itemprop="dateModified" datetime="2020-10-28T21:24:49+08:00">2020-10-28</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="安装-v4l2loopback"><a href="#安装-v4l2loopback" class="headerlink" title="安装 v4l2loopback"></a>安装 v4l2loopback</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line"><span class="built_in">cd</span> /usr/src</span><br><span class="line">mkdir v4l2loopback</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/umlaeute/v4l2loopback.git v4l2loopback</span><br><span class="line"><span class="built_in">cd</span> v4l2loopback/</span><br><span class="line">git checkout v0.10.0</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">modprobe v4l2loopback</span><br></pre></td></tr></table></figure>
-
-<p>这里假设 v4l2loopback 创建的设备是 <code>/dev/video1</code></p>
-<p>ref:</p>
-<ul>
-<li><a href="https://github.com/umlaeute/v4l2loopback" target="_blank" rel="noopener">v4l2loopback</a></li>
-<li><a href="https://forums.developer.nvidia.com/t/jetpack-4-2-1-building-v4l2loopback-fails/79201" target="_blank" rel="noopener">Jetpack 4.2.1 : building v4l2loopback fails</a></li>
-</ul>
-<h2 id="build-rtsp-server"><a href="#build-rtsp-server" class="headerlink" title="build rtsp server"></a>build rtsp server</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libgstrtspserver-1.0 libgstreamer1.0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/GStreamer/gst-rtsp-server.git</span><br><span class="line"><span class="built_in">cd</span> gst-rtsp-server/</span><br><span class="line">git checkout 1.14</span><br><span class="line"><span class="built_in">cd</span> examples/</span><br><span class="line">gcc <span class="built_in">test</span>-launch.c -o <span class="built_in">test</span>-launch $(pkg-config --cflags --libs gstreamer-1.0 gstreamer-rtsp-server-1.0)</span><br></pre></td></tr></table></figure>
-
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>往 <code>/dev/video1</code>写入数据</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">out = cv2.VideoWriter(<span class="string">"appsrc ! videoconvert ! video/x-raw,format=BGRx ! identity drop-allocation=true ! v4l2sink device=/dev/video1"</span>,</span><br><span class="line">                      <span class="number">0</span>, framerate, (<span class="number">640</span>, <span class="number">360</span>))</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    out.write(frame)</span><br></pre></td></tr></table></figure>
-
-<h2 id="start-rtsp-server"><a href="#start-rtsp-server" class="headerlink" title="start rtsp server"></a>start rtsp server</h2><p><code>./test-launch &quot;v4l2src device=/dev/video1 ! nvvidconv ! nvv4l2h265enc ! h265parse ! rtph265pay name=pay0 pt=96 config-interval=1 &quot;</code></p>
-<p>ref: <a href="https://forums.developer.nvidia.com/t/rtsp-streaming-with-cv-videowriter/111686" target="_blank" rel="noopener">RTSP streaming with cv::VideoWriter</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -952,14 +962,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/sundries/archives/">
         
-          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/sundries/tags/">
           
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">41</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

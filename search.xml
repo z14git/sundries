@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>在 wsl 中使用 cuda</title>
+    <url>/sundries/2022/11/02/%E5%9C%A8-wsl-%E4%B8%AD%E4%BD%BF%E7%94%A8-cuda/</url>
+    <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
+<li>安装好 wsl2</li>
+<li>安装 <a href="https://docs.docker.com/docker-for-windows/wsl/#download" target="_blank" rel="noopener">Docker Desktop</a></li>
+<li>安装最新 nvidia 显卡驱动</li>
+</ol>
+<h2 id="Setting-up-NVIDIA-CUDA-with-Docker"><a href="#Setting-up-NVIDIA-CUDA-with-Docker" class="headerlink" title="Setting up NVIDIA CUDA with Docker"></a>Setting up NVIDIA CUDA with Docker</h2><figure class="highlight ps"><table><tr><td class="code"><pre><span class="line">sudo apt<span class="literal">-key</span> del <span class="number">7</span>fa2af80</span><br><span class="line">wget https://developer.download.nvidia.com/compute/cuda/repos/wsl<span class="literal">-ubuntu</span>/x86_64/cuda<span class="literal">-wsl</span><span class="literal">-ubuntu</span>.pin</span><br><span class="line">sudo mv cuda<span class="literal">-wsl</span><span class="literal">-ubuntu</span>.pin /etc/apt/preferences.d/cuda<span class="literal">-repository</span><span class="literal">-pin</span><span class="literal">-600</span></span><br><span class="line">wget https://developer.download.nvidia.com/compute/cuda/<span class="number">11.8</span>.<span class="number">0</span>/local_installers/cuda<span class="literal">-repo</span><span class="literal">-wsl</span><span class="literal">-ubuntu</span><span class="literal">-11</span><span class="literal">-8</span><span class="literal">-local_11</span>.<span class="number">8.0</span><span class="literal">-1_amd64</span>.deb</span><br><span class="line">sudo dpkg <span class="literal">-i</span> cuda<span class="literal">-repo</span><span class="literal">-wsl</span><span class="literal">-ubuntu</span><span class="literal">-11</span><span class="literal">-8</span><span class="literal">-local_11</span>.<span class="number">8.0</span><span class="literal">-1_amd64</span>.deb</span><br><span class="line">sudo cp /var/cuda<span class="literal">-repo</span><span class="literal">-wsl</span><span class="literal">-ubuntu</span><span class="literal">-11</span><span class="literal">-8</span><span class="literal">-local</span>/cuda-*<span class="literal">-keyring</span>.gpg /usr/share/keyrings/</span><br><span class="line">sudo apt<span class="literal">-get</span> update</span><br><span class="line">sudo apt<span class="literal">-get</span> <span class="literal">-y</span> install cuda</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">distribution=<span class="variable">$</span>(. /etc/os<span class="literal">-release</span>;echo <span class="variable">$ID</span><span class="variable">$VERSION_ID</span>)</span><br><span class="line">curl <span class="literal">-s</span> <span class="literal">-L</span> https://nvidia.github.io/nvidia<span class="literal">-docker</span>/gpgkey | sudo apt<span class="literal">-key</span> add -</span><br><span class="line">curl <span class="literal">-s</span> <span class="literal">-L</span> https://nvidia.github.io/nvidia<span class="literal">-docker</span>/<span class="variable">$distribution</span>/nvidia<span class="literal">-docker</span>.list | sudo tee /etc/apt/sources.list.d/nvidia<span class="literal">-docker</span>.list</span><br><span class="line">sudo apt<span class="literal">-get</span> update</span><br><span class="line">sudo apt<span class="literal">-get</span> install <span class="literal">-y</span> nvidia<span class="literal">-docker2</span></span><br></pre></td></tr></table></figure>
+
+<p>参考：</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers#install-docker-desktop" target="_blank" rel="noopener">Get started with Docker remote containers on WSL 2</a></li>
+<li><a href="https://docs.nvidia.com/cuda/wsl-user-guide/index.html#getting-started-with-cuda-on-wsl" target="_blank" rel="noopener">CUDA on WSL User Guide</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows/wsl/tutorials/gpu-compute" target="_blank" rel="noopener">Get started with GPU acceleration for ML in WSL</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>wsl</tag>
+        <tag>docker</tag>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>wsl 备份与迁移</title>
+    <url>/sundries/2022/11/02/wsl-%E5%A4%87%E4%BB%BD%E4%B8%8E%E8%BF%81%E7%A7%BB/</url>
+    <content><![CDATA[<p>列出所有 image</p>
+<figure class="highlight ps"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">-l</span></span><br></pre></td></tr></table></figure>
+
+<p>导出 image 到 tar 文件</p>
+<figure class="highlight ps"><table><tr><td class="code"><pre><span class="line">wsl -<span class="literal">-export</span> &lt;Distribution Name&gt; &lt;FileName&gt;</span><br></pre></td></tr></table></figure>
+
+<p>导入 tar 镜像</p>
+<figure class="highlight ps"><table><tr><td class="code"><pre><span class="line">wsl -<span class="literal">-import</span> &lt;Distribution Name&gt; &lt;InstallLocation&gt; &lt;FileName&gt;</span><br></pre></td></tr></table></figure>
+
+<p>ps: 这一步的 <code>Distribution Name</code> 可以自定义</p>
+<p>参考：</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/windows/wsl/basic-commands" target="_blank" rel="noopener">Basic commands for WSL</a></li>
+<li><a href="https://4sysops.com/archives/export-and-import-windows-subsystem-for-linux-wsl/" target="_blank" rel="noopener">Export and import Windows Subsystem for Linux (WSL)</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>wsl</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>install apk from command prompt</title>
     <url>/sundries/2022/11/02/install-apk-from-command-prompt/</url>
     <content><![CDATA[<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure>
@@ -638,8 +684,8 @@
     <content><![CDATA[<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ubuntu-drivers devices <span class="comment"># 查看设备和推荐的驱动</span></span><br><span class="line">sudo ubuntu-drivers autoinstall <span class="comment"># 安装推荐的驱动</span></span><br><span class="line"><span class="comment"># sudo apt install nvidia-340 # 安装指定版本</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>linux</tag>
         <tag>ubuntu</tag>
+        <tag>linux</tag>
         <tag>driver</tag>
       </tags>
   </entry>
@@ -2326,8 +2372,8 @@
 </blockquote>
 ]]></content>
       <tags>
-        <tag>bat</tag>
         <tag>conda</tag>
+        <tag>bat</tag>
       </tags>
   </entry>
   <entry>
