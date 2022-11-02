@@ -180,6 +180,226 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/02/07/jp4-5-log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2021/02/07/jp4-5-log/" class="post-title-link" itemprop="url">jp4.5 log</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-07 09:35:40" itemprop="dateCreated datePublished" datetime="2021-02-07T09:35:40+08:00">2021-02-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-22 15:58:50" itemprop="dateModified" datetime="2021-02-22T15:58:50+08:00">2021-02-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开网卡</span></span><br><span class="line">sudo ifconfig wlan0 up</span><br><span class="line"><span class="comment"># 配wifi</span></span><br><span class="line">sudo nmtui</span><br><span class="line">mkdir repos</span><br></pre></td></tr></table></figure>
+
+<h3 id="最高性能模式"><a href="#最高性能模式" class="headerlink" title="最高性能模式"></a>最高性能模式</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo nvpmodel -m 0</span><br><span class="line">sudo jetson_clocks</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-system-level-dependencies"><a href="#Install-system-level-dependencies" class="headerlink" title="Install system-level dependencies"></a>Install system-level dependencies</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt-get install git cmake</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-proxychains"><a href="#安装-proxychains" class="headerlink" title="安装 proxychains"></a>安装 proxychains</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/rofl0r/proxychains-ng.git</span><br><span class="line"><span class="built_in">cd</span> proxychains-ng</span><br><span class="line">./configure --prefix=/usr --sysconfdir=/etc</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">sudo make install-config</span><br><span class="line">sudo vim /etc/proxychains.conf <span class="comment"># 修改代理地址</span></span><br></pre></td></tr></table></figure>
+
+<p>ref: <a href="https://github.com/rofl0r/proxychains-ng/issues/139#issuecomment-260360687" target="_blank" rel="noopener">#139</a></p>
+<h3 id="简化proxychains4"><a href="#简化proxychains4" class="headerlink" title="简化proxychains4"></a>简化proxychains4</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"alias pc4='proxychains4'"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"alias sudo='sudo '"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>ref :</p>
+<ul>
+<li><a href="https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo" target="_blank" rel="noopener">Aliases not available when using sudo</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/111228714" target="_blank" rel="noopener">chainproxys-ng：在服务器/终端也能使用代理</a></li>
+</ul>
+<h3 id="Install-other-dependencies"><a href="#Install-other-dependencies" class="headerlink" title="Install other dependencies"></a>Install other dependencies</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">sudo pc4 apt-get install libatlas-base-dev gfortran</span><br><span class="line">sudo pc4 apt-get install libhdf5-serial-dev hdf5-tools</span><br><span class="line">sudo pc4 apt-get install python3-dev</span><br><span class="line">sudo pc4 apt-get install nano locate</span><br><span class="line">sudo pc4 apt-get install libfreetype6-dev python3-setuptools</span><br><span class="line">sudo pc4 apt-get install cython3</span><br><span class="line">sudo pc4 apt-get install libxml2-dev libxslt1-dev</span><br><span class="line">sudo pc4 apt install curl screen</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新gcc</span></span><br><span class="line">sudo pc4 apt install software-properties-common</span><br><span class="line">sudo add-apt-repository ppa:ubuntu-toolchain-r/<span class="built_in">test</span></span><br><span class="line">sudo pc4 apt update</span><br><span class="line">sudo pc4 apt install gcc-6 g++-6 gcc-7 g++-7 gcc-8 g++-8 gcc-9 g++-9</span><br><span class="line"><span class="comment"># 设置优先级</span></span><br><span class="line">sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90 --slave /usr/bin/g++ g++ /usr/bin/g++-9 --slave /usr/bin/gcov gcov /usr/bin/gcov-9</span><br><span class="line">sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 80 --slave /usr/bin/g++ g++ /usr/bin/g++-8 --slave /usr/bin/gcov gcov /usr/bin/gcov-8</span><br><span class="line">sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 70 --slave /usr/bin/g++ g++ /usr/bin/g++-7 --slave /usr/bin/gcov gcov /usr/bin/gcov-7</span><br><span class="line">sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6 --slave /usr/bin/gcov gcov /usr/bin/gcov-6</span><br><span class="line"></span><br><span class="line">sudo update-alternatives --config gcc <span class="comment">#GCC8</span></span><br></pre></td></tr></table></figure>
+
+<p>ref: <a href="https://linuxize.com/post/how-to-install-gcc-compiler-on-ubuntu-18-04/" target="_blank" rel="noopener">How to Install GCC Compiler on Ubuntu 18.04</a></p>
+<h2 id="Set-up-Python-virtual-environments-on-your-Jetson-Nano"><a href="#Set-up-Python-virtual-environments-on-your-Jetson-Nano" class="headerlink" title="Set up Python virtual environments on your Jetson Nano"></a>Set up Python virtual environments on your Jetson Nano</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">sudo -H proxychains4 python3 get-pip.py</span><br><span class="line">rm get-pip.py</span><br><span class="line"></span><br><span class="line">sudo -H proxychains4 pip install virtualenv virtualenvwrapper</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export WORKON_HOME=<span class="variable">$HOME</span>/.virtualenvs"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"source /usr/local/bin/virtualenvwrapper.sh"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="Create-your-‘cv’-virtual-environment"><a href="#Create-your-‘cv’-virtual-environment" class="headerlink" title="Create your ‘cv’ virtual environment"></a>Create your ‘cv’ virtual environment</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv cv -p python3</span><br><span class="line">workon cv</span><br></pre></td></tr></table></figure>
+
+<h2 id="Create-‘tf2’-virtual-environment"><a href="#Create-‘tf2’-virtual-environment" class="headerlink" title="Create ‘tf2’ virtual environment"></a>Create ‘tf2’ virtual environment</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv tf2 -p python3</span><br></pre></td></tr></table></figure>
+
+<h2 id="Make-swapfile"><a href="#Make-swapfile" class="headerlink" title="Make swapfile"></a>Make swapfile</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo fallocate -l 4G /var/swapfile</span><br><span class="line">sudo chmod 600 /var/swapfile</span><br><span class="line">sudo mkswap /var/swapfile</span><br><span class="line">sudo swapon /var/swapfile</span><br><span class="line">sudo bash -c <span class="string">'echo "/var/swapfile swap swap defaults 0 0" &gt;&gt; /etc/fstab'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-Jetson-stats"><a href="#安装-Jetson-stats" class="headerlink" title="安装 Jetson stats"></a>安装 Jetson stats</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -H proxychains4 pip install -U jetson-stats</span><br></pre></td></tr></table></figure>
+
+<h2 id="Update-CMake"><a href="#Update-CMake" class="headerlink" title="Update CMake"></a>Update CMake</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget http://www.cmake.org/files/v3.19/cmake-3.19.4.tar.gz</span><br><span class="line">tar xpf cmake-3.19.4.tar.gz cmake-3.19.4/</span><br><span class="line"><span class="built_in">cd</span> cmake-3.19.4/</span><br><span class="line">sudo pc4 apt-get install libssl-dev libcurl4-openssl-dev</span><br><span class="line">./bootstrap --system-curl</span><br><span class="line">make -j4</span><br><span class="line"><span class="comment"># 将z14git替换为你的用户名</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export PATH=/home/z14git/repos/cmake-3.19.4/bin/:$PATH'</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line"><span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新protobuf"><a href="#更新protobuf" class="headerlink" title="更新protobuf"></a>更新protobuf</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget https://github.com/protocolbuffers/protobuf/releases/download/v3.12.3/protoc-3.12.3-linux-aarch_64.zip</span><br><span class="line">pc4 wget https://github.com/protocolbuffers/protobuf/releases/download/v3.12.3/protobuf-python-3.12.3.zip</span><br><span class="line">unzip protobuf-python-3.12.3.zip</span><br><span class="line">unzip protoc-3.12.3-linux-aarch_64.zip -d protoc-3.12.3</span><br><span class="line">sudo cp protoc-3.12.3/bin/protoc /usr/<span class="built_in">local</span>/bin/protoc</span><br><span class="line">workon cv</span><br><span class="line"><span class="built_in">export</span> PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=cpp</span><br><span class="line"><span class="built_in">cd</span> protobuf-3.12.3/</span><br><span class="line">./autogen.sh</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span></span><br><span class="line">make</span><br><span class="line">make check</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig</span><br><span class="line">pc4 pip install Cython</span><br><span class="line"><span class="built_in">cd</span> python/</span><br><span class="line">pc4 python setup.py build --cpp_implementation</span><br><span class="line">pc4 python setup.py <span class="built_in">test</span> --cpp_implementation</span><br><span class="line">pc4 python setup.py install --cpp_implementation</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装到tf2</span></span><br><span class="line">wokron tf2</span><br><span class="line">pc4 python setup.py build --cpp_implementation</span><br><span class="line">pc4 python setup.py <span class="built_in">test</span> --cpp_implementation</span><br><span class="line">pc4 python setup.py install --cpp_implementation</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-tf1-x-in-‘cv’-virtual-environment"><a href="#Install-tf1-x-in-‘cv’-virtual-environment" class="headerlink" title="Install tf1.x in ‘cv’ virtual environment"></a>Install tf1.x in ‘cv’ virtual environment</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">sudo pc4 apt-get install libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran</span><br><span class="line">pc4 pip install -U testresources setuptools==49.6.0</span><br><span class="line">pc4 pip install -U numpy==1.16.1 future==0.18.2 mock==3.0.5 h5py==2.10.0 keras_preprocessing==1.1.1 keras_applications==1.0.8 gast==0.2.2 futures pybind11</span><br><span class="line">pc4 pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v45 <span class="string">'tensorflow&lt;2'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="装matplotlib"><a href="#装matplotlib" class="headerlink" title="装matplotlib"></a>装matplotlib</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget https://github.com/matplotlib/matplotlib/archive/v3.3.4.tar.gz</span><br><span class="line">tar -xvf v3.3.4.tar.gz</span><br><span class="line"><span class="built_in">cd</span> matplotlib-3.3.4/</span><br><span class="line">pc4 wget https://downloads.sourceforge.net/project/freetype/freetype2/2.6.1/freetype-2.6.1.tar.gz</span><br><span class="line">mkdir build</span><br><span class="line">tar -xf freetype-2.6.1.tar.gz -C build/</span><br><span class="line"><span class="comment"># 装到cv</span></span><br><span class="line">workon cv</span><br><span class="line">sudo update-alternatives --config gcc <span class="comment">#GCC7</span></span><br><span class="line">pc4 python setup.py install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装到tf2</span></span><br><span class="line">workon tf2</span><br><span class="line">sudo update-alternatives --config gcc <span class="comment">#GCC7</span></span><br><span class="line">pc4 python setup.py install</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-TensorFlow-Object-Detection-API-1-x"><a href="#Install-TensorFlow-Object-Detection-API-1-x" class="headerlink" title="Install TensorFlow Object Detection API(1.x)"></a>Install TensorFlow Object Detection API(1.x)</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/tensorflow/models.git</span><br><span class="line"><span class="built_in">cd</span> models/research</span><br><span class="line">git checkout 5f4d34fc</span><br><span class="line">protoc object_detection/protos/*.proto --python_out=.</span><br><span class="line">pc4 python setup.py install</span><br><span class="line"><span class="built_in">cd</span> slim</span><br><span class="line">pc4 python setup.py install</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-PyTorch"><a href="#Install-PyTorch" class="headerlink" title="Install PyTorch"></a>Install PyTorch</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">sudo pc4 apt install libopenblas-base libopenmpi-dev</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pc4 pip install Cython</span><br><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget https://nvidia.box.com/shared/static/cs3xn3td6sfgtene6jdvsxlr366m2dhq.whl -O torch-1.7.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line"></span><br><span class="line">pc4 pip install numpy==1.16.1 torch-1.7.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line"></span><br><span class="line"><span class="comment"># torchvision</span></span><br><span class="line">sudo pc4 apt install libjpeg-dev zlib1g-dev libpython3-dev libavcodec-dev libavformat-dev libswscale-dev</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/pytorch/vision torchvision</span><br><span class="line"><span class="built_in">cd</span> torchvision</span><br><span class="line">git checkout v0.8.1</span><br><span class="line"><span class="built_in">export</span> BUILD_VERSION=0.8.1</span><br><span class="line">pc4 python setup.py install</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装到tf2</span></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install Cython</span><br><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 pip install numpy==1.16.1 torch-1.7.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line"><span class="built_in">cd</span> torchvision</span><br><span class="line"><span class="built_in">export</span> BUILD_VERSION=0.8.1</span><br><span class="line">pc4 python setup.py install</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-opencv"><a href="#Install-opencv" class="headerlink" title="Install opencv"></a>Install opencv</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos/</span><br><span class="line">pc4 wget -O opencv-4.5.1.zip https://github.com/opencv/opencv/archive/4.5.1.zip</span><br><span class="line">pc4 wget -O opencv_contrib-4.5.1.zip https://github.com/opencv/opencv_contrib/archive/4.5.1.zip</span><br><span class="line">sudo pc4 apt install libeigen3-dev libglew-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev libgstreamer1.0-dev libjpeg-turbo8-dev liblapacke-dev libopenblas-dev libpostproc-dev libtesseract-dev libxine2-dev libx264-dev qv4l2 v4l-utils v4l2ucp libgoogle-glog-dev</span><br><span class="line">unzip -q opencv-4.5.1.zip</span><br><span class="line">unzip -q opencv_contrib-4.5.1.zip</span><br><span class="line">mv opencv-4.5.1 opencv</span><br><span class="line">mv opencv_contrib-4.5.1 opencv_contrib</span><br><span class="line">sudo update-alternatives --config gcc <span class="comment">#GCC8</span></span><br><span class="line">workon cv</span><br><span class="line"><span class="built_in">cd</span> opencv/</span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line"></span><br><span class="line">pc4 cmake -D CMAKE_BUILD_TYPE=RELEASE \</span><br><span class="line">	-D BUILD_opencv_python2=OFF \</span><br><span class="line">	-D BUILD_opencv_python3=ON \</span><br><span class="line">	-D BUILD_opencv_java_bindings_generator=OFF \</span><br><span class="line">	-D CMAKE_BUILD_TYPE=RELEASE \</span><br><span class="line">    -D BUILD_PROTOBUF=OFF \</span><br><span class="line">    -D PROTOBUF_UPDATE_FILES=ON \</span><br><span class="line">	-D OPENCV_DNN_CUDA=ON \</span><br><span class="line">	-D OPENCV_ENABLE_NONFREE=ON \</span><br><span class="line">	-D OPENCV_EXTRA_MODULES_PATH=~/repos/opencv_contrib/modules \</span><br><span class="line">	-D PYTHON3_NUMPY_INCLUDE_DIRS=~/.virtualenvs/cv/lib/python3.6/site-packages/numpy/core/include \</span><br><span class="line">	-D WITH_CUDA=ON \</span><br><span class="line">	-D CUDA_ARCH_PTX=<span class="string">""</span> \</span><br><span class="line">	-D CUDA_ARCH_BIN=5.3 \</span><br><span class="line">	-D WITH_GSTREAMER=ON \</span><br><span class="line">	-D WITH_TENGINE=ON \</span><br><span class="line">	-D WITH_VULKAN=ON \</span><br><span class="line">	-D WITH_OPENMP=ON \</span><br><span class="line">	-D WITH_FREETYPE=ON \</span><br><span class="line">	-D WITH_OPENGL=ON ..</span><br><span class="line"></span><br><span class="line">make -j4</span><br><span class="line">sudo make install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装到cv</span></span><br><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/cv/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/lib/python3.6/site-packages/cv2 cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装到tf2</span></span><br><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/tf2/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/lib/python3.6/site-packages/cv2 cv2</span><br></pre></td></tr></table></figure>
+
+<p>ref: <a href="https://docs.opencv.org/master/db/d05/tutorial_config_reference.html" target="_blank" rel="noopener">OpenCV configuration options reference</a></p>
+<h2 id="Install-Jupyter-Related"><a href="#Install-Jupyter-Related" class="headerlink" title="Install Jupyter Related"></a>Install Jupyter Related</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">sudo pc4 apt install -y curl</span><br><span class="line">deactivate</span><br><span class="line">pc4 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -</span><br><span class="line">sudo pc4 apt install -y nodejs libffi-dev</span><br><span class="line">sudo -H proxychains4 pip3 install -U jupyter jupyterlab==2.2.6</span><br><span class="line">sudo -H proxychains4 jupyter labextension install @jupyter-widgets/jupyterlab-manager</span><br><span class="line"></span><br><span class="line">jupyter lab --generate-config</span><br><span class="line">python3 -c <span class="string">"from notebook.auth.security import set_password; set_password('z14git', '<span class="variable">$HOME</span>/.jupyter/jupyter_notebook_config.json')"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建notebook目录</span></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">mkdir Tutorials</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加cv</span></span><br><span class="line">workon cv</span><br><span class="line">pc4 pip install ipykernel</span><br><span class="line">python -m ipykernel install --user --name=cv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加tf2</span></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install ipykernel</span><br><span class="line">python -m ipykernel install --user --name=tf2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置自动启动服务</span></span><br><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">deactivate</span><br><span class="line">pc4 wget https://github.com/z14git/jetcard/raw/jetpack_4.2.1/jetcard/create_jupyter_service.py</span><br><span class="line">python3 create_jupyter_service.py --working_directory <span class="variable">$HOME</span>/Tutorials</span><br><span class="line">sudo mv jetcard_jupyter.service /etc/systemd/system/jetcard_jupyter.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># fix 在jupyter lab中导入opencv时出现 "cannot allocate memory in static TLS block"</span></span><br><span class="line"><span class="comment"># 执行的命令改为如下</span></span><br><span class="line"><span class="comment"># export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1 &amp;&amp; jupyter lab --ip=0.0.0.0 --no-browser</span></span><br><span class="line">sudo vim /etc/systemd/system/jetcard_jupyter.service</span><br><span class="line"></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> jetcard_jupyter</span><br><span class="line">sudo systemctl start jetcard_jupyter</span><br><span class="line">rm create_jupyter_service.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install ipywidgets</span></span><br><span class="line">workon cv</span><br><span class="line">pc4 pip install ipywidgets</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install ipywidgets</span><br></pre></td></tr></table></figure>
+
+<p>ref:</p>
+<ul>
+<li><a href="https://github.com/NVIDIA-AI-IOT/jetcard/blob/8f793f4df703cd53cae20955f72c73ac81907074/install.sh#L74" target="_blank" rel="noopener">install.sh</a></li>
+<li><a href="https://github.com/NVIDIA-AI-IOT/jetbot/blob/master/docker/base/Dockerfile#L83" target="_blank" rel="noopener">jetbot/docker/base/Dockerfile</a></li>
+</ul>
+<h2 id="Install-tf2-x-in-‘tf2’-virtual-environment"><a href="#Install-tf2-x-in-‘tf2’-virtual-environment" class="headerlink" title="Install tf2.x in ‘tf2’ virtual environment"></a>Install tf2.x in ‘tf2’ virtual environment</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">workon tf2</span><br><span class="line">pc4 pip install -U testresources setuptools==49.6.0</span><br><span class="line">pc4 pip install -U numpy==1.16.1 future==0.18.2 mock==3.0.5 h5py==2.10.0 keras_preprocessing==1.1.1 keras_applications==1.0.8 gast==0.2.2 futures pybind11</span><br><span class="line">pc4 pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v45 tensorflow</span><br></pre></td></tr></table></figure>
+
+<p>将完后，<code>import tensorflow</code>会出现错误 <code>ModuleNotFoundError: No module named &#39;google.protobuf&#39;</code></p>
+<p>解决方法：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/tf2/lib/python3.6/site-packages/protobuf-3.12.3-py3.6-linux-aarch64.egg/google</span><br><span class="line">mv __init__.py bak.__init__.py</span><br></pre></td></tr></table></figure>
+
+<p>ref: <a href="https://github.com/jkjung-avt/jetson_nano/issues/9#issuecomment-629803485" target="_blank" rel="noopener">Missing protobuf</a></p>
+<h2 id="安装JetCam"><a href="#安装JetCam" class="headerlink" title="安装JetCam"></a>安装JetCam</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/NVIDIA-AI-IOT/jetcam</span><br><span class="line"><span class="built_in">cd</span> jetcam</span><br><span class="line">pc4 python setup.py install</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 python setup.py install</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装二维码识别库"><a href="#安装二维码识别库" class="headerlink" title="安装二维码识别库"></a>安装二维码识别库</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo pc4 apt install libzbar0</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pc4 pip install pyzbar</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install pyzbar</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装串口库"><a href="#安装串口库" class="headerlink" title="安装串口库"></a>安装串口库</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pc4 pip install pyserial</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install pyserial</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装modbus-tk"><a href="#安装modbus-tk" class="headerlink" title="安装modbus_tk"></a>安装modbus_tk</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pc4 pip install modbus_tk</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install modbus_tk</span><br></pre></td></tr></table></figure>
+
+<p>使用ttyTHS1作串口通信，需要禁用nvgetty服务</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop nvgetty</span><br><span class="line">sudo systemctl <span class="built_in">disable</span> nvgetty</span><br><span class="line">udevadm trigger</span><br><span class="line"><span class="comment"># You may want to reboot instead</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装crcmod"><a href="#安装crcmod" class="headerlink" title="安装crcmod"></a>安装crcmod</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pc4 pip install crcmod</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install crcmod</span><br></pre></td></tr></table></figure>
+
+<h2 id="解决-dev-ttyTHS1权限问题"><a href="#解决-dev-ttyTHS1权限问题" class="headerlink" title="解决/dev/ttyTHS1权限问题"></a>解决<code>/dev/ttyTHS1</code>权限问题</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -aG dialout &lt;username&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-Adafruit-SSD1306"><a href="#Install-Adafruit-SSD1306" class="headerlink" title="Install Adafruit_SSD1306"></a>Install Adafruit_SSD1306</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pc4 pip install Adafruit_SSD1306</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install Adafruit_SSD1306</span><br></pre></td></tr></table></figure>
+
+<h2 id="install-flask"><a href="#install-flask" class="headerlink" title="install flask"></a>install flask</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pc4 pip install Flask</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install Flask</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装aiocoap"><a href="#安装aiocoap" class="headerlink" title="安装aiocoap"></a>安装aiocoap</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">workon cv</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/chrysn/aiocoap</span><br><span class="line"><span class="built_in">cd</span> aiocoap/</span><br><span class="line">vim setup.py <span class="comment"># python_requires='&gt;=3.6',</span></span><br><span class="line">pc4 pip install --upgrade <span class="string">".[all]"</span></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install --upgrade <span class="string">".[all]"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装torch2trt"><a href="#安装torch2trt" class="headerlink" title="安装torch2trt"></a>安装torch2trt</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos/</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/NVIDIA-AI-IOT/torch2trt</span><br><span class="line"><span class="built_in">cd</span> torch2trt/</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pc4 python setup.py install</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 python setup.py install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 软链tensorrt到cv</span></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">cd</span> .virtualenvs/cv/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/lib/python3.6/dist-packages/tensorrt tensorrt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 软链tensorrt到tf2</span></span><br><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/tf2/lib/python3.6/site-packages/</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-jetson-inference"><a href="#Install-jetson-inference" class="headerlink" title="Install jetson-inference"></a>Install jetson-inference</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 git <span class="built_in">clone</span> --recursive https://github.com/dusty-nv/jetson-inference.git</span><br><span class="line"><span class="built_in">cd</span> jetson-inference</span><br><span class="line">vim tools/download-models.sh <span class="comment"># 在wget前增加proxychains4</span></span><br><span class="line">vim CMakePreBuild.sh <span class="comment"># 增加proxychains4</span></span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ../ <span class="comment"># 选择下载哪些模型，跳过安装PyTorch</span></span><br><span class="line">make -j4</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig</span><br><span class="line"><span class="comment"># 安装到cv</span></span><br><span class="line">vim ../python/bindings/CMakeLists.txt</span><br><span class="line"><span class="comment">## 修改下面的路径，将其改为cv环境的路径，注意dist-packages改为site-packages</span></span><br><span class="line"><span class="comment"># set(PYTHON_BINDING_INSTALL_DIR /usr/lib/python$&#123;PYTHON_VERSION_MAJOR&#125;.$&#123;PYTHON_VERSION_MINOR&#125;/dist-packages)</span></span><br><span class="line">vim ../utils/python/bindings/CMakeLists.txt <span class="comment">#修改方法同上</span></span><br><span class="line">workon cv</span><br><span class="line">make -j4</span><br><span class="line">sudo make install</span><br><span class="line">sudo rm -r ~/.virtualenvs/cv/lib/python2.7/</span><br><span class="line">sudo ldconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装到tf2，一样要修改路径</span></span><br><span class="line">workon tf2</span><br><span class="line">vim ../python/bindings/CMakeLists.txt</span><br><span class="line">vim ../utils/python/bindings/CMakeLists.txt <span class="comment">#修改方法同上</span></span><br><span class="line">make -j4</span><br><span class="line">sudo make install</span><br><span class="line">sudo rm -r ~/.virtualenvs/tf2/lib/python2.7/</span><br><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure>
+
+<p>ref:</p>
+<ul>
+<li><a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo-2.md" target="_blank" rel="noopener">Building the Project from Source</a></li>
+<li><a href="https://github.com/dusty-nv/jetson-inference/issues/482" target="_blank" rel="noopener">Cmake not Detecting Virtual Environment (venv)</a></li>
+</ul>
+<h2 id="修改pip源"><a href="#修改pip源" class="headerlink" title="修改pip源"></a>修改pip源</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pip config <span class="built_in">set</span> global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装yapf"><a href="#安装yapf" class="headerlink" title="安装yapf"></a>安装yapf</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pip install yapf</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pip install yapf</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装flask-restful"><a href="#安装flask-restful" class="headerlink" title="安装flask_restful"></a>安装flask_restful</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pip install flask_restful</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pip install flask_restful</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/30/ubuntu%E5%AE%89%E8%A3%85TL-WDN6200%E9%A9%B1%E5%8A%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2021/01/30/ubuntu%E5%AE%89%E8%A3%85TL-WDN6200%E9%A9%B1%E5%8A%A8/" class="post-title-link" itemprop="url">ubuntu安装TL-WDN6200驱动</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-01-30 17:35:16 / 修改时间：17:38:46" itemprop="dateCreated datePublished" datetime="2021-01-30T17:35:16+08:00">2021-01-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/gnab/rtl8812au.git</span><br><span class="line"><span class="built_in">cd</span> rtl8812au</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">sudo modprobe 8812au</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ref: <a href="https://www.jianshu.com/p/58938a9b75a6" target="_blank" rel="noopener">Ubuntu12.04安装TL-wdn6200 linux驱动</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/21/Fix-Error-0x80071160/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -746,151 +966,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/11/%E6%8B%89%E5%8F%96%E6%8C%87%E5%AE%9A%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/11/11/%E6%8B%89%E5%8F%96%E6%8C%87%E5%AE%9A%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/" class="post-title-link" itemprop="url">拉取指定远程分支到本地</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-11 17:15:54" itemprop="dateCreated datePublished" datetime="2020-11-11T17:15:54+08:00">2020-11-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-13 16:09:24" itemprop="dateModified" datetime="2020-11-13T16:09:24+08:00">2020-11-13</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>假设要拉取z14/dev</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch z14 dev</span><br><span class="line">git checkout -b dev z14/dev</span><br></pre></td></tr></table></figure>
-
-<p>ref: <a href="https://zj-git-guide.readthedocs.io/zh_CN/latest/advanced/%E6%8B%89%E5%8F%96%E6%8C%87%E5%AE%9A%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/" target="_blank" rel="noopener">拉取指定远程分支到本地</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/09/vlc-play-rtp-stream/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/11/09/vlc-play-rtp-stream/" class="post-title-link" itemprop="url">vlc play rtp stream</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-09 17:50:40" itemprop="dateCreated datePublished" datetime="2020-11-09T17:50:40+08:00">2020-11-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-04 16:25:53" itemprop="dateModified" datetime="2021-01-04T16:25:53+08:00">2021-01-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>新建一个SDP文件，假设输入流是H264，内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v&#x3D;0</span><br><span class="line">m&#x3D;video 1234 RTP&#x2F;AVP 96</span><br><span class="line">a&#x3D;rtpmap:96 H264&#x2F;90000</span><br><span class="line">c&#x3D;IN IP4 127.0.0.1</span><br></pre></td></tr></table></figure>
-
-<p>接着用VLC打开SDP文件即可。</p>
-<p>若输入流是MJPEG，则SDP文件内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v&#x3D;0</span><br><span class="line">m&#x3D;video 1234 RTP&#x2F;AVP 26</span><br><span class="line">a&#x3D;rtpmap:26 JPEG&#x2F;90000</span><br><span class="line">c&#x3D;IN IP4 127.0.0.1</span><br></pre></td></tr></table></figure>
-
-<p>ref:</p>
-<ul>
-<li><a href="https://blog.csdn.net/zhoubotong2012/article/details/86712289" target="_blank" rel="noopener">VLC接收RTP流的SDP文件写法</a></li>
-<li><a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-streaming.md#rtp" target="_blank" rel="noopener">Camera Streaming and Multimedia</a></li>
-<li><a href="https://github.com/wang-bin/QtAV/issues/712" target="_blank" rel="noopener">Problems playing RTP-streams (mjpeg, h264)</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -961,14 +1036,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/sundries/archives/">
         
-          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/sundries/tags/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -993,7 +1068,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

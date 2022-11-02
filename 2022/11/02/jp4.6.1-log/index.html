@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/sundries/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/sundries/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/sundries/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/sundries/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/sundries/css/main.css">
+
+
+<link rel="stylesheet" href="/sundries/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"z14git.github.io","root":"/sundries/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="预处理12345678# 开网卡sudo ifconfig wlan0 up# 配wifisudo nmtuimkdir repossudo apt updatesudo apt-get install git cmake  安装 proxychains1234567sudo apt install proxychains4sudo vim &#x2F;etc&#x2F;proxychains4.conf # 修改代">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jp4.6.1-log">
+<meta property="og:url" content="http://z14git.github.io/sundries/2022/11/02/jp4.6.1-log/index.html">
+<meta property="og:site_name" content="十四的杂物">
+<meta property="og:description" content="预处理12345678# 开网卡sudo ifconfig wlan0 up# 配wifisudo nmtuimkdir repossudo apt updatesudo apt-get install git cmake  安装 proxychains1234567sudo apt install proxychains4sudo vim &#x2F;etc&#x2F;proxychains4.conf # 修改代">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-02T02:13:49.333Z">
+<meta property="article:modified_time" content="2022-11-02T02:13:49.334Z">
+<meta property="article:author" content="z14git">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://z14git.github.io/sundries/2022/11/02/jp4.6.1-log/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>jp4.6.1-log | 十四的杂物</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/sundries/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">十四的杂物</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/sundries/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/sundries/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/sundries/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2022/11/02/jp4.6.1-log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          jp4.6.1-log
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-02 10:13:49" itemprop="dateCreated datePublished" datetime="2022-11-02T10:13:49+08:00">2022-11-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开网卡</span></span><br><span class="line">sudo ifconfig wlan0 up</span><br><span class="line"><span class="comment"># 配wifi</span></span><br><span class="line">sudo nmtui</span><br><span class="line">mkdir repos</span><br><span class="line"></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt-get install git cmake</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-proxychains"><a href="#安装-proxychains" class="headerlink" title="安装 proxychains"></a>安装 proxychains</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install proxychains4</span><br><span class="line">sudo vim /etc/proxychains4.conf <span class="comment"># 修改代理地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 简化proxychains4</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"alias pc4='proxychains4'"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"alias sudo='sudo '"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-other-dependencies"><a href="#Install-other-dependencies" class="headerlink" title="Install other dependencies"></a>Install other dependencies</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo pc4 apt-get install libatlas-base-dev gfortran</span><br><span class="line">sudo pc4 apt-get install libhdf5-serial-dev hdf5-tools</span><br><span class="line">sudo pc4 apt-get install python3-dev</span><br><span class="line">sudo pc4 apt-get install nano locate</span><br><span class="line">sudo pc4 apt-get install libfreetype6-dev python3-setuptools</span><br><span class="line">sudo pc4 apt-get install cython3</span><br><span class="line">sudo pc4 apt-get install libxml2-dev libxslt1-dev</span><br><span class="line">sudo pc4 apt install curl screen</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-pip"><a href="#安装-pip" class="headerlink" title="安装 pip"></a>安装 pip</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget https://bootstrap.pypa.io/pip/3.6/get-pip.py</span><br><span class="line">sudo -H proxychains4 python3 get-pip.py</span><br><span class="line">rm get-pip.py</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-Jetson-stats"><a href="#安装-Jetson-stats" class="headerlink" title="安装 Jetson stats"></a>安装 Jetson stats</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -H proxychains4 pip install -U jetson-stats</span><br></pre></td></tr></table></figure>
+
+<h2 id="Set-up-Python-virtual-environments"><a href="#Set-up-Python-virtual-environments" class="headerlink" title="Set up Python virtual environments"></a>Set up Python virtual environments</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo -H proxychains4 pip install virtualenv virtualenvwrapper</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export WORKON_HOME=<span class="variable">$HOME</span>/.virtualenvs"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"source /usr/local/bin/virtualenvwrapper.sh"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="Create-virtual-environment"><a href="#Create-virtual-environment" class="headerlink" title="Create virtual environment"></a>Create virtual environment</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv cv -p python3</span><br><span class="line">mkvirtualenv tf2 -p python3</span><br><span class="line">mkvirtualenv torch -p python3</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-Jupyter"><a href="#Install-Jupyter" class="headerlink" title="Install Jupyter"></a>Install Jupyter</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">deactivate</span><br><span class="line">sudo -H pip3 install jupyterlab</span><br><span class="line">jupyter lab --generate-config</span><br><span class="line">python3 -c <span class="string">"from notebook.auth.security import set_password; set_password('frotech', '<span class="variable">$HOME</span>/.jupyter/jupyter_notebook_config.json')"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建notebook目录</span></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">mkdir Tutorials</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建自启动服务</span></span><br><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget https://github.com/z14git/jetcard/raw/jetpack_4.2.1/jetcard/create_jupyter_service.py</span><br><span class="line">python3 create_jupyter_service.py --working_directory <span class="variable">$HOME</span>/Tutorials</span><br><span class="line">sudo mv jetcard_jupyter.service /etc/systemd/system/</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> jetcard_jupyter</span><br><span class="line">sudo systemctl start jetcard_jupyter</span><br><span class="line">rm create_jupyter_service.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 ipywidgets</span></span><br><span class="line">sudo -H pip3 install jupyterlab_widgets</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo systemctl stop jetcard_jupyter</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pc4 pip install ipykernel</span><br><span class="line">python -m ipykernel install --user --name=cv</span><br><span class="line">pc4 pip install ipywidgets</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pip install ipykernel</span><br><span class="line">python -m ipykernel install --user --name=tf2</span><br><span class="line"></span><br><span class="line">workon torch</span><br><span class="line">pip install ipykernel</span><br><span class="line">python -m ipykernel install --user --name=torch</span><br><span class="line"></span><br><span class="line">sudo apt install libffi-dev</span><br><span class="line">pc4 pip install ipywidgets</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install ipywidgets</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-other-python-packages"><a href="#Install-other-python-packages" class="headerlink" title="Install other python packages"></a>Install other python packages</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workon torch</span><br><span class="line">pc4 pip install Flask flask_restful yapf Adafruit_SSD1306 crcmod simple-pid pyyaml websockets</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pc4 pip install Flask flask_restful yapf Adafruit_SSD1306 crcmod simple-pid pyyaml websockets Pillow</span><br></pre></td></tr></table></figure>
+
+<h2 id="禁用nvgetty服务"><a href="#禁用nvgetty服务" class="headerlink" title="禁用nvgetty服务"></a>禁用nvgetty服务</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop nvgetty</span><br><span class="line">sudo systemctl <span class="built_in">disable</span> nvgetty</span><br><span class="line">udevadm trigger</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解决/dev/ttyTHS1权限问题</span></span><br><span class="line">sudo usermod -aG dialout &lt;username&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-fro-jetbot-service"><a href="#Install-fro-jetbot-service" class="headerlink" title="Install fro_jetbot_service"></a>Install fro_jetbot_service</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">git <span class="built_in">clone</span> https://gitee.com/z14git/fro_jetbot_service.git</span><br><span class="line"><span class="built_in">cd</span> fro_jetbot_service/</span><br><span class="line">git checkout jp4.6</span><br><span class="line"></span><br><span class="line">deactivate</span><br><span class="line"></span><br><span class="line"><span class="comment"># OLED信息显示服务</span></span><br><span class="line">python3 create_stats_service.py</span><br><span class="line">sudo mv jetbot_stats.service /etc/systemd/system/</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> jetbot_stats</span><br><span class="line">sudo systemctl start jetbot_stats</span><br><span class="line"></span><br><span class="line"><span class="comment"># 程序上传、运行、停止服务</span></span><br><span class="line">python3 create_coding_service.py</span><br><span class="line">sudo mv jetbot_coding.service /etc/systemd/system/</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> jetbot_coding</span><br><span class="line">sudo systemctl start jetbot_coding</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动开启AP，更新 SSID</span></span><br><span class="line">python3 create_ap_service.py</span><br><span class="line">sudo mv jetbot_ap_update.service /etc/systemd/system/</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> jetbot_ap_update</span><br><span class="line">sudo systemctl start jetbot_ap_update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解决/dev/ttyTHS1权限问题</span></span><br><span class="line">python3 create_first_boot_init_service.py</span><br><span class="line">sudo mv jetbot_init.service /etc/systemd/system/</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> jetbot_init</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-frotech-adapter"><a href="#Install-frotech-adapter" class="headerlink" title="Install frotech_adapter"></a>Install frotech_adapter</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pc4 pip install jetson-adapter-pkg</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install jetson-adapter-pkg</span><br><span class="line"></span><br><span class="line">workon torch</span><br><span class="line">pc4 pip install jetson-adapter-pkg</span><br></pre></td></tr></table></figure>
+
+<h2 id="Make-swapfile"><a href="#Make-swapfile" class="headerlink" title="Make swapfile"></a>Make swapfile</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo fallocate -l 4G /var/swapfile</span><br><span class="line">sudo chmod 600 /var/swapfile</span><br><span class="line">sudo mkswap /var/swapfile</span><br><span class="line">sudo swapon /var/swapfile</span><br><span class="line">sudo bash -c <span class="string">'echo "/var/swapfile swap swap defaults 0 0" &gt;&gt; /etc/fstab'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-tensorflow2"><a href="#Install-tensorflow2" class="headerlink" title="Install tensorflow2"></a>Install tensorflow2</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">workon tf2</span><br><span class="line">sudo apt-get install libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran</span><br><span class="line">pc4 pip install testresources setuptools==49.6.0</span><br><span class="line">pc4 pip install -U --no-deps numpy==1.19.4 future==0.18.2 mock==3.0.5 keras_preprocessing==1.1.2 keras_applications==1.0.8 gast==0.4.0 protobuf pybind11 cython pkgconfig packaging</span><br><span class="line">H5PY_SETUP_REQUIRES=0 pip3 install -U --no-build-isolation h5py==3.1.0</span><br><span class="line">pc4 pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v461 tensorflow</span><br><span class="line"></span><br><span class="line">pc4 pip install keras==2.6.*</span><br></pre></td></tr></table></figure>
+
+<p>ref:</p>
+<ul>
+<li><a href="https://github.com/h5py/h5py/issues/1760#issuecomment-938000001" target="_blank" rel="noopener">pip install h5py stops with error on Jetson NX</a></li>
+<li><a href="https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform/index.html#install" target="_blank" rel="noopener">Installing TensorFlow for Jetson Platform</a></li>
+<li><a href="https://exerror.com/importerror-cannot-import-name-dtensor-from-tensorflow-compat-v2-experimental/" target="_blank" rel="noopener">ImportError: cannot import name ‘dtensor’</a></li>
+</ul>
+<h1 id="Install-matplotlib"><a href="#Install-matplotlib" class="headerlink" title="Install matplotlib"></a>Install matplotlib</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">workon tf2</span><br><span class="line"><span class="built_in">cd</span> ~/repos/</span><br><span class="line">pc4 wget https://github.com/matplotlib/matplotlib/archive/v3.3.4.tar.gz</span><br><span class="line">tar -xvf v3.3.4.tar.gz</span><br><span class="line"><span class="built_in">cd</span> matplotlib-3.3.4/</span><br><span class="line">pc4 wget https://downloads.sourceforge.net/project/freetype/freetype2/2.6.1/freetype-2.6.1.tar.gz</span><br><span class="line">mkdir build</span><br><span class="line">tar -xf freetype-2.6.1.tar.gz -C build/</span><br><span class="line">pc4 pip install .</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-numpy-to-cv-torch"><a href="#Install-numpy-to-cv-torch" class="headerlink" title="Install numpy to cv, torch"></a>Install numpy to cv, torch</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">workon cv</span><br><span class="line">pc4 pip install numpy==1.19.4</span><br><span class="line">workon torch</span><br><span class="line">pc4 pip install numpy==1.19.4</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-matplotlib-to-cv-torch"><a href="#Install-matplotlib-to-cv-torch" class="headerlink" title="Install matplotlib to cv, torch"></a>Install matplotlib to cv, torch</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos/matplotlib-3.3.4/</span><br><span class="line">workon cv</span><br><span class="line">pc4 pip install .</span><br><span class="line">workon torch</span><br><span class="line">pc4 pip install .</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-PyTorch-to-torch"><a href="#Install-PyTorch-to-torch" class="headerlink" title="Install PyTorch to torch"></a>Install PyTorch to torch</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget https://nvidia.box.com/shared/static/fjtbno0vpo676a25cgvuqc1wty0fkkg6.whl</span><br><span class="line">sudo pc4 apt install libopenblas-base libopenmpi-dev libomp-dev</span><br><span class="line">mv fjtbno0vpo676a25cgvuqc1wty0fkkg6.whl  torch-1.10.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line">workon torch</span><br><span class="line">pip install Cython</span><br><span class="line">pip install torch-1.10.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line"></span><br><span class="line"><span class="comment"># torchvision</span></span><br><span class="line">sudo pc4 apt install libjpeg-dev zlib1g-dev libpython3-dev libavcodec-dev libavformat-dev libswscale-dev</span><br><span class="line">pc4 git <span class="built_in">clone</span> --branch v0.10.0 https://github.com/pytorch/vision torchvision</span><br><span class="line"><span class="built_in">cd</span> torchvision</span><br><span class="line"><span class="built_in">export</span> BUILD_VERSION=0.10.0</span><br><span class="line">pc4 pip install -U setuptools</span><br><span class="line"><span class="comment"># export OPENBLAS_CORETYPE=ARMV8</span></span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-OpenCV"><a href="#Install-OpenCV" class="headerlink" title="Install OpenCV"></a>Install OpenCV</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget -O opencv-4.6.0.zip https://github.com/opencv/opencv/archive/4.6.0.zip</span><br><span class="line">pc4 wget -O opencv_contrib-4.6.0.zip https://github.com/opencv/opencv_contrib/archive/refs/tags/4.6.0.zip</span><br><span class="line"></span><br><span class="line">sudo pc4 apt install libeigen3-dev libglew-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev libgstreamer1.0-dev libjpeg-turbo8-dev liblapacke-dev libopenblas-dev libpostproc-dev libtesseract-dev libxine2-dev libx264-dev qv4l2 v4l-utils v4l2ucp libgoogle-glog-dev</span><br><span class="line"></span><br><span class="line">unzip -q opencv-4.6.0.zip</span><br><span class="line">unzip -q opencv_contrib-4.6.0.zip</span><br><span class="line">mv opencv-4.6.0 opencv</span><br><span class="line">mv opencv_contrib-4.6.0 opencv_contrib</span><br><span class="line"><span class="built_in">cd</span> opencv/</span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line"></span><br><span class="line">sudo mkdir /usr/venv_cv</span><br><span class="line">workon cv</span><br><span class="line">pc4 cmake -D CMAKE_BUILD_TYPE=RELEASE -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=ON -D BUILD_opencv_java_bindings_generator=OFF -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/venv_cv -D OPENCV_DNN_CUDA=ON -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=~/repos/opencv_contrib/modules -D PYTHON3_NUMPY_INCLUDE_DIRS=~/.venv/cv/lib/python3.6/site-packages/numpy/core/include -D WITH_CUDA=ON -D CUDA_ARCH_PTX=<span class="string">""</span> -D CUDA_ARCH_BIN=5.3 -D WITH_GSTREAMER=ON -D WITH_TENGINE=ON -D WITH_FREETYPE=ON -D WITH_OPENGL=ON ..</span><br><span class="line">make -j4</span><br><span class="line">sudo pc4 make install</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/cv/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/venv_cv/lib/python3.6/site-packages/cv2 cv2</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/tf2/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/venv_cv/lib/python3.6/site-packages/cv2 cv2</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/torch/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/venv_cv/lib/python3.6/site-packages/cv2 cv2</span><br></pre></td></tr></table></figure>
+
+<h2 id="Fix-opencv-error"><a href="#Fix-opencv-error" class="headerlink" title="Fix opencv error"></a>Fix opencv error</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop jetcard_jupyter</span><br><span class="line"><span class="comment"># 执行的命令改为如下</span></span><br><span class="line"><span class="comment"># /bin/sh -c "export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1 &amp;&amp; export OPENBLAS_CORETYPE=ARMV8 &amp;&amp; jupyter lab --ip=0.0.0.0 --no-browser"</span></span><br><span class="line">sudo vim /etc/systemd/system/jetcard_jupyter.service</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl start jetcard_jupyter.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-torch2trt"><a href="#Install-torch2trt" class="headerlink" title="Install torch2trt"></a>Install torch2trt</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos/</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/NVIDIA-AI-IOT/torch2trt.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 软链tensorrt到torch</span></span><br><span class="line"><span class="built_in">cd</span> ~/.virtualenvs/torch/lib/python3.6/site-packages/</span><br><span class="line">ln -s /usr/lib/python3.6/dist-packages/tensorrt tensorrt</span><br><span class="line"></span><br><span class="line">workon torch</span><br><span class="line"><span class="built_in">cd</span> ~/repos/torch2trt/</span><br><span class="line">pc4 python setup.py install</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-jetson-inference"><a href="#Install-jetson-inference" class="headerlink" title="Install jetson-inference"></a>Install jetson-inference</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 git <span class="built_in">clone</span> --recursive https://github.com/dusty-nv/jetson-inference.git</span><br><span class="line"><span class="built_in">cd</span> jetson-inference</span><br><span class="line">vim tools/download-models.sh <span class="comment"># 在 wget 前增加 proxychains4</span></span><br><span class="line">vim CMakePreBuild.sh <span class="comment"># 在 apt-get 前增加 proxychains4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 $&#123;PYTHON_EXECUTABLE&#125; 为 /home/frotech/.virtualenvs/torch/bin/python3</span></span><br><span class="line">vim utils/python/bindings/FindNumPy.cmake</span><br><span class="line"></span><br><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line"></span><br><span class="line">workon torch</span><br><span class="line"><span class="built_in">export</span> OPENBLAS_CORETYPE=ARMV8</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选择下载哪些模型，跳过安装PyTorch</span></span><br><span class="line">cmake ../</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装到torch</span></span><br><span class="line"><span class="comment">## 修改下面的路径，将其改为torch环境的路径，注意dist-packages改为site-packages</span></span><br><span class="line"><span class="comment"># set(PYTHON_BINDING_INSTALL_DIR /usr/lib/python$&#123;PYTHON_VERSION_MAJOR&#125;.$&#123;PYTHON_VERSION_MINOR&#125;/dist-packages)</span></span><br><span class="line">vim ../python/bindings/CMakeLists.txt</span><br><span class="line">vim ../utils/python/bindings/CMakeLists.txt <span class="comment">#修改方法同上</span></span><br><span class="line">make -j4</span><br><span class="line">OPENBLAS_CORETYPE=ARMV8 sudo -E make install</span><br><span class="line">sudo ldconfig</span><br><span class="line"><span class="built_in">cd</span> aarch64/bin</span><br><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure>
+
+<p>ref:</p>
+<ul>
+<li><a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo-2.md" target="_blank" rel="noopener">Building the Project from Source</a></li>
+<li><a href="https://github.com/dusty-nv/jetson-inference/issues/482" target="_blank" rel="noopener">Cmake not Detecting Virtual Environment (venv)</a></li>
+<li><a href="https://unix.stackexchange.com/questions/337819/how-to-export-variable-for-use-with-sudo" target="_blank" rel="noopener">How to export variable for use with sudo?</a></li>
+<li><a href="https://github.com/dusty-nv/jetson-inference/issues/369#issuecomment-513595175" target="_blank" rel="noopener">ImportError: libjetson-utils.so: cannot open shared object file: No such file or directory</a></li>
+</ul>
+<h2 id="Install-JetCam"><a href="#Install-JetCam" class="headerlink" title="Install JetCam"></a>Install JetCam</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/NVIDIA-AI-IOT/jetcam</span><br><span class="line"><span class="built_in">cd</span> jetcam</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pip install .</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pip install .</span><br><span class="line"></span><br><span class="line">workon torch</span><br><span class="line">pip install .</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-YOLOX"><a href="#Install-YOLOX" class="headerlink" title="Install YOLOX"></a>Install YOLOX</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">workon torch</span><br><span class="line"><span class="built_in">cd</span> ~/repos/</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/Megvii-BaseDetection/YOLOX.git</span><br><span class="line"><span class="built_in">cd</span> YOLOX/</span><br><span class="line">pc4 pip install loguru tqdm Pillow thop ninja tabulate</span><br><span class="line">pc4 pip install <span class="string">'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'</span></span><br><span class="line">vim requirements.txt <span class="comment"># 取消安装 opencv-python pycocotools onnx...</span></span><br><span class="line">pc4 pip install -v -e .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换 trt</span></span><br><span class="line">pc4 wget https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_nano.pth</span><br><span class="line">python tools/trt.py -n yolox-nano -c yolox_nano.pth</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-aiocoap"><a href="#Install-aiocoap" class="headerlink" title="Install aiocoap"></a>Install aiocoap</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">workon torch</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/chrysn/aiocoap</span><br><span class="line"><span class="built_in">cd</span> aiocoap</span><br><span class="line">git checkout dffbe242d09</span><br><span class="line">pc4 pip install --upgrade <span class="string">".[all]"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装二维码识别库"><a href="#安装二维码识别库" class="headerlink" title="安装二维码识别库"></a>安装二维码识别库</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo pc4 apt install libzbar0</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pc4 pip install pyzbar</span><br><span class="line"></span><br><span class="line">workon tf2</span><br><span class="line">pc4 pip install pyzbar</span><br><span class="line"></span><br><span class="line">workon torch</span><br><span class="line">pc4 pip install pyzbar</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-fro-AI-and-jetbot-scratch-to-torch"><a href="#Install-fro-AI-and-jetbot-scratch-to-torch" class="headerlink" title="Install fro-AI and jetbot-scratch to torch"></a>Install fro-AI and jetbot-scratch to torch</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">workon torch</span><br><span class="line">pc4 pip install fro-AI jetbot-scratch</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-tensorflow1-15-to-cv"><a href="#Install-tensorflow1-15-to-cv" class="headerlink" title="Install tensorflow1.15 to cv"></a>Install tensorflow1.15 to cv</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pc4 pip install testresources setuptools==49.6.0</span><br><span class="line">pc4 pip install -U numpy==1.19.4 future==0.18.2 mock==3.0.5 h5py==2.10.0 keras_preprocessing==1.1.1 keras_applications==1.0.8 gast==0.2.2 futures protobuf pybind11</span><br><span class="line"></span><br><span class="line">pc4 pip install -U numpy==1.19.4 grpcio absl-py py-cpuinfo psutil portpicker six mock requests gast h5py astor termcolor protobuf keras-applications keras-preprocessing wrapt google-pasta setuptools testresources</span><br><span class="line">pc4 pip install -U numpy==1.16.1</span><br><span class="line">pc4 pip install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v461 <span class="string">'tensorflow&lt;2'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-protobuf"><a href="#Install-protobuf" class="headerlink" title="Install protobuf"></a>Install protobuf</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 wget https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protoc-3.19.4-linux-aarch_64.zip</span><br><span class="line">unzip protoc-3.19.4-linux-aarch_64.zip -d protoc-3.19.4</span><br><span class="line">sudo cp protoc-3.19.4/bin/protoc /usr/<span class="built_in">local</span>/bin/protoc</span><br><span class="line">sudo cp -r protoc-3.19.4/include/* /usr/<span class="built_in">local</span>/include/</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-TensorFlow-Object-Detection-API-1-x"><a href="#Install-TensorFlow-Object-Detection-API-1-x" class="headerlink" title="Install TensorFlow Object Detection API(1.x)"></a>Install TensorFlow Object Detection API(1.x)</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/repos</span><br><span class="line">pc4 git <span class="built_in">clone</span> https://github.com/tensorflow/models.git</span><br><span class="line"><span class="built_in">cd</span> models/research</span><br><span class="line">git checkout 5f4d34fc</span><br><span class="line">sudo protoc object_detection/protos/*.proto --python_out=.</span><br><span class="line"></span><br><span class="line">workon cv</span><br><span class="line">pc4 python setup.py install</span><br><span class="line"><span class="built_in">cd</span> slim</span><br><span class="line">pc4 python setup.py install</span><br></pre></td></tr></table></figure>
+
+<h2 id="制作-img"><a href="#制作-img" class="headerlink" title="制作 img"></a>制作 img</h2><p>删除 <code>~/repos/fro_jetbot_service/config.json</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Linux_for_Tegra/tools</span><br><span class="line">sudo ROOTFS_DIR=&lt;root&gt; ./jetson-disk-image-creator.sh -o sd-blob.img -b jetson-nano -r 100</span><br></pre></td></tr></table></figure>
+
+<p>ref: <a href="https://docs.nvidia.com/jetson/archives/l4t-archived/l4t-3271/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/flashing.html#wwpID0E03E0HA" target="_blank" rel="noopener">To re-enable oem-config manually on an SD card</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/sundries/2022/11/01/%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85wsl2/" rel="prev" title="手动安装wsl2">
+      <i class="fa fa-chevron-left"></i> 手动安装wsl2
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#预处理"><span class="nav-number">1.</span> <span class="nav-text">预处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-proxychains"><span class="nav-number">2.</span> <span class="nav-text">安装 proxychains</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-other-dependencies"><span class="nav-number">3.</span> <span class="nav-text">Install other dependencies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-pip"><span class="nav-number">4.</span> <span class="nav-text">安装 pip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Jetson-stats"><span class="nav-number">5.</span> <span class="nav-text">安装 Jetson stats</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-up-Python-virtual-environments"><span class="nav-number">6.</span> <span class="nav-text">Set up Python virtual environments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-virtual-environment"><span class="nav-number">7.</span> <span class="nav-text">Create virtual environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Jupyter"><span class="nav-number">8.</span> <span class="nav-text">Install Jupyter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-other-python-packages"><span class="nav-number">9.</span> <span class="nav-text">Install other python packages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁用nvgetty服务"><span class="nav-number">10.</span> <span class="nav-text">禁用nvgetty服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-fro-jetbot-service"><span class="nav-number">11.</span> <span class="nav-text">Install fro_jetbot_service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-frotech-adapter"><span class="nav-number">12.</span> <span class="nav-text">Install frotech_adapter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Make-swapfile"><span class="nav-number">13.</span> <span class="nav-text">Make swapfile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-tensorflow2"><span class="nav-number">14.</span> <span class="nav-text">Install tensorflow2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Install-matplotlib"><span class="nav-number"></span> <span class="nav-text">Install matplotlib</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-numpy-to-cv-torch"><span class="nav-number">1.</span> <span class="nav-text">Install numpy to cv, torch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-matplotlib-to-cv-torch"><span class="nav-number">2.</span> <span class="nav-text">Install matplotlib to cv, torch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-PyTorch-to-torch"><span class="nav-number">3.</span> <span class="nav-text">Install PyTorch to torch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-OpenCV"><span class="nav-number">4.</span> <span class="nav-text">Install OpenCV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fix-opencv-error"><span class="nav-number">5.</span> <span class="nav-text">Fix opencv error</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-torch2trt"><span class="nav-number">6.</span> <span class="nav-text">Install torch2trt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-jetson-inference"><span class="nav-number">7.</span> <span class="nav-text">Install jetson-inference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-JetCam"><span class="nav-number">8.</span> <span class="nav-text">Install JetCam</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-YOLOX"><span class="nav-number">9.</span> <span class="nav-text">Install YOLOX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-aiocoap"><span class="nav-number">10.</span> <span class="nav-text">Install aiocoap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装二维码识别库"><span class="nav-number">11.</span> <span class="nav-text">安装二维码识别库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-fro-AI-and-jetbot-scratch-to-torch"><span class="nav-number">12.</span> <span class="nav-text">Install fro-AI and jetbot-scratch to torch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-tensorflow1-15-to-cv"><span class="nav-number">13.</span> <span class="nav-text">Install tensorflow1.15 to cv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-protobuf"><span class="nav-number">14.</span> <span class="nav-text">Install protobuf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-TensorFlow-Object-Detection-API-1-x"><span class="nav-number">15.</span> <span class="nav-text">Install TensorFlow Object Detection API(1.x)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制作-img"><span class="nav-number">16.</span> <span class="nav-text">制作 img</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">z14git</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/sundries/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/sundries/tags/">
+          
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">z14git</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/sundries/lib/anime.min.js"></script>
+  <script src="/sundries/lib/velocity/velocity.min.js"></script>
+  <script src="/sundries/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/sundries/js/utils.js"></script>
+
+<script src="/sundries/js/motion.js"></script>
+
+
+<script src="/sundries/js/schemes/muse.js"></script>
+
+
+<script src="/sundries/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/sundries/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
