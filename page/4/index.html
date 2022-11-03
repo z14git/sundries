@@ -180,6 +180,293 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/06/screen%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/11/06/screen%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">screen基础使用</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-06 10:30:16 / 修改时间：17:54:51" itemprop="dateCreated datePublished" datetime="2020-11-06T10:30:16+08:00">2020-11-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>C-a 表示 Ctrl + a</p>
+<h2 id="创建一个新screen"><a href="#创建一个新screen" class="headerlink" title="创建一个新screen"></a>创建一个新screen</h2><p><code>screen -S screen_name</code></p>
+<p>screen_name自行定义</p>
+<h2 id="查看会话"><a href="#查看会话" class="headerlink" title="查看会话"></a>查看会话</h2><p><code>screen -ls</code></p>
+<h2 id="会话分离与恢复"><a href="#会话分离与恢复" class="headerlink" title="会话分离与恢复"></a>会话分离与恢复</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">screen -d <span class="comment"># 分离</span></span><br><span class="line"><span class="comment"># 如果是分离当前会话，C-a d</span></span><br><span class="line">screen -r id <span class="comment"># id 用screen -ls查看</span></span><br></pre></td></tr></table></figure>
+
+<p>ps: 会话还未分离是没法用<code>-r</code>恢复的</p>
+<p>ref: <a href="https://www.cnblogs.com/mchina/archive/2013/01/30/2880680.html" target="_blank" rel="noopener">linux screen 命令详解</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/04/%E9%80%9A%E8%BF%87ssh%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/11/04/%E9%80%9A%E8%BF%87ssh%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5windows/" class="post-title-link" itemprop="url">通过ssh远程连接windows</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-04 11:41:03 / 修改时间：21:19:31" itemprop="dateCreated datePublished" datetime="2020-11-04T11:41:03+08:00">2020-11-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Installing-OpenSSH-with-PowerShell"><a href="#Installing-OpenSSH-with-PowerShell" class="headerlink" title="Installing OpenSSH with PowerShell"></a>Installing OpenSSH with PowerShell</h2><p>To install OpenSSH using PowerShell, first launch PowerShell as an Administrator. To make sure that the OpenSSH features are available for install:</p>
+<figure class="highlight ps"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-WindowsCapability</span> <span class="literal">-Online</span> | ? Name <span class="operator">-like</span> <span class="string">'OpenSSH*'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This should return the following output:</span></span><br><span class="line"></span><br><span class="line">Name  : OpenSSH.Client~~~~<span class="number">0.0</span>.<span class="number">1.0</span></span><br><span class="line">State : NotPresent</span><br><span class="line">Name  : OpenSSH.Server~~~~<span class="number">0.0</span>.<span class="number">1.0</span></span><br><span class="line">State : NotPresent</span><br></pre></td></tr></table></figure>
+
+<p>Then, install the server and/or client features:</p>
+<figure class="highlight ps"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Install the OpenSSH Client</span></span><br><span class="line"><span class="built_in">Add-WindowsCapability</span> <span class="literal">-Online</span> <span class="literal">-Name</span> OpenSSH.Client~~~~<span class="number">0.0</span>.<span class="number">1.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Install the OpenSSH Server</span></span><br><span class="line"><span class="built_in">Add-WindowsCapability</span> <span class="literal">-Online</span> <span class="literal">-Name</span> OpenSSH.Server~~~~<span class="number">0.0</span>.<span class="number">1.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Both of these should return the following output:</span></span><br><span class="line"></span><br><span class="line">Path          :</span><br><span class="line">Online        : True</span><br><span class="line">RestartNeeded : False</span><br></pre></td></tr></table></figure>
+
+<h2 id="Initial-Configuration-of-SSH-Server"><a href="#Initial-Configuration-of-SSH-Server" class="headerlink" title="Initial Configuration of SSH Server"></a>Initial Configuration of SSH Server</h2><p>To configure the OpenSSH server for initial use on Windows, launch PowerShell as an administrator, then run the following commands to start the SSHD service:</p>
+<figure class="highlight ps"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Start-Service</span> sshd</span><br><span class="line"><span class="comment"># OPTIONAL but recommended:</span></span><br><span class="line"><span class="built_in">Set-Service</span> <span class="literal">-Name</span> sshd <span class="literal">-StartupType</span> <span class="string">'Automatic'</span></span><br><span class="line"><span class="comment"># Confirm the Firewall rule is configured. It should be created automatically by setup.</span></span><br><span class="line"><span class="built_in">Get-NetFirewallRule</span> <span class="literal">-Name</span> *ssh*</span><br><span class="line"><span class="comment"># There should be a firewall rule named "OpenSSH-Server-In-TCP", which should be enabled</span></span><br><span class="line"><span class="comment"># If the firewall does not exist, create one</span></span><br><span class="line"><span class="built_in">New-NetFirewallRule</span> <span class="literal">-Name</span> sshd <span class="literal">-DisplayName</span> <span class="string">'OpenSSH Server (sshd)'</span> <span class="literal">-Enabled</span> True <span class="literal">-Direction</span> Inbound <span class="literal">-Protocol</span> TCP <span class="literal">-Action</span> Allow <span class="literal">-LocalPort</span> <span class="number">22</span></span><br></pre></td></tr></table></figure>
+
+<p>部署好后，在另一台windows电脑上，可通过以下方式连接：</p>
+<figure class="highlight ps"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ssh <span class="literal">-p</span> port username@servername</span><br></pre></td></tr></table></figure>
+
+<p>ref: <a href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse" target="_blank" rel="noopener">Installation of OpenSSH For Windows Server 2019 and Windows 10</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/03/Using-SCP-to-copy-a-file-on-a-non-standard-ssh-port/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/11/03/Using-SCP-to-copy-a-file-on-a-non-standard-ssh-port/" class="post-title-link" itemprop="url">Using SCP to copy a file on a non standard ssh port</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-03 16:20:29" itemprop="dateCreated datePublished" datetime="2020-11-03T16:20:29+08:00">2020-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-04 21:19:31" itemprop="dateModified" datetime="2020-11-04T21:19:31+08:00">2020-11-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>用<code>-P</code>参数即可：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P port file user@remote_ip</span><br></pre></td></tr></table></figure>
+
+<p>ps: <code>-P</code> 要在文件前</p>
+<p>ref: <a href="https://askubuntu.com/questions/32413/copy-with-ssh-with-port-other-than-22" target="_blank" rel="noopener">copy with ssh with port other than 22</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/03/install-v2ray-on-ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/11/03/install-v2ray-on-ubuntu/" class="post-title-link" itemprop="url">install v2ray on ubuntu</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-03 16:13:36" itemprop="dateCreated datePublished" datetime="2020-11-03T16:13:36+08:00">2020-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-04 21:19:31" itemprop="dateModified" datetime="2020-11-04T21:19:31+08:00">2020-11-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>先在能FQ的电脑上下载<a href="https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh" target="_blank" rel="noopener">安装脚本</a></p>
+</li>
+<li><p>然后将脚本传到要安装v2ray的电脑上并执行：</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo bash install-release.sh</span><br></pre></td></tr></table></figure>
+
+<p> ps: 遇到连接超时就再试一次</p>
+</li>
+<li><p>将windows上的v2ray安装目录下的已配置好的config.json复制到 <code>/usr/local/etc/v2ray/config.json</code></p>
+</li>
+<li><p>再执行以下命令：</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> v2ray</span><br><span class="line">sudo systemctl start v2ray</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>ps: 装完后连不上- -||</p>
+<p>ref: <a href="https://github.com/v2fly/fhs-install-v2ray" target="_blank" rel="noopener">fhs-install-v2ray</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/10/30/restart-jetson-nano-camera/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -578,305 +865,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/09/13/how-to-remove-cards-at-the-end-of-youtube-video/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/09/13/how-to-remove-cards-at-the-end-of-youtube-video/" class="post-title-link" itemprop="url">how to remove cards at the end of youtube video</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-13 17:06:16" itemprop="dateCreated datePublished" datetime="2020-09-13T17:06:16+08:00">2020-09-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-14 11:30:32" itemprop="dateModified" datetime="2020-09-14T11:30:32+08:00">2020-09-14</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在adblock中添加filter(当前位置：Setting-&gt;Customize-&gt;Manually edit your filters)：</p>
-<pre><code>www.youtube.com##.ytp-ce-element</code></pre><blockquote>
-<p>ref: <a href="https://www.reddit.com/r/youtube/comments/5owodn/tip_how_to_block_youtube_end_screen_video_ad_the/" target="_blank" rel="noopener">Tip: How to block youtube end screen video ad, the new youtube feature.</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/07/22/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96dtype%E4%B8%BAstring%E7%9A%84tf.tensor%E7%9A%84string%E5%80%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/07/22/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96dtype%E4%B8%BAstring%E7%9A%84tf.tensor%E7%9A%84string%E5%80%BC/" class="post-title-link" itemprop="url">如何获取dtype为string的tf.tensor的string值</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-22 09:16:26" itemprop="dateCreated datePublished" datetime="2020-07-22T09:16:26+08:00">2020-07-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-07 13:43:47" itemprop="dateModified" datetime="2020-09-07T13:43:47+08:00">2020-09-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">AUTOTUNE = tf.data.experimental.AUTOTUNE</span><br><span class="line">list_ds = tf.data.Dataset.list_files(<span class="string">"dataset_xy/*.jpg"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_x</span><span class="params">(file_name)</span>:</span></span><br><span class="line">    <span class="string">"""Gets the x value from the image filename"""</span></span><br><span class="line">    <span class="keyword">return</span> tf.strings.to_number(file_name.numpy()[<span class="number">3</span>:<span class="number">6</span>], tf.float32) / <span class="number">100</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_label</span><span class="params">(file_path)</span>:</span></span><br><span class="line">    file_name = tf.strings.split(file_path, os.path.sep)[<span class="number">-1</span>]</span><br><span class="line">    x = tf.py_function(func=get_x,inp=[file_name],Tout=tf.float32)</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">process_path</span><span class="params">(file_path)</span>:</span></span><br><span class="line">    label = get_label(file_path)</span><br><span class="line">    <span class="keyword">return</span> label</span><br><span class="line"></span><br><span class="line">train_ds = list_ds.map(process_path, num_parallel_calls=AUTOTUNE)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>ref: <a href="https://stackoverflow.com/questions/56122670/how-to-get-string-value-out-of-tf-tensor-which-dtype-is-string" target="_blank" rel="noopener">how to get string value out of tf.tensor which dtype is string</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/07/17/%E5%88%9B%E5%BB%BAtrt%E6%A8%A1%E5%9E%8B%E6%97%B6-%E5%87%BA%E7%8E%B0core-dumped/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/07/17/%E5%88%9B%E5%BB%BAtrt%E6%A8%A1%E5%9E%8B%E6%97%B6-%E5%87%BA%E7%8E%B0core-dumped/" class="post-title-link" itemprop="url">创建trt模型时，出现core dumped</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-17 18:07:51" itemprop="dateCreated datePublished" datetime="2020-07-17T18:07:51+08:00">2020-07-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-07 13:43:47" itemprop="dateModified" datetime="2020-09-07T13:43:47+08:00">2020-09-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><ul>
-<li>JetPack4.4</li>
-</ul>
-<p>使用这份<a href="https://github.com/tensorflow/tensorrt/blob/r1.14%2B/tftrt/examples/object_detection/object_detection.py" target="_blank" rel="noopener">代码</a></p>
-<p>在优化模型时，若<code>force_nms_cpu</code>为<code>True</code>，则会出现core dumped</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>方法1：</p>
-<p>修改<a href="https://github.com/tensorflow/tensorrt/blob/r1.14%2B/tftrt/examples/object_detection/graph_utils.py" target="_blank" rel="noopener">graph_utils.py</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def force_nms_cpu(frozen_graph):</span><br><span class="line">    for node in frozen_graph.node:</span><br><span class="line">        if &#39;NonMaxSuppression&#39; in node.name:</span><br><span class="line">-             node.device &#x3D; &#39;&#x2F;device:CPU:0&#39;</span><br><span class="line">+             node.device &#x3D; &#39;&#x2F;job:localhost&#x2F;replica:0&#x2F;task:0&#x2F;device:CPU:0&#39;</span><br><span class="line">    return frozen_graph</span><br></pre></td></tr></table></figure>
-
-<p>方法2：</p>
-<p>不开启<code>force_nms_cpu</code></p>
-<p>ref:</p>
-<ul>
-<li><a href="https://github.com/tensorflow/tensorrt/issues/107" target="_blank" rel="noopener">when force_nms_cpu is true and use_trt is true, will be core dumped</a></li>
-<li><a href="https://github.com/dataplayer12/homesecurity/issues/6" target="_blank" rel="noopener">Tensorflow Model issue</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/07/15/ubuntu%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD%E7%A3%81%E7%9B%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/07/15/ubuntu%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD%E7%A3%81%E7%9B%98/" class="post-title-link" itemprop="url">ubuntu开机自动挂载磁盘</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-15 18:48:55" itemprop="dateCreated datePublished" datetime="2020-07-15T18:48:55+08:00">2020-07-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-07 13:43:47" itemprop="dateModified" datetime="2020-09-07T13:43:47+08:00">2020-09-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="格式化磁盘"><a href="#格式化磁盘" class="headerlink" title="格式化磁盘"></a>格式化磁盘</h2><p>用Gparted</p>
-<h2 id="创建挂载目录"><a href="#创建挂载目录" class="headerlink" title="创建挂载目录"></a>创建挂载目录</h2><p>mkdir ~/data</p>
-<h2 id="设置开机自动挂载"><a href="#设置开机自动挂载" class="headerlink" title="设置开机自动挂载"></a>设置开机自动挂载</h2><h3 id="查询硬盘分区对应的UUID"><a href="#查询硬盘分区对应的UUID" class="headerlink" title="查询硬盘分区对应的UUID"></a>查询硬盘分区对应的UUID</h3><p>eg:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo blkid /dev/sda1</span><br></pre></td></tr></table></figure>
-
-<h3 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h3><p><code>sudo vim /etc/fstab</code></p>
-<p>增加一行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UUID&#x3D;d765d835-4989-4bff-8ae8-116c654d4bba   &#x2F;home&#x2F;z14git&#x2F;data  ext4    defaults    0   2</span><br></pre></td></tr></table></figure>
-
-<p>第一个数字：0表示开机不检查磁盘，1表示开机检查磁盘；<br>第二个数字：0表示交换分区，1代表启动分区（Linux），2表示普通分区</p>
-<p>最后，执行<code>sudo mount -a</code>自动挂载</p>
-<h2 id="权限问题"><a href="#权限问题" class="headerlink" title="权限问题"></a>权限问题</h2><p>这种方法挂载后，普通用户是不能写的，暂时的解决办法是执行 <code>sudo chmod 777 ~/data</code></p>
-<p>ref:</p>
-<ul>
-<li><a href="https://blog.csdn.net/qq_35451572/article/details/79541106" target="_blank" rel="noopener">Ubuntu 磁盘挂载——开机自动挂载</a></li>
-<li><a href="https://blog.csdn.net/qq_29729577/article/details/52057629" target="_blank" rel="noopener">Ubuntu系统挂载新硬盘方法</a></li>
-<li><a href="https://blog.csdn.net/ls20121006/article/details/78665718" target="_blank" rel="noopener">Linux 下挂载新硬盘以及更改为普通权限</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -947,14 +935,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/sundries/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">90</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/sundries/tags/">
           
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

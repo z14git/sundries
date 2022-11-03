@@ -1,6 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>在wsl下使用usb设备</title>
+    <url>/sundries/2022/11/03/%E5%9C%A8wsl%E4%B8%8B%E4%BD%BF%E7%94%A8usb%E8%AE%BE%E5%A4%87/</url>
+    <content><![CDATA[<h2 id="安装-usbipd-win"><a href="#安装-usbipd-win" class="headerlink" title="安装 usbipd-win"></a>安装 usbipd-win</h2><figure class="highlight ps"><table><tr><td class="code"><pre><span class="line">winget install usbipd</span><br></pre></td></tr></table></figure>
+
+<p>参考：</p>
+<ul>
+<li><a href="https://github.com/dorssel/usbipd-win" target="_blank" rel="noopener">usbipd-win</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>wsl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pytorch docker 使用记录</title>
+    <url>/sundries/2022/11/03/pytorch-docker-%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it --gpus all -p 8888:8888 --name torch -v /home/z14/repos:/workspace/repos --ipc=host pytorch/pytorch:1.13.0-cuda11.6-cudnn8-runtime</span><br></pre></td></tr></table></figure>
+
+<h2 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line">pip install jupyterlab ipywidgets jupyterlab_widgets matplotlib opencv-python-headless</span><br><span class="line">jupyter lab --generate-config</span><br><span class="line">python3 -c <span class="string">"from notebook.auth.security import set_password; set_password('123456', '<span class="variable">$HOME</span>/.jupyter/jupyter_notebook_config.json')"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="启动-Jupyter-Lab"><a href="#启动-Jupyter-Lab" class="headerlink" title="启动 Jupyter Lab"></a>启动 Jupyter Lab</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> repos</span><br><span class="line">jupyter lab --ip=0.0.0.0 --no-browser --allow-root</span><br></pre></td></tr></table></figure>
+
+<p>参考：</p>
+<ul>
+<li><a href="https://blog.csdn.net/Max_ZhangJF/article/details/108920050" target="_blank" rel="noopener">docker环境里安装opencv ImportError: libGL.so.1: cannot open shared object file: No such file or directory</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+        <tag>pytorch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用docker容器</title>
+    <url>/sundries/2022/11/03/%E4%BD%BF%E7%94%A8docker%E5%AE%B9%E5%99%A8/</url>
+    <content><![CDATA[<h2 id="创建并运行一个新的docker容器"><a href="#创建并运行一个新的docker容器" class="headerlink" title="创建并运行一个新的docker容器"></a>创建并运行一个新的docker容器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it --gpus all -p 8888:8888 --name torch -v /home/z14/repos:/workspace/repos --ipc=host pytorch/pytorch:1.13.0-cuda11.6-cudnn8-runtime</span><br></pre></td></tr></table></figure>
+
+<p>命令解析：</p>
+<ol>
+<li>run 新建一个窗口并且运行</li>
+<li>-i 交互式，连接网络</li>
+<li>-t 打开终端</li>
+<li>–gpus all 使用所有显卡</li>
+<li>8888:8888 将容器的8888端口映射到wsl的8888端口</li>
+<li>–name torch 将该容器命名为 torch</li>
+<li>-v 将本地 /home/z14/repos 目录映射到容器的 /workspace/repos</li>
+<li>–ipc=host 使用主机内存</li>
+<li>pytorch/pytorch:1.13.0-cuda11.6-cudnn8-runtime 容器使用的镜像</li>
+</ol>
+<h2 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h2><p>使用 <code>attach</code> 方法进入的容器可用下面的方法退出（容器会停止）。</p>
+<p>注意：用 <code>exec</code> 进入的容器，用下面的方法退出不会停止。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span> <span class="comment"># 或 Ctrl + D</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker start torch</span><br></pre></td></tr></table></figure>
+
+<h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it torch bash</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">docker attach torch</span><br></pre></td></tr></table></figure>
+
+<h2 id="停止容器"><a href="#停止容器" class="headerlink" title="停止容器"></a>停止容器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop torch</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker rm -f torch</span><br></pre></td></tr></table></figure>
+
+<h2 id="导出和导入"><a href="#导出和导入" class="headerlink" title="导出和导入"></a>导出和导入</h2><p>导出</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker container ls -a</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                    PORTS               NAMES</span><br><span class="line">7691a814370e        ubuntu:18.04        <span class="string">"/bin/bash"</span>         36 hours ago        Exited (0) 21 hours ago                       <span class="built_in">test</span></span><br><span class="line">$ docker <span class="built_in">export</span> 7691a814370e &gt; ubuntu.tar</span><br></pre></td></tr></table></figure>
+
+<p>导入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat ubuntu.tar | docker import - <span class="built_in">test</span>/ubuntu:v1.0</span><br><span class="line">$ docker image ls</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE</span><br><span class="line"><span class="built_in">test</span>/ubuntu         v1.0                9d37a6082e97        About a minute ago   171.3 MB</span><br></pre></td></tr></table></figure>
+
+<p>参考：</p>
+<ul>
+<li><a href="https://blog.csdn.net/ych_512/article/details/106053298" target="_blank" rel="noopener">Docker删除容器命令</a></li>
+<li><a href="https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/running.html#running" target="_blank" rel="noopener">Running PyTorch</a></li>
+<li><a href="https://blog.csdn.net/weixin_37598106/article/details/119916943" target="_blank" rel="noopener">docker + pytorch + jupyter 环境配置</a></li>
+<li><a href="https://yeasy.gitbook.io/docker_practice/container/import_export" target="_blank" rel="noopener">导出和导入</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>修改wsl的docker镜像路径</title>
+    <url>/sundries/2022/11/02/%E4%BF%AE%E6%94%B9wsl%E7%9A%84docker%E9%95%9C%E5%83%8F%E8%B7%AF%E5%BE%84/</url>
+    <content><![CDATA[<ol>
+<li><p>退出 Docker Desktop。</p>
+ <figure class="highlight ps"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">-l</span> <span class="literal">-v</span></span><br></pre></td></tr></table></figure>
+
+<p> 确保 <code>docker</code> 的两个镜像状态为 <code>Stopped</code>。</p>
+</li>
+<li><p>备份 <code>docker-desktop-data</code></p>
+ <figure class="highlight ps"><table><tr><td class="code"><pre><span class="line">wsl -<span class="literal">-export</span> docker<span class="literal">-desktop</span><span class="literal">-data</span> F:\docker<span class="literal">-data</span>.tar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除旧<code>docker-desktop-data</code></p>
+ <figure class="highlight ps"><table><tr><td class="code"><pre><span class="line">wsl -<span class="literal">-unregister</span> docker<span class="literal">-desktop</span><span class="literal">-data</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新导入<code>docker-desktop-data</code></p>
+ <figure class="highlight ps"><table><tr><td class="code"><pre><span class="line">wsl -<span class="literal">-import</span> docker<span class="literal">-desktop</span><span class="literal">-data</span> <span class="string">"F:\wsl-docker-data"</span> F:\docker<span class="literal">-data</span>.tar -<span class="literal">-version</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>参考：</p>
+<ul>
+<li><a href="https://www.xiaog.info/blog/post/change_docker_image_path_with_wsl_base_engine" target="_blank" rel="noopener">Windows下修改使用WSL的Docker镜像路径</a></li>
+<li><a href="https://blog.51cto.com/u_15060464/3872849" target="_blank" rel="noopener">docker镜像文件位置windows环境下修改（wsl 2）</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+        <tag>wsl</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在 wsl 中使用 cuda</title>
     <url>/sundries/2022/11/02/%E5%9C%A8-wsl-%E4%B8%AD%E4%BD%BF%E7%94%A8-cuda/</url>
     <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
@@ -18,8 +129,8 @@
 </ul>
 ]]></content>
       <tags>
-        <tag>wsl</tag>
         <tag>docker</tag>
+        <tag>wsl</tag>
         <tag>cuda</tag>
       </tags>
   </entry>
