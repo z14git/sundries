@@ -180,6 +180,72 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/21/Fix-Error-0x80071160/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2021/01/21/Fix-Error-0x80071160/" class="post-title-link" itemprop="url">Fix Error 0x80071160</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-01-21 09:50:39 / 修改时间：09:53:41" itemprop="dateCreated datePublished" datetime="2021-01-21T09:50:39+08:00">2021-01-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>已管理员身份运行Terminal</li>
+<li>执行<code>dism.exe /Online /Cleanup-image /Restorehealth</code></li>
+<li>执行<code>sfc /scannow</code></li>
+</ol>
+<blockquote>
+<p>ref: <a href="https://www.youtube.com/watch?v=3xbTDspwQNU&ab_channel=AarohanTechSol" target="_blank" rel="noopener">Fix Error 0x80071160 While Updating Windows 10</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2021/01/04/mdk-%E7%BC%96%E8%AF%91%E5%8C%85%E5%90%AB%E4%B8%AD%E6%96%87%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -825,75 +891,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/11/06/Opencv%E7%BC%96%E8%AF%91%E5%87%BA%E7%8E%B0-In-source-builds-are-not-allowed/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/11/06/Opencv%E7%BC%96%E8%AF%91%E5%87%BA%E7%8E%B0-In-source-builds-are-not-allowed/" class="post-title-link" itemprop="url">Opencv编译出现'In-source builds are not allowed'</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-11-06 14:02:16 / 修改时间：17:54:51" itemprop="dateCreated datePublished" datetime="2020-11-06T14:02:16+08:00">2020-11-06</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>应该是在代码根目录下直接执行过cmake，导致根目录下生成了CMakeCache.txt，需要删除CMakeCache.txt再次执行编译即可。</p>
-<p>ref:</p>
-<ul>
-<li><a href="https://blog.csdn.net/WhereYouSink/article/details/80007449" target="_blank" rel="noopener">Opencv编译出现”In-source builds are not allowed”</a></li>
-<li><a href="https://www.mobibrw.com/2017/7393" target="_blank" rel="noopener">Ubuntu 16.04编译安装最新的OpenCV3.2</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/sundries/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/sundries/">1</a><a class="page-number" href="/sundries/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/sundries/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/sundries/page/9/">9</a><a class="extend next" rel="next" href="/sundries/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/sundries/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/sundries/">1</a><a class="page-number" href="/sundries/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/sundries/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/sundries/page/10/">10</a><a class="extend next" rel="next" href="/sundries/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -959,7 +961,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/sundries/archives/">
         
-          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-count">91</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>在docker compose中使用代理</title>
+    <url>/sundries/2022/12/13/%E5%9C%A8docker-compose%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<p>修改 <code>~/.docker/config.json</code></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="attr">"proxies"</span>:</span><br><span class="line"> &#123;</span><br><span class="line">   <span class="attr">"default"</span>:</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="attr">"httpProxy"</span>: <span class="string">"http://192.168.1.12:3128"</span>,</span><br><span class="line">     <span class="attr">"httpsProxy"</span>: <span class="string">"https://192.168.1.12:3128"</span>,</span><br><span class="line">     <span class="attr">"noProxy"</span>: <span class="string">"*.test.example.com,.example2.com,127.0.0.0/8"</span></span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用<code>socks5</code>代理可参考这个：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="attr">"proxies"</span>:</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">"default"</span>:</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"httpProxy"</span>: <span class="string">"socks5h://172.27.192.1:10810"</span>,</span><br><span class="line">      <span class="attr">"httpsProxy"</span>: <span class="string">"socks5h://172.27.192.1:10810"</span>,</span><br><span class="line">      <span class="attr">"noProxy"</span>: <span class="string">"localhost,mirrors.cloud.tencent.com,*.tencent.com,127.0.0.0/8"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用这种方法构建镜像后，可能镜像环境里的 <code>HTTP_PROXY</code> 等值会被修改为我们上面设置的值。<br>可尝试在 <code>Dockerfile</code> 后面不需要使用代理时增加:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ENV</span> HTTP_PROXY=<span class="string">""</span></span><br></pre></td></tr></table></figure>
+
+<p>取消代理时，最好直接将 <code>&quot;proxies&quot;</code> 段的内容删掉。同时留意 <code>~/.docker/</code> 目录下是否还有 <code>config.json.save</code>，若有，检测里面是否有保留 <code>&quot;proxies&quot;</code> 段的信息。</p>
+<p>参考：</p>
+<ul>
+<li><a href="https://docs.docker.com/network/proxy/" target="_blank" rel="noopener">Configure Docker to use a proxy server</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在wsl下使用usb设备</title>
     <url>/sundries/2022/11/03/%E5%9C%A8wsl%E4%B8%8B%E4%BD%BF%E7%94%A8usb%E8%AE%BE%E5%A4%87/</url>
     <content><![CDATA[<h2 id="安装-usbipd-win"><a href="#安装-usbipd-win" class="headerlink" title="安装 usbipd-win"></a>安装 usbipd-win</h2><figure class="highlight ps"><table><tr><td class="code"><pre><span class="line">winget install usbipd</span><br></pre></td></tr></table></figure>
@@ -19,13 +41,15 @@
     <url>/sundries/2022/11/03/pytorch-docker-%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it --gpus all -p 8888:8888 --name torch -v /home/z14/repos:/workspace/repos --ipc=host pytorch/pytorch:1.13.0-cuda11.6-cudnn8-runtime</span><br></pre></td></tr></table></figure>
 
-<h2 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line">pip install jupyterlab ipywidgets jupyterlab_widgets matplotlib opencv-python-headless</span><br><span class="line">jupyter lab --generate-config</span><br><span class="line">python3 -c <span class="string">"from notebook.auth.security import set_password; set_password('123456', '<span class="variable">$HOME</span>/.jupyter/jupyter_notebook_config.json')"</span></span><br></pre></td></tr></table></figure>
+<h2 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line">pip install jupyterlab ipywidgets jupyterlab_widgets matplotlib opencv-python-headless loguru</span><br><span class="line">jupyter lab --generate-config</span><br><span class="line">python3 -c <span class="string">"from notebook.auth.security import set_password; set_password('123456', '<span class="variable">$HOME</span>/.jupyter/jupyter_notebook_config.json')"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export LANG=C.UTF-8"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export LC_ALL=C.UTF-8"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
 
 <h2 id="启动-Jupyter-Lab"><a href="#启动-Jupyter-Lab" class="headerlink" title="启动 Jupyter Lab"></a>启动 Jupyter Lab</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> repos</span><br><span class="line">jupyter lab --ip=0.0.0.0 --no-browser --allow-root</span><br></pre></td></tr></table></figure>
 
 <p>参考：</p>
 <ul>
 <li><a href="https://blog.csdn.net/Max_ZhangJF/article/details/108920050" target="_blank" rel="noopener">docker环境里安装opencv ImportError: libGL.so.1: cannot open shared object file: No such file or directory</a></li>
+<li><a href="https://blog.csdn.net/ngy321/article/details/103512162" target="_blank" rel="noopener">ubuntu终端含中文名文件显示问号或乱码</a></li>
+<li><a href="https://ywnz.com/linuxyffq/2393.html" target="_blank" rel="noopener">云服务器Linux系统目录不显示中文，而是显示数字的解决</a></li>
 </ul>
 ]]></content>
       <tags>
@@ -795,8 +819,8 @@
     <content><![CDATA[<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ubuntu-drivers devices <span class="comment"># 查看设备和推荐的驱动</span></span><br><span class="line">sudo ubuntu-drivers autoinstall <span class="comment"># 安装推荐的驱动</span></span><br><span class="line"><span class="comment"># sudo apt install nvidia-340 # 安装指定版本</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>ubuntu</tag>
         <tag>linux</tag>
+        <tag>ubuntu</tag>
         <tag>driver</tag>
       </tags>
   </entry>
