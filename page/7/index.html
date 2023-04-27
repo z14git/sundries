@@ -180,6 +180,66 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/04/27/python-writing-file-with-Unix-end-of-line-characters/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/sundries/images/avatar.gif">
+      <meta itemprop="name" content="z14git">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四的杂物">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/sundries/2020/04/27/python-writing-file-with-Unix-end-of-line-characters/" class="post-title-link" itemprop="url">python writing file with Unix end of line characters</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-27 16:59:54 / 修改时间：17:05:45" itemprop="dateCreated datePublished" datetime="2020-04-27T16:59:54+08:00">2020-04-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p>在windows下，python在写文件时，如何以LF作换行符？</p>
+<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> io</span><br><span class="line"></span><br><span class="line">s = <span class="string">"""abc</span></span><br><span class="line"><span class="string">def</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> io.open(<span class="string">'test.txt'</span>, <span class="string">'w'</span>, newline=<span class="string">'\n'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(s)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/04/27/python-writing-utf8-file/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -783,70 +843,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://z14git.github.io/sundries/2020/03/26/bat%E8%84%9A%E6%9C%AC%E8%B0%83%E7%94%A8anaconda%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/sundries/images/avatar.gif">
-      <meta itemprop="name" content="z14git">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="十四的杂物">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sundries/2020/03/26/bat%E8%84%9A%E6%9C%AC%E8%B0%83%E7%94%A8anaconda%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">bat脚本调用anaconda命令</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-26 17:37:55 / 修改时间：17:57:45" itemprop="dateCreated datePublished" datetime="2020-03-26T17:37:55+08:00">2020-03-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在bat脚本中想调用anaconda某个环境中的python去执行某些py文件</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> condaRoot=C:\Users\Noctis\Anaconda3\</span><br><span class="line"><span class="keyword">call</span> <span class="variable">%condaRoot%</span>\Scripts\activate.bat</span><br><span class="line"><span class="keyword">call</span> python C:\Users\Noctis\Desktop\t.py</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>source: <a href="https://stackoverflow.com/questions/46305569/how-to-make-batch-files-run-in-anaconda-prompt/50260029#50260029" target="_blank" rel="noopener">How to make batch files run in anaconda prompt</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -917,14 +913,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/sundries/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/sundries/tags/">
           
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">45</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

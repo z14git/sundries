@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>使用trtexec转换onnx模型</title>
+    <url>/sundries/2023/04/27/%E4%BD%BF%E7%94%A8trtexec%E8%BD%AC%E6%8D%A2onnx%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<p>在 Jetson Nano 中，<code>trtexec</code> 默认在 <code>/usr/src/tensorrt/bin</code></p>
+<blockquote>
+<p><a href="https://github.com/dusty-nv/jetson-inference/issues/997" target="_blank" rel="noopener">HOW to convert .onnx file to tensorRT engine file using [jetson-inference?]</a></p>
+</blockquote>
+<p>使用示例：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/usr/src/tensorrt/bin/trtexec --onnx=nanodet_plus_m_320.onnx --fp16 --workspace=1024 --saveEngine=nanodet_plus_m_320.engine</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>nanodet_plus_m_320.onnx</code> 是要转换的 onnx 模型，<code>nanodet_plus_m_320_w1024.engine</code> 是输出文件。</p>
+<p>Refer to <code>trtexec --help</code> for all the supported flags and detailed explanations.</p>
+<blockquote>
+<p><a href="https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#trtexec" target="_blank" rel="noopener">trtexec</a><br><a href="https://blog.csdn.net/qq_29007291/article/details/116135737" target="_blank" rel="noopener">TensorRT trtexec的用法说明</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>jetson</tag>
+        <tag>nvidia</tag>
+        <tag>onnx</tag>
+        <tag>TensorRT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在docker compose中使用代理</title>
     <url>/sundries/2022/12/13/%E5%9C%A8docker-compose%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</url>
     <content><![CDATA[<p>修改 <code>~/.docker/config.json</code></p>
